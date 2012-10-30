@@ -1,0 +1,63 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.9.0/jquery-ui.js"></script>
+    <link href="  http://code.jquery.com/ui/1.9.0/themes/base/jquery-ui.css" rel="stylesheet"
+        type="text/css" />
+    <link href="skeleton/skeleton.css" rel="stylesheet" type="text/css" />
+    <link href="skeleton/layout.css" rel="stylesheet" type="text/css" />
+    <link href="skeleton/base.css" rel="stylesheet" type="text/css" />
+    <style>
+        #content
+        {
+            min-height: 20px;
+        }
+    </style>
+    <script type="text/javascript">
+        $(function () {
+
+
+            $("li, #toolbox").draggable({
+                revert: "invalid",
+                helper: "clone"
+            });
+
+
+            $("#content").droppable({
+
+                activeClass: "ui-state-highlight",
+                drop: function (event, ui) {
+                    addTool(ui.draggable);
+                }
+            });
+
+
+
+            function addTool($item) {
+                $("<div></div>").addClass("sixteen columns").appendTo("#content");
+                console.log($('html')[0].outerHTML);
+            }
+
+
+
+
+        });
+
+
+    </script>
+</head>
+<body>
+    <div id="divToolbox">
+        <ul id="toolbox">
+            <li>container</li>
+        </ul>
+    </div>
+    <div class="container" id="container">
+        <div id="content">
+        </div>
+    </div>
+</body>
+</html>
