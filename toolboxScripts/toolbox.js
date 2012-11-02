@@ -1,4 +1,4 @@
-$(function () {
+﻿$(function () {
 
     $("#dialog-picture-form").dialog({
         autoOpen: false,
@@ -13,7 +13,7 @@ $(function () {
                 pictureHeight = $("#pictureHeight")
 
                 $($(this).data('element')).html('<img src="' + url.val() + '" width=' + pichtureWidth.val()
-                    + ' height=' + pictureHeight + '/>');
+                    + ' height=' + pictureHeight.val() + '/>');
                 $(this).dialog("close");
             },
             Cancel: function () {
@@ -39,20 +39,22 @@ $(function () {
             newItem.attr('id', ui.item.attr('id') + 's');
             switch (ui.item.attr('id')) {
                 case 'textEditor':
-                    var config = {};
-                    CKEDITOR.appendTo(ui.item.attr('id') + 's', config, '');
+                    newItem.addClass("textEditor").text("Kliknij dwa razy, aby edytować sekcję!");
+                    newItem.ckeip();
                     break;
-
                 case 'accordion':
-                    $('#' + ui.item.attr('id') + 's').html('<h3>Section 1</h3><div><p></p></div><h3>Section 2</h3><div><p></p></div>');
-                    $("#accordions").accordion();
+                    newItem.html("<div class='accordion'><h3 >Section 1</h3><div><p></p></div><h3>Section 2</h3><div><p></p></div></div>");
+                    $(".accordion").accordion();
+                 
+                    
                     break;
-
                 case 'picture':
                     $("#dialog-picture-form").data('element', '#' + ui.item.attr('id') + 's');
                     $("#dialog-picture-form").dialog('open');
                     break;
             }
+           
+           
         }
     });
 
@@ -62,14 +64,14 @@ $(function () {
         appendTo: "#contentUL",
         revert: "invalid",
         helper: "clone"
-    //            start: function (event, ui) {
-    //                $("<li></li>").addClass("ui-state-highlight").attr({ id: "helper", style: "width: 100% ; height: 20px" }).appendTo("#contentUL");
-    //            },
-    //            stop: function (event, ui) {
-    //                $("#helper").remove();
+        //            start: function (event, ui) {
+        //                $("<li></li>").addClass("ui-state-highlight").attr({ id: "helper", style: "width: 100% ; height: 20px" }).appendTo("#contentUL");
+        //            },
+        //            stop: function (event, ui) {
+        //                $("#helper").remove();
 
 
-    //            }
+        //            }
     });
 
 
@@ -81,19 +83,19 @@ $(function () {
         var id = $item.attr('id');
         var rnd = Math.floor((Math.random() * 10) + 1);
         $($item).attr('id', id);
-    //        $("<li></li>").attr('id', id + rnd).appendTo("#contentUL");
-    //        switch (id + rnd) {
-    //            case 'textEditor' + rnd:
-    //                alert("editor");
-    //                var config = {};
-    //                CKEDITOR.appendTo(id + rnd, config, "sadasdasdasdasdsdfgdfg dfgh fhfg hjgj fg");
-    //                break;
+        //        $("<li></li>").attr('id', id + rnd).appendTo("#contentUL");
+        //        switch (id + rnd) {
+        //            case 'textEditor' + rnd:
+        //                alert("editor");
+        //                var config = {};
+        //                CKEDITOR.appendTo(id + rnd, config, "sadasdasdasdasdsdfgdfg dfgh fhfg hjgj fg");
+        //                break;
 
-    //            case 'test' + rnd:
-    //                alert("test");
-    //                $('#' + id + rnd).html("cccccc");
-    //                break;
-    //        }
+        //            case 'test' + rnd:
+        //                alert("test");
+        //                $('#' + id + rnd).html("cccccc");
+        //                break;
+        //        }
 
     }
 
