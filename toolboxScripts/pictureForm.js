@@ -9,7 +9,7 @@ $(function () {
         + 'Height</label><input type="text" name="pictureHeight" id="pictureHeight"'
         + ' class="text ui-widget-content ui-corner-all" />').appendTo('#pictureForm');
 
-   //formularz do tabow
+    //formularz do tabow
     $('<form><label>Add tab</label>'
         + '<span class="ui-icon ui-icon-circle-plus"/><br/><label>Titles</label>'
         + '<ul id="tabList"><li id="tabLi1">'
@@ -18,4 +18,11 @@ $(function () {
 
     //slidery
     $('<div id="redSlider"></div><div id="greenSlider"></div><div id="blueSlider"></div><div id="swatch" class="ui-widget-content ui-corner-all"></div>').appendTo('#picker');
+
+    //edytor tekstu
+    $(' <textarea id="dialogEditor" rows="10" style="width: 400px">Wpisz tekst.</textarea>').appendTo('#textEditorForm');
+
+
+
+
 });

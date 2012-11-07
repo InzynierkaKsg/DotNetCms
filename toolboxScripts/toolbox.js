@@ -8,8 +8,11 @@
 
             switch (ui.item.attr('id')) {
                 case 'textEditor':
-                    newItem.addClass("textEditor").text("Kliknij dwa razy, aby edytować sekcję!");
-                    newItem.ckeip();
+                    //newItem.addClass("textEditor").text("Kliknij dwa razy, aby edytować sekcję!");
+                    newItem.addClass("edittable");
+                    $("#textEditorForm").data('item', newItem);
+                    $("#textEditorForm").dialog('open');
+                    $("#dialogEditor").htmlarea();
                     break;
                 case 'accordion':
                     newItem.html("<div class='accordion'><h3 >Section 1</h3><div><p></p></div><h3>Section 2</h3><div><p></p></div></div>");
@@ -40,9 +43,17 @@
         revert: "invalid",
         helper: "clone"
     });
+    $(".not-draggable").draggable({ disabled: true });
 
     $("#footer").click(function () {
         console.log($('html')[0].outerHTML);
     });
+
+    $(".edittable").live("click", function () {
+        $("#textEditorForm").dialog('open');
+        
+    });
+
+
 
 });
