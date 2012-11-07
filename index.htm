@@ -1,48 +1,43 @@
 ﻿<!doctype html>
-<!-- komentarz-->
-<!-- komentarz-->
-<html>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
+<html>
 <head>
-
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
-    <script src="http://code.jquery.com/jquery-1.8.2.js"></script>
-    <script src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
-
-
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+    <script type="text/javascript" src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+     <script type="text/javascript" src="Gumby/js/libs/modernizr-2.0.6.min.js"></script>
+    <script type="text/javascript" src="Gumby/js/libs/gumby.min.js"></script>
+    <script type="text/javascript" src="Gumby/js/plugins.js"></script>
+    <script type="text/javascript" src="Gumby/js/main.js"></script>
+    <script type="text/javascript" src="ckeditor/ckeditor.js"></script>
+    <script type="text/javascript" src="ckeditor/adapters/jquery.js"></script>
+    <script type="text/javascript" src="ck-in-place.js"></script>
+    <script type="text/javascript" src="toolboxScripts/pictureForm.js"></script>
+    <script type="text/javascript" src="toolboxScripts/dialogTabsForm.js"></script>
+    <script type="text/javascript" src="toolboxScripts/toolbox.js"></script>
+    <script type="text/javascript" src="toolboxScripts/dialogPictureForm.js"></script>
     <link rel="stylesheet" href="Gumby/css/imports.css">
-    <script src="Gumby/js/libs/modernizr-2.0.6.min.js"></script>
-
-    <script src="Gumby/js/libs/gumby.min.js"></script>
-    <script src="Gumby/js/plugins.js"></script>
-    <script src="Gumby/js/main.js"></script>
-
-
-        <script src="ckeditor/ckeditor.js" type="text/javascript"></script>
-    <script src="ckeditor/adapters/jquery.js" type="text/javascript"></script>
-    <script src="ck-in-place.js" type="text/javascript"></script>
-
-    
-
-    
-    
-    
-    <script src="toolboxScripts/toolbox.js"></script>
+    <title>DotNetCms</title>
 </head>
 <body>
- 
+   
+    <div id="forma"></div>
+    <div id="forma2"></div>
+    <!-- z ta forma bedzie zmiana, będziemy dodawać przez asp -->
     <div class="container">
         <div class="row">
             <div class="twelve columns">
                 <nav class="navbar clearfix" id="basicnav">
-                    <a href="#" class="toggle" data-for="#basicnav > ul"><img src="Gumby/img/icon_nav_toggle.gif" /></a>
+                    <a href="#" class="toggle" data-for="#basicnav > ul">
+                        <img src="Gumby/img/icon_nav_toggle.gif" /></a>
                     <ul id="toolbox">
                         <li id="textEditor"><a href="#">Text</a></li>
                         <li id="accordion"><a href="#">Accordion</a></li>
                         <li id="picture"><a href="#">Picture</a></li>
-                 
+                        <li id="tab1"><a href="#">Tab1</a></li>
+                        <li id="tab2"><a href="#">Tab2</a></li>
                     </ul>
                 </nav>
             </div>
@@ -50,15 +45,19 @@
         <div class="row">
             <div class="twelve columns">
                 <nav class="pretty navbar clearfix" id="prettynav">
-                    <h1 class="logo"><a href="#"><img src="Gumby/img/img_logo.png" alt="Gumby Framework"/></a></h1>
-                    <a href="#" class="toggle" data-for="#prettynav > ul"><img src="Gumby/img/icon_nav_toggle.gif" /></a>
+                    <h1 class="logo"><a href="#">
+                        <img src="Gumby/img/img_logo.png" alt="Gumby Framework" /></a></h1>
+                    <a href="#" class="toggle" data-for="#prettynav > ul">
+                        <img src="Gumby/img/icon_nav_toggle.gif" /></a>
                     <ul>
-                        <li  ><a href="#">Page1</a></li>
-                        <li ><a href="#" >Page2</a></li>
+                        <li><a href="#">Page1</a></li>
+                        <li><a href="#">Page2</a></li>
 
                         <li>
                             <div class="field">
-                                <p class="text search oval"><input type="search" placeholder="Search" /></p>
+                                <p class="text search oval">
+                                    <input type="search" placeholder="Search" />
+                                </p>
                             </div>
                         </li>
                     </ul>
@@ -68,20 +67,19 @@
         <div class="row">
             <div class="twelve columns" id="content">
                 <ul id="contentUL">
-                <li class="ui-state-default">Item 1</li>
+                    <li class="ui-state-default">Item 1</li>
 
                 </ul>
             </div>
         </div>
+
         <div class="row">
             <div class="twelve columns">
                 <p id="footer">
-                    Stopka</p>
+                    Stopka
+                </p>
             </div>
         </div>
     </div>
-
- 
-
 </body>
 </html>
