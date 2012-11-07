@@ -40,6 +40,8 @@ $(function () {
     dialog = $("#tabForm").dialog({
         autoOpen: false,
         modal: true,
+        show: 'puff',
+        hide: 'scale',
         buttons: {
             Add: function () {
                 var titles = new Array(),

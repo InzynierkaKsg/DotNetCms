@@ -44,4 +44,5 @@
     $("#footer").click(function () {
         console.log($('html')[0].outerHTML);
     });
+
 });
