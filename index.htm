@@ -1,23 +1,29 @@
 ﻿<!doctype html>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1">
 
 <html>
 <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
     <script type="text/javascript" src="Gumby/js/libs/modernizr-2.0.6.min.js"></script>
     <script type="text/javascript" src="Gumby/js/libs/gumby.min.js"></script>
     <script type="text/javascript" src="Gumby/js/plugins.js"></script>
     <script type="text/javascript" src="Gumby/js/main.js"></script>
-    <script type="text/javascript" src="toolboxScripts/dialogAddTextEditor.js" ></script>
-    <script type="text/javascript" src="toolboxScripts/dialogTextEditor.js" ></script>
-    <script type="text/javascript" src="toolboxScripts/pictureForm.js"></script>
+    <script type="text/javascript" src="toolboxScripts/dialogAddTextEditor.js"></script>
+    <script type="text/javascript" src="toolboxScripts/dialogTextEditor.js"></script>
+    <script type="text/javascript" src="toolboxScripts/dialogForm.js"></script>
     <script type="text/javascript" src="toolboxScripts/dialogTabsForm.js"></script>
     <script type="text/javascript" src="toolboxScripts/toolbox.js"></script>
     <script type="text/javascript" src="toolboxScripts/dialogPictureForm.js"></script>
     <script type="text/javascript" src="toolboxScripts/color.js"></script>
+    <script type="text/javascript" src="toolboxScripts/dialogMapForm.js"></script>
+    <script type="text/javascript" src="jquery-ui-map/jquery.ui.map.js"></script>
+    <script type="text/javascript" src="jquery-ui-map/jquery.ui.map.services.js"></script>
+    <script type="text/javascript" src="jquery-ui-map/jquery.ui.map.extensions.js"></script>
     <script src="jHtmlArea/scripts/jHtmlArea-0.7.5.js" type="text/javascript"></script>
     <link href="jHtmlArea/style/jHtmlArea.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="Gumby/css/imports.css">
@@ -31,7 +37,7 @@
     <div id="tabForm" title="Add tab"></div>
     <div id="picker" title="Color"></div>
     <div id="textEditorForm" title="Color"></div>
-
+    <div id="mapForm" title="Add map"></div>
     <!-- z ta forma bedzie zmiana, będziemy dodawać przez asp -->
 
     <div class="container">
@@ -44,6 +50,7 @@
                         <li id="textEditor"><a href="#">Text</a></li>
                         <li id="accordion"><a href="#">Accordion</a></li>
                         <li id="picture"><a href="#">Picture</a></li>
+                        <li id="map"><a href="#">Map</a></li>
                         <li id="tab1"><a href="#">Tab1</a></li>
                         <li id="tab2"><a href="#">Tab2</a></li>
                         <li id="contentColor" class="not-draggable"><a href="#">Color</a></li>

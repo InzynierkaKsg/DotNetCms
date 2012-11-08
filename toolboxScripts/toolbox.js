@@ -31,7 +31,10 @@
                     $("#tabForm").data('item', newItem);
                     $("#tabForm").data('option', 2);
                     $("#tabForm").dialog('open');
-                    //  newItem.html('<div class="tabo"><section class="pretty tabs"><ul><li class="active" id="add"><a href="#addd"><span class="ui-icon ui-icon-circle-plus" style="margin-left: 20px"/></a></li></ul><div class="active" data-tab="addd"><p><form><label for="tab_title">Title</label><input type="text" name="tab_title" id="tab_title" value="" class="ui-widget-content ui-corner-all" /></form></p></div></section></div>');
+                    break;
+                case 'map':
+                    $("#mapForm").data('item', newItem);
+                    $("#mapForm").dialog('open');
                     break;
             }
         }
@@ -51,9 +54,6 @@
 
     $(".edittable").live("click", function () {
         $("#textEditorForm").dialog('open');
-        
+
     });
-
-
-
 });

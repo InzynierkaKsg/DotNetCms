@@ -7,7 +7,7 @@ $(function () {
         + 'Width</label><input type="text" name="pichtureWidth" id="pichtureWidth"'
         + ' class="text ui-widget-content ui-corner-all" /><label for="pictureHeight">'
         + 'Height</label><input type="text" name="pictureHeight" id="pictureHeight"'
-        + ' class="text ui-widget-content ui-corner-all" />').appendTo('#pictureForm');
+        + ' class="text ui-widget-content ui-corner-all" /></form>').appendTo('#pictureForm');
 
     //formularz do tabow
     $('<form><label>Add tab</label>'
@@ -17,12 +17,20 @@ $(function () {
         + '<span class="ui-icon ui-icon-close"/></li></lu></form>').appendTo('#tabForm');
 
     //slidery
-    $('<div id="redSlider"></div><div id="greenSlider"></div><div id="blueSlider"></div><div id="swatch" class="ui-widget-content ui-corner-all"></div>').appendTo('#picker');
+    $('<div id="redSlider"></div><div id="greenSlider"></div><div id="blueSlider">'
+        + '</div><div id="swatch" class="ui-widget-content ui-corner-all"></div>').appendTo('#picker');
 
     //edytor tekstu
     $(' <textarea id="dialogEditor" rows="10" style="width: 400px">Wpisz tekst.</textarea>').appendTo('#textEditorForm');
 
 
+    //formularz do map
+    $('<form><label for="latitude">Latitude</label><input type="text" name="latitude" id="latitude"'
+        + ' class="text ui-widget-content ui-corner-all" />'
+        + '<label for="longitude">Longitude</label><input type="text" name="longitude" id="longitude"'
+        + ' class="text ui-widget-content ui-corner-all" /><br /><br />'
+        + '<button id="mapPreviewButton">Preview</button><br /><br />'
+        + '<div id="mapPreview"></div></form>').appendTo('#mapForm');
 
 
 });
