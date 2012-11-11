@@ -8,7 +8,6 @@
 
             switch (ui.item.attr('id')) {
                 case 'textEditor':
-                    //newItem.addClass("textEditor").text("Kliknij dwa razy, aby edytować sekcję!");
                     newItem.addClass("edittable");
                     $("#textAddForm").data('item', newItem);
                     $("#textAddForm").dialog('open');
@@ -42,7 +41,7 @@
 
     $("#toolbox > li").draggable({
         connectToSortable: '#contentUL',
-        appendTo: "#contentUL",
+        containment: "document",
         revert: "invalid",
         helper: "clone"
     });
@@ -51,6 +50,8 @@
     $("#footer").click(function () {
         console.log($('html')[0].outerHTML);
     });
+
+    $("#footer").highlightEdit();
 
     $(".edittable").live("click", function () {
         $("#textEditorForm").data('item', $(this));

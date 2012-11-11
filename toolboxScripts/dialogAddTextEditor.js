@@ -2,8 +2,7 @@ $(function () {
     $("#textAddForm").dialog({
         width: 420,
         autoOpen: false,
-        modal: true,
-
+        modal: true, 
         buttons: {
             "Add": function () {
 

@@ -3,9 +3,8 @@ $(function () {
         width: 420,
         autoOpen: false,
         modal: true,
-       
         buttons: {
-            "Add": function () {
+            "Save": function () {
 
 
                 $($(this).data('item')).html($("#dialogTextEditor").htmlarea('html'));
