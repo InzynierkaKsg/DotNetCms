@@ -20,9 +20,11 @@ $(function () {
     $('<div id="redSlider"></div><div id="greenSlider"></div><div id="blueSlider">'
         + '</div><div id="swatch" class="ui-widget-content ui-corner-all"></div>').appendTo('#picker');
 
-    //edytor tekstu
-    $(' <textarea id="dialogEditor" rows="10" style="width: 400px">Wpisz tekst.</textarea>').appendTo('#textEditorForm');
+    //dodaj edytor tekstu
+    $('<textarea id="dialogAddTextEditor" rows="10" style="width: 400px">Wpisz tekst.</textarea>').appendTo('#textAddForm');
 
+    //edytuj tekst
+    $('<textarea id="dialogTextEditor" rows="10" style="width: 400px"></textarea>').appendTo('#textEditorForm');
 
     //formularz do map
     $('<form><label for="latitude">Latitude</label><input type="text" name="latitude" id="latitude"'

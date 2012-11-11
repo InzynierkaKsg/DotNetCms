@@ -8,7 +8,7 @@ $(function () {
             "Add": function () {
 
 
-                $($(this).data('item')).html($("#dialogEditor").htmlarea('html'));
+                $($(this).data('item')).html($("#dialogTextEditor").htmlarea('html'));
                 $(this).dialog("close");
             },
             Cancel: function () {
@@ -16,7 +16,7 @@ $(function () {
             }
         },
         close: function () {
-            $($(this).data('item')).html($("#dialogEditor").htmlarea('html', "Wpisz tekst."));
+           
             
         }
 
