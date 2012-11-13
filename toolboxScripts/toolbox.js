@@ -52,9 +52,11 @@
         console.log($('html')[0].outerHTML);
     });
 
+    $("#footer").highlightEdit();
+    $("#logo").highlightEdit();
 
     $("#logo").click(function () {
-        
+
         $("#pictureFormEdit").data('item', $(this));
         $("#pictureFormEdit").dialog('open');
 

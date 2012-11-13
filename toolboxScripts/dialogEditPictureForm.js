@@ -21,7 +21,7 @@ $(function () {
             }
         },
         close: function () {
-            var url = $("#url"),
+            var url = $("#urlEdit"),
             file = $("#choosePictureEdit"),
             pichtureWidth = $("#pichtureWidthEdit"),
             pictureHeight = $("#pictureHeightEdit"),
