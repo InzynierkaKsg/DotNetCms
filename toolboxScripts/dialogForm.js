@@ -7,7 +7,23 @@ $(function () {
         + 'Width</label><input type="text" name="pichtureWidth" id="pichtureWidth"'
         + ' class="text ui-widget-content ui-corner-all" /><label for="pictureHeight">'
         + 'Height</label><input type="text" name="pictureHeight" id="pictureHeight"'
-        + ' class="text ui-widget-content ui-corner-all" /></form>').appendTo('#pictureForm');
+        + ' class="text ui-widget-content ui-corner-all" /><br /><br />'
+        + '<button id="picturePreviewButton">Preview</button><br /><br />'
+        + '<div id="picturePreview"></div></form>').appendTo('#pictureForm');
+
+
+    $('<form><label for="urlEdit">Url</label><input type="text" name="urlEdit" id="urlEdit"'
+        + ' class="text ui-widget-content ui-corner-all" /><br /><br />'
+        + '<p class="btn submit"><input type="File" value="Choose picture"'
+        + ' name="choosePictureEdit" id="choosePictureEdit" accept="image/*"/></p><label for="pichtureWidthEdit">'
+        + 'Width</label><input type="text" name="pichtureWidthEdit" id="pichtureWidthEdit"'
+        + ' class="text ui-widget-content ui-corner-all" /><label for="pictureHeightEdit">'
+        + 'Height</label><input type="text" name="pictureHeightEdit" id="pictureHeightEdit"'
+        + ' class="text ui-widget-content ui-corner-all" /><br /><br />'
+        + '<button id="picturePreviewButtonEdit">Preview</button><br /><br />'
+        + '<div id="picturePreviewEdit"></div></form>').appendTo('#pictureFormEdit');
+
+
 
     //formularz do tabow
     $('<form><label>Add tab</label>'
