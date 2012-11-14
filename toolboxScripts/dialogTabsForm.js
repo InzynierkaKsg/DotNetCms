@@ -52,9 +52,9 @@ $(function () {
                 free;
 
             if (taby.length != 0) {
-                for (var i = 0; i < a.length; i++) {
+                for (var i = 0; i < taby.length; i++) {
                     linkID = taby[i].getElementsByTagName('a');
-                    for (var j = 0; j < b.length; j++) {
+                    for (var j = 0; j < linkID.length; j++) {
                         currentLinkID = linkID[j].getAttribute('href');
                         currentLinkID = currentLinkID.replace('#tabs-', '');
                         tabId[currentLinkID - 1] = 1;
