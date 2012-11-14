@@ -1,5 +1,5 @@
 $(function () {
-    var navColor2, color2, color3;
+    var navColor2, color2, color3, color4;
 
     function getcolor() {
         if (jQuery.browser.msie)
@@ -25,24 +25,32 @@ $(function () {
                 setZero(parseInt(navColor2[2] * 0.75)), setZero(parseInt(navColor2[3] * 0.75)));
             color3 = hexFromRGB(setZero(parseInt(navColor2[1]) + 20),
                 setZero(parseInt(navColor2[2]) + 20), setZero(parseInt(navColor2[3]) + 20));
+            color4 = hexFromRGB(setZero(parseInt(navColor2[1] * 0.75) - 15),
+               setZero(parseInt(navColor2[2] * 0.75) - 15), setZero(parseInt(navColor2[3] * 0.75) - 15));
         }
         else if (getMaxRGB(parseInt(navColor2[1]), parseInt(navColor2[2]), parseInt(navColor2[3])) > 127) {
             color2 = hexFromRGB(setZero(parseInt(navColor2[1] * 0.55)),
                 setZero(parseInt(navColor2[2] * 0.55)), setZero(parseInt(navColor2[3] * 0.55)));
             color3 = hexFromRGB(setZero(parseInt(navColor2[1]) + 20),
                 setZero(parseInt(navColor2[2]) + 20), setZero(parseInt(navColor2[3]) + 20));
+            color4 = hexFromRGB(setZero(parseInt(navColor2[1] * 0.55) - 15),
+                setZero(parseInt(navColor2[2] * 0.55) - 15), setZero(parseInt(navColor2[3] * 0.55) - 15));
         }
         else if (getMaxRGB(parseInt(navColor2[1]), parseInt(navColor2[2]), parseInt(navColor2[3])) > 40) {
             color2 = hexFromRGB(setZero(parseInt(navColor2[1] * 1.45)),
                 setZero(parseInt(navColor2[2] * 1.45)), setZero(parseInt(navColor2[3] * 1.45)));
             color3 = hexFromRGB(setZero(parseInt(navColor2[1]) - 20),
                 setZero(parseInt(navColor2[2]) - 20), setZero(parseInt(navColor2[3]) - 20));
+            color4 = hexFromRGB(setZero(parseInt(navColor2[1] * 1.45) + 15),
+               setZero(parseInt(navColor2[2] * 1.45) + 15), setZero(parseInt(navColor2[3] * 1.45) + 15));
         }
         else {
             color2 = hexFromRGB(setZero(parseInt(navColor2[1]) + 60),
                 setZero(parseInt(navColor2[2]) + 60), setZero(parseInt(navColor2[3]) + 60));
             color3 = hexFromRGB(setZero(parseInt(navColor2[1]) - 20),
                 setZero(parseInt(navColor2[2]) - 20), setZero(parseInt(navColor2[3]) - 20));
+            color4 = hexFromRGB(setZero(parseInt(navColor2[1]) + 75),
+               setZero(parseInt(navColor2[2]) + 75), setZero(parseInt(navColor2[3]) + 75));
         }
     }
 
@@ -161,10 +169,14 @@ $(function () {
                 linki.css('box-shadow', 'inset 1px 0 0 #' + color3);
                 $('#prettynav > ul > li:first-child > a').css('box-shadow', 'none');
             }
+            $('#basicnav').css('border', '1px solid #' + color4);
+            $('#basicnav2').css('border', '1px solid #' + color4);
         } else {
             linki.css("background", '#fff');
             linki.css('box-shadow', 'none');
             linki.css('text-shadow', 'none');
+            $('#basicnav').css('border', 'none');
+            $('#basicnav2').css('border', 'none');
         }
     });
 
