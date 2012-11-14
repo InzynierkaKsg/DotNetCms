@@ -1,22 +1,21 @@
-﻿var latitudeValue = 0.0;
-var longitudeValue = 0.0;
+﻿var address = null;
+var map = null;
+var description = null;
+var geocoder = null;
+var image = 'images/map_icon.png';
 
 $(function () {
     $("#mapForm").dialog({
+        open: InitializeGeocoder(),
+        resizeStop: function (event, ui) { if (map) { google.maps.event.trigger(map, 'resize') } },
         autoOpen: false,
-        height: 400,
+        height: 600,
         width: 500,
         modal: true,
         show: 'puff',
         hide: 'scale',
         buttons: {
             "Add": function () {
-                var latitude = $("#latitude"),
-                longitude = $("#longitude")
-
-                latitudeValue = parseFloat(latitude.val());
-                longitudeValue = parseFloat(longitude.val());
-
                 $($(this).data('item')).html('<div id="mapViewer"></div>');
                 $("#mapViewer").css({
                     width: '340px',
@@ -30,9 +29,7 @@ $(function () {
             }
         },
         close: function () {
-            var latitude = $("#latitude"),
-            longitude = $("#longitude"),
-            allFields = $([]).add(latitude).add(longitude);
+            allFields = $([]).add(address).add(description);
 
             allFields.val("").removeClass("ui-state-error");
         }
@@ -48,39 +45,67 @@ $(function () {
     })
         .click(function (event) {
             event.preventDefault();
-            $("#mapForm").css("height", "500");
             $("#mapPreview").css({
                 width: '460px',
-                height: '300px',
+                height: '260px',
                 margin: '0 auto'
             });
-
-            var latitude = $("#latitude"),
-                longitude = $("#longitude");
-            latitudeValue = parseFloat(latitude.val());
-            longitudeValue = parseFloat(longitude.val());
-
-            //console.log(typeof (latitude) + " " + latitude.val());
 
             LoadMap('mapPreview');
         });
 });
 
+function InitializeGeocoder() {
+    geocoder = new google.maps.Geocoder();
+}
+
 function LoadMap(divId) {
+    InitializeFormValues();
+
     var mapOptions = {
         zoom: 12,
-        center: new google.maps.LatLng(latitudeValue, longitudeValue),
+        center: new google.maps.LatLng(18.0, 54.0),
         mapTypeId: google.maps.MapTypeId.ROADMAP,
         panControl: false,
-        zoomControl: true,
+        zoomControl: false,
         mapTypeControl: false,
-        scaleControl: true,
-        overviewMapControl: true
+        scaleControl: false,
+        overviewMapControl: false,
+        navigationControl: false,
+        streetViewControl: false,
+        draggable: false
     };
     map = new google.maps.Map(document.getElementById(divId), mapOptions);
-    var latLng = new google.maps.LatLng(latitudeValue, longitudeValue);
-    var marker = new google.maps.Marker({
-        position: latLng,
-        map: map
-    });
+    showAddress();
+}
+
+function InitializeFormValues() {
+    address = $("#address").val();
+    description = $("#description").val();
+}
+
+function showAddress() {
+    if (geocoder) {
+        geocoder.geocode({ 'address': address }, function (results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                map.setCenter(results[0].geometry.location);
+                var marker = new google.maps.Marker({
+                    map: map,
+                    position: results[0].geometry.location,
+                    icon: image
+                });
+                var infowindow = new google.maps.InfoWindow(
+                {
+                    content: description + "<br>" + address
+                });
+                google.maps.event.addListener(marker, 'click', function () {
+                    infowindow.open(map, marker);
+                });
+
+            } else {
+                alert("Geocode was not successful for the following reason: " + status);
+            }
+        });
+
+    }
 }

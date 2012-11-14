@@ -82,4 +82,8 @@
     });
 
     $("#menuNav").disableSelection();
+
+    if (map) {
+        google.maps.event.trigger(map, 'resize');
+    }
 });

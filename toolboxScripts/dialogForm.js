@@ -43,9 +43,9 @@ $(function () {
     $('<textarea id="dialogTextEditor" rows="10" style="width: 400px"></textarea>').appendTo('#textEditorForm');
 
     //formularz do map
-    $('<form><label for="latitude">Latitude</label><input type="text" name="latitude" id="latitude"'
+    $('<form><label for="address">Address</label><input type="text" name="address" id="address"'
         + ' class="text ui-widget-content ui-corner-all" />'
-        + '<label for="longitude">Longitude</label><input type="text" name="longitude" id="longitude"'
+        + '<form><label for="description">Description</label><input type="text" name="description" id="description"'
         + ' class="text ui-widget-content ui-corner-all" /><br /><br />'
         + '<button id="mapPreviewButton">Preview</button><br /><br />'
         + '<div id="mapPreview"></div></form>').appendTo('#mapForm');
