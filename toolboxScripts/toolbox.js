@@ -8,7 +8,7 @@
 
             switch (ui.item.attr('id')) {
                 case 'textEditor':
-                    newItem.addClass("edittable");
+                    newItem.addClass("editable");
                     $("#textAddForm").data('item', newItem);
                     $("#textAddForm").dialog('open');
                     $("#dialogAddTextEditor").htmlarea();
@@ -18,6 +18,7 @@
                     $(".accordion").accordion();
                     break;
                 case 'picture':
+                    newItem.addClass("editablePicture");
                     $("#pictureForm").data('item', newItem);
                     $("#pictureForm").dialog('open');
                     break;
@@ -52,11 +53,28 @@
     });
 
     $("#footer").highlightEdit();
+    $("#logo").highlightEdit();
 
-    $(".edittable").live("click", function () {
+    $("#logo").click(function () {
+
+        $("#pictureFormEdit").data('item', $(this));
+        $("#pictureFormEdit").dialog('open');
+
+    });
+
+
+    $(".editable").live("click", function () {
         $("#textEditorForm").data('item', $(this));
         $("#textEditorForm").dialog('open');
         $("#dialogTextEditor").htmlarea('html', $(this).html());
+
+    });
+
+    $(".editablePicture").live("click", function () {
+        $("#pictureForm").data('item', $(this));
+        $("#pictureForm").dialog('open');
+
+
     });
 
     $("#menuNav").sortable({
