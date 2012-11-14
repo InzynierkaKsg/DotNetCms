@@ -1,7 +1,7 @@
 $(function () {
-    $("#contentColor").click(function () {
 
-        var navColor = $('#basicnav').css('backgroundColor');
+    $("#contentColor").click(function () {
+        var navColor = $('#basicnav').css('background-color');
         navColor = navColor.match(/^rgb\((\d+),\s*(\d+),\s*(\d+)\)$/);
 
         $("#redSlider, #greenSlider, #blueSlider").slider({
@@ -13,12 +13,10 @@ $(function () {
             change: refreshSwatch
         });
 
-
         $("#redSlider").slider("value", navColor[1]);
         $("#greenSlider").slider("value", navColor[2]);
         $("#blueSlider").slider("value", navColor[3]);
         $("#picker").dialog('open');
-
     });
 
     function refreshSwatch() {
@@ -55,85 +53,234 @@ $(function () {
             hex = hexFromRGB(red, green, blue), hex2, hex3, hex4;
 
                 if (getMaxRGB(red, green, blue) > 190) {
-                    hex2 = hexFromRGB(setZero(parseInt(red * 0.75)), setZero(parseInt(green * 0.75)), setZero(parseInt(blue * 0.75)));
-                    hex3 = hexFromRGB(setZero(parseInt(red * 0.75 - 15)), setZero(parseInt(green * 0.75 - 15)), setZero(parseInt(blue * 0.75 - 15)));
-                    hex4 = hexFromRGB(setZero(parseInt(red * 0.75 + 20)), setZero(parseInt(green * 0.75 + 20)), setZero(parseInt(blue * 0.75 + 20)));
-
+                    hex2 = hexFromRGB(setZero(parseInt(red * 0.75)),
+                        setZero(parseInt(green * 0.75)), setZero(parseInt(blue * 0.75)));
+                    hex3 = hexFromRGB(setZero(parseInt(red * 0.75 - 15)),
+                        setZero(parseInt(green * 0.75 - 15)), setZero(parseInt(blue * 0.75 - 15)));
+                    hex4 = hexFromRGB(setZero(red + 20), setZero(green + 20), setZero(blue + 20));
                 }
                 else if (getMaxRGB(red, green, blue) > 127) {
-                    hex2 = hexFromRGB(setZero(parseInt(red * 0.55)), setZero(parseInt(green * 0.55)), setZero(parseInt(blue * 0.55)));
-                    hex3 = hexFromRGB(setZero(parseInt(red * 0.55 - 15)), setZero(parseInt(green * 0.55 - 15)), setZero(parseInt(blue * 0.55 - 15)));
-                    hex4 = hexFromRGB(setZero(parseInt(red * 0.55 + 20)), setZero(parseInt(green * 0.55 + 20)), setZero(parseInt(blue * 0.55 + 20)));
-
+                    hex2 = hexFromRGB(setZero(parseInt(red * 0.55)),
+                        setZero(parseInt(green * 0.55)), setZero(parseInt(blue * 0.55)));
+                    hex3 = hexFromRGB(setZero(parseInt(red * 0.55 - 15)),
+                        setZero(parseInt(green * 0.55 - 15)), setZero(parseInt(blue * 0.55 - 15)));
+                    hex4 = hexFromRGB(setZero(red + 20), setZero(green + 20), setZero(blue + 20));
                 }
                 else if (getMaxRGB(red, green, blue) > 40) {
-                    hex2 = hexFromRGB(setZero(parseInt(red * 1.45)), setZero(parseInt(green * 1.45)), setZero(parseInt(blue * 1.45)));
-                    hex3 = hexFromRGB(setZero(parseInt(red * 1.45 + 15)), setZero(parseInt(green * 1.45 + 15)), setZero(parseInt(blue * 1.45 + 15)));
-                    hex4 = hexFromRGB(setZero(parseInt(red * 1.45 - 20)), setZero(parseInt(green * 1.45 - 20)), setZero(parseInt(blue * 1.45 - 20)));
+                    hex2 = hexFromRGB(setZero(parseInt(red * 1.45)),
+                        setZero(parseInt(green * 1.45)), setZero(parseInt(blue * 1.45)));
+                    hex3 = hexFromRGB(setZero(parseInt(red * 1.45 + 15)),
+                        setZero(parseInt(green * 1.45 + 15)), setZero(parseInt(blue * 1.45 + 15)));
+                    hex4 = hexFromRGB(setZero(red - 20), setZero(green - 20), setZero(blue - 20));
                 }
                 else {
-                    hex2 = hexFromRGB(setZero(parseInt(red + 60)), setZero(parseInt(green + 60)), setZero(parseInt(blue + 60)));
-                    hex3 = hexFromRGB(setZero(parseInt(red + 75)), setZero(parseInt(green + 75)), setZero(parseInt(blue + 75)));
-                    hex4 = hexFromRGB(setZero(parseInt(red + 45)), setZero(parseInt(green + 45)), setZero(parseInt(blue + 45)));
+                    hex2 = hexFromRGB(setZero(red + 60), setZero(green + 60), setZero(blue + 60));
+                    hex3 = hexFromRGB(setZero(red + 75), setZero(green + 75), setZero(blue + 75));
+                    hex4 = hexFromRGB(setZero(red - 20), setZero(green - 20), setZero(blue - 20));
                 }
 
-                console.log('1 #' + hex + '    2 #' + hex2 + '       3 #' + hex3 + '     4 #' + hex4);
-                //console.log('#' + hex2 + '    #' + hex);
-                if (jQuery.browser.opera) {
+                setStyleClass('navbar > ul > li > a', {
+                    'background-color':
+                        '#' + hex
+                });
+                setStyleClass('navbar > ul > li > a', {
+                    'backgroundColor':
+                        '#' + hex
+                });
+                setStyleId('basicnav', {
+                    'background':
+                        '#' + hex
+                });
+                setStyleClass('navbar', {
+                    'border':
+                        '1px solid #' + hex3
+                });
+                setStyleClass('pretty.navbar a.toggle', {
+                    'border':
+                        '1px solid #' + hex3
+                });
 
-                    setStyleClass('pretty.navbar', { 'background': '-o-linear-gradient(top, #' + hex + ' 0%,#' + hex2 + ' 100%)' });
-                    setStyleClass('navbar a.toggle', { 'background': '-o-linear-gradient(top, #' + hex + ' 0%,#' + hex2 + ' 100%)' });
-                    setStyleClass('pretty.tabs li.active a', { 'background': '-o-linear-gradient(top, #' + hex + ' 0%,#' + hex2 + ' 100%)' });
+                if (jQuery.browser.opera) {
+                    setStyleClass('pretty.navbar', {
+                        'background':
+                            '-o-linear-gradient(top, #' + hex + ' 0%,#' + hex2 + ' 100%)'
+                    });
+                    setStyleClass('pretty.navbar > ul > li', {
+                        'background':
+                            '-o-linear-gradient(top, #' + hex + ' 0%,#' + hex2 + ' 100%)'
+                    });
+                    setStyleClass('pretty.navbar > ul > li > a', {
+                        'background':
+                            '-o-linear-gradient(top, #' + hex + ' 0%,#' + hex2 + ' 100%)'
+                    });
+                    setStyleClass('navbar a.toggle', {
+                        'background':
+                            '-o-linear-gradient(top, #' + hex + ' 0%,#' + hex2 + ' 100%)'
+                    });
+                    setStyleClass('pretty.tabs li.active a', {
+                        'background':
+                            '-o-linear-gradient(top, #' + hex + ' 0%,#' + hex2 + ' 100%)'
+                    });
+                    setStyleClass('pretty.navbar > ul > li:first-child,'
+                        + '.pretty.navbar > ul > li:first-child a:hover', {
+                            'boxShadow':
+                                'none'
+                        });
+                    setStyleClass('navbar > ul > li > a', {
+                        'textShadow':
+                            '0 1px 2px #' + hex2 + ', 0 1px 0 #' + hex2
+                    });
+                    setStyleClass('navbar ul li', {
+                        'borderRight':
+                            '1px solid #' + hex3
+                    });
+                    setStyleClass('navbar > ul > li:last-child, .navbar > ul > li:last-child a:hover', {
+                        'borderRight':
+                            'none'
+                    });
+
+                    $('#tog').css('boxShadow', 'inset 0 1px 1px #' + hex4 + ', 0 1px 1px #' + hex4);
+                    $('#prettynav > ul > li > a').css('box-shadow', 'inset 1px 0 0 #' + hex4);
+                    $('#prettynav > ul > li:first-child > a').css('boxShadow', 'none');
                 }
                 else if (jQuery.browser.msie) {
-                    // alert("jebane ie");
-                    setStyleClass('pretty.navbar', { 'background': ' #' + hex });
-                    setStyleClass('navbar a.toggle', { 'background': ' #' + hex });
-                    //setStyle('prettynav', { 'filter': "progid:DXImageTransform.Microsoft.gradient( startColorstr='#5dbb73', endColorstr='#2d9047',GradientType=0" })
-                    setStyleClass('pretty.tabs li.active a', { 'filter': "progid:DXImageTransform.Microsoft.gradient( startColorstr='#" + hex + "', endColorstr='#" + hex2 + "',GradientType=0 " });
+                    setStyleClass('pretty.navbar', {
+                        'background':
+                            ' #' + hex
+                    });
+                    setStyleClass('pretty.navbar > ul > li', {
+                        'background':
+                            ' #' + hex
+                    });
+                    setStyleClass('pretty.navbar > ul > li > a', {
+                        'background':
+                            ' #' + hex
+                    });
+                    setStyleClass('navbar a.toggle', {
+                        'background':
+                            ' #' + hex
+                    });
+                    setStyleClass('pretty.tabs li.active a', {
+                        'filter':
+                            "progid:DXImageTransform.Microsoft.gradient"
+                            + "( startColorstr='#" + hex + "', endColorstr='#"
+                            + hex2 + "',GradientType=0 "
+                    });
+                    setStyleClass('pretty.navbar > ul > li:first-child,'
+                        + ' .pretty.navbar > ul > li:first-child a:hover', {
+                            'box-shadow':
+                                'none'
+                        });
+                    setStyleClass('navbar > ul > li > a', {
+                        'text-shadow':
+                            '2px 2px 2px #111111'
+                    });
+                    setStyleClass('navbar ul li', {
+                        'border-right':
+                            '1px solid #' + hex3
+                    });
+                    setStyleClass('navbar > ul > li:last-child, .navbar > ul > li:last-child a:hover', {
+                        'border-right':
+                            'none'
+                    });
 
+                    $('#tog').css('box-shadow', 'inset 0 1px 1px #' + hex4 + ', 0 1px 1px #' + hex4);
+                    $('#prettynav > ul > li > a').css('box-shadow', 'inset 1px 0 0 #' + hex4);
+                    $('#prettynav > ul > li:first-child > a').css('box-shadow', 'none');
                 }
                 else if (jQuery.browser.mozilla) {
+                    setStyleClass('pretty.navbar', {
+                        'background':
+                            '-moz-linear-gradient(top, #' + hex + ' 0%, #' + hex2 + ' 100%)'
+                    });
+                    setStyleClass('pretty.navbar > ul > li', {
+                        'background':
+                            '-moz-linear-gradient(top, #' + hex + ' 0%, #' + hex2 + ' 100%)'
+                    });
+                    setStyleClass('pretty.navbar > ul > li > a', {
+                        'background':
+                            '-moz-linear-gradient(top, #' + hex + ' 0%, #' + hex2 + ' 100%)'
+                    });
+                    setStyleClass('navbar a.toggle', {
+                        'background':
+                            '-moz-linear-gradient(top, #' + hex + ' 0%, #' + hex2 + ' 100%)'
+                    });
+                    setStyleClass('pretty.tabs li.active a', {
+                        'background':
+                            '-moz-linear-gradient(top, #' + hex + ' 0%, #' + hex2 + ' 100%)'
+                    });
+                    setStyleClass('pretty.navbar > ul > li:first-child,'
+                        + ' .pretty.navbar > ul > li:first-child a:hover', {
+                            'boxShadow':
+                                'none'
+                        });
+                    setStyleClass('navbar > ul > li > a', {
+                        'textShadow':
+                            '0 1px 2px #' + hex2 + ', 0 1px 0 #' + hex2
+                    });
+                    setStyleClass('navbar ul li', {
+                        'borderRight':
+                            '1px solid #' + hex3
+                    });
+                    setStyleClass('navbar > ul > li:last-child, .navbar > ul > li:last-child a:hover', {
+                        'borderRight':
+                            'none'
+                    });
 
-                    setStyleClass('pretty.navbar', { 'background': '-moz-linear-gradient(top, #' + hex + ' 0%, #' + hex2 + ' 100%)' });
-                    setStyleClass('navbar a.toggle', { 'background': '-moz-linear-gradient(top, #' + hex + ' 0%, #' + hex2 + ' 100%)' });
-                    setStyleClass('pretty.tabs li.active a', { 'background': '-moz-linear-gradient(top, #' + hex + ' 0%, #' + hex2 + ' 100%)' });
-
+                    $('#tog').css('boxShadow', 'inset 0 1px 1px #' + hex4 + ', 0 1px 1px #' + hex4);
+                    $('#prettynav > ul > li > a').css('boxShadow', 'inset 1px 0 0 #' + hex4);
+                    $('#prettynav > ul > li:first-child > a').css('boxShadow', 'none');
                 }
                 else if (jQuery.browser.chrome) {
+                    setStyleClass('pretty.navbar', {
+                        'background':
+                            '-webkit-gradient(linear, left top, left bottom, color-stop(0%, #'
+                            + hex + '), color-stop(100%,#' + hex2 + '))'
+                    });
+                    setStyleClass('pretty.navbar > ul > li', {
+                        'background':
+                            '-webkit-gradient(linear, left top, left bottom, color-stop(0%, #'
+                            + hex + '), color-stop(100%,#' + hex2 + '))'
+                    });
+                    setStyleClass('pretty.navbar > ul > li > a', {
+                        'background':
+                            '-webkit-gradient(linear, left top, left bottom, color-stop(0%, #'
+                            + hex + '), color-stop(100%,#' + hex2 + '))'
+                    });
+                    setStyleClass('navbar a.toggle', {
+                        'background':
+                            '-webkit-gradient(linear, left top, left bottom, color-stop(0%, #'
+                            + hex + '), color-stop(100%,#' + hex2 + '))'
+                    });
+                    setStyleClass('pretty.tabs li.active a', {
+                        'background':
+                            '-webkit-gradient(linear, left top, left bottom, color-stop(0%,#'
+                            + hex + '), color-stop(100%,#' + hex2 + '))'
+                    });
+                    setStyleClass('pretty.navbar > ul > li:first-child,' +
+                        ' .pretty.navbar > ul > li:first-child a:hover', {
+                            'box-shadow':
+                                'none'
+                        });
+                    setStyleClass('navbar > ul > li > a', {
+                        'text-shadow':
+                            '0 1px 2px #' + hex2 + ', 0 1px 0 #' + hex2
+                    });
+                    setStyleClass('navbar ul li', {
+                        'border-right':
+                            '1px solid #' + hex3
+                    });
+                    setStyleClass('navbar > ul > li:last-child, .navbar > ul > li:last-child a:hover', {
+                        'border-right':
+                            'none'
+                    });
 
-                    setStyleClass('pretty.navbar', { 'background': '-webkit-gradient(linear, left top, left bottom, color-stop(0%, #' + hex + '), color-stop(100%,#' + hex2 + '))' });
-                    setStyleClass('navbar a.toggle', { 'background': '-webkit-gradient(linear, left top, left bottom, color-stop(0%, #' + hex + '), color-stop(100%,#' + hex2 + '))' });
-                    setStyleClass('pretty.tabs li.active a', { 'background': '-webkit-gradient(linear, left top, left bottom, color-stop(0%,#' + hex + '), color-stop(100%,#' + hex2 + '))' });
+                    $('#tog').css('box-shadow', 'inset 0 1px 1px #' + hex4 + ', 0 1px 1px #' + hex4);
+                    $('#prettynav > ul > li > a').css('box-shadow', 'inset 1px 0 0 #' + hex4);
+                    $('#prettynav > ul > li:first-child > a').css('box-shadow', 'none');
                 }
 
-                setStyleClass('navbar > ul > li > a', { 'text-shadow': '0 1px 2px #' + hex2 + ', 0 1px 0 #' + hex2 });
-
-                //
-                // setStyleClass('pretty.navbar', { 'box-shadow': 'inset 0 1px 1px  #fb926a' });
-                // setStyleClass('pretty.navbar li', { 'box-shadow': 'inset 0 1px 1px  #fb926a' });
-
-                setStyleClass('navbar', { 'border-color': '#' + hex3 });
-                setStyleClass('navbar', { 'border-color': '#' + hex3 });
-                setStyleClass('pretty.navbar a.toggle', { 'border-color': '#' + hex3 });
-                setStyleClass('navbar ul li', { 'border-right-color': '#' + hex3 });
-
-                setStyleId('basicnav', { 'background': ' #' + hex });
-
-
-                //setStyleClass('skiplink a, .skipnav a', { 'color': ' #' + hex2 });
-                //setStyleClass('tabs li a', { 'color': ' #' + hex2 });
-                //setStyleClass('navbar > ul > li:hover > a', { 'background': ' #' + hex2 });
-
-
-
-
-                //  setStyleClass('navbar a.toggle', { 'background': ' #' + hex });
-
-                //  setStyleClass('pretty.tabs li.active a', { 'background': 'rgb(100,100,100)' })
-
                 $(this).dialog("close");
-
             }
         }
     });
@@ -169,5 +316,4 @@ $(function () {
         else
             return x;
     }
-
 });

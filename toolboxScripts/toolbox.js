@@ -58,4 +58,10 @@
         $("#textEditorForm").dialog('open');
         $("#dialogTextEditor").htmlarea('html', $(this).html());
     });
+
+    $("#menuNav").sortable({
+        placeholder: "ui-state-highlight"
+    });
+
+    $("#menuNav").disableSelection();
 });

@@ -1,20 +1,21 @@
+
+
 $(function () {
     var tabId = new Array();
-    tabId[0] = 1;
-    tabId[1] = 0;
+    tabId[0] = 0;
 
-    function getTabHtml(x, title, option) {
+    function getTabHtml(x, title, option, idy) {
         var html, id;
 
         html = '<div class="tabs' + option + '">';
         if (option == 2)
             html += '<section class="pretty tabs">';
         html += '<ul>';
-        for (var i = 0; i < x; i++){
+        for (var i = 0; i < x; i++) {
             if (option == 2 && i == 0)
-                html += '<li class="active"><a href="#tabs-' + (i + 1) + '">' + title[i] + '</a></li>';
+                html += '<li class="active"><a href="#tabs-' + idy[i] + '">' + title[i] + '</a></li>';
             else
-                html += '<li><a href="#tabs-' + (i + 1) + '">' + title[i] + '</a></li>';
+                html += '<li><a href="#tabs-' + idy[i] + '">' + title[i] + '</a></li>';
         }
 
 
@@ -25,9 +26,9 @@ $(function () {
             id = 'data-tab';
         for (var i = 0; i < x; i++) {
             if (option == 2 && i == 0)
-                html += ' <div ' + id + '="tabs-' + (i + 1) + '" class="active"><p class="textEditor"">Text' + (i + 1) + '</p></div>';
+                html += ' <div ' + id + '="tabs-' + idy[i] + '" class="active"><p class="textEditor">Text' + (i + 1) + '</p></div>';
             else
-                html += ' <div ' + id + '="tabs-' + (i + 1) + '"><p class="textEditor"">Text' + (i + 1) + '</p></div>';
+                html += ' <div ' + id + '="tabs-' + idy[i] + '"><p class="textEditor">Text' + (i + 1) + '</p></div>';
         }
         if (option == 2)
             html += '</section>'
@@ -42,22 +43,53 @@ $(function () {
         modal: true,
         show: 'puff',
         hide: 'scale',
+        open: function () {
+            var taby = document.getElementsByClassName('tabs2'),
+                linkID, currentLinkID,
+                tabForm = document.getElementById('tabForm'),
+                lista = tabForm.getElementsByTagName('li'),
+                inputs = tabForm.getElementsByTagName('input'),
+                free;
+
+            if (taby.length != 0) {
+                for (var i = 0; i < a.length; i++) {
+                    linkID = taby[i].getElementsByTagName('a');
+                    for (var j = 0; j < b.length; j++) {
+                        currentLinkID = linkID[j].getAttribute('href');
+                        currentLinkID = currentLinkID.replace('#tabs-', '');
+                        tabId[currentLinkID - 1] = 1;
+                    }
+                }
+            }
+
+            for (var i = 0; i <= tabId.length; i++) {
+                if (tabId[i] != 1) {
+                    tabId[i] = 1;
+                    free = i + 1;
+                    break;
+                }
+
+            }
+            inputs[0].setAttribute('id', 'tab_title' + free);
+            lista[0].setAttribute('id', 'tabLi' + free);
+        },
         buttons: {
             Add: function () {
                 var titles = new Array(),
                     tabForm = document.getElementById('tabForm'),
                     inputs = tabForm.getElementsByTagName('input'),
                     inputsCount = inputs.length,
-                    currentTab,
+                    currentTab, idy = new Array(),
                     title;
 
                 for (var i = 0; i < inputsCount; i++) {
                     currentTab = inputs[i].getAttribute('id');
+                    idy[i] = currentTab.replace('tab_title', '');
                     title = $('#' + currentTab);
                     titles[i] = title.val();
                 }
 
-                $($(this).data('item')).html(getTabHtml(inputsCount, titles, $(this).data('option')));
+                $($(this).data('item')).html(getTabHtml(inputsCount, titles, $(this).data('option'), idy));
 
                 if ($(this).data('option') == 1)
                     $($(this).data('item')).tabs();
@@ -86,24 +118,16 @@ $(function () {
             currentTab = currentTab.replace('tab_title', '');
 
             tabId = [];
-            tabId[0] = 0;
-            tabId[1] = 0;
-            tabId[currentTab - 1] = 1;
-
             inputs = [];
             forma = [];
         }
     });
 
     $("#tabForm span.ui-icon-circle-plus").live("click", function () {
-        var countTabs = $('#tabList').find('li').length,
-            newTab;
+        var newTab;
 
-        if (tabId[countTabs] != 1)
-            tabId[countTabs] = 0;
-
-        for (var i = 0; i <= countTabs; i++) {
-            if (tabId[i] == 0) {
+        for (var i = 0; i <= tabId.length; i++) {
+            if (tabId[i] != 1) {
                 newTab = i + 1;
                 tabId[i] = 1;
                 break;
