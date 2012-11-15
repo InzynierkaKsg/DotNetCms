@@ -26,7 +26,7 @@ $(function () {
 
 
     //formularz do tabow
-    $('<form><label>Add tab</label>'
+    $('<p class="validateTips"></p><form><label>Add tab</label>'
         + '<span class="ui-icon ui-icon-circle-plus"/><br/><label>Titles</label>'
         + '<ul id="tabList"><li id="tabLi1">'
         + '<input type="text" id="tab_title1" value="" class="ui-widget-content ui-corner-all" />'
@@ -50,5 +50,9 @@ $(function () {
         + '<button id="mapPreviewButton">Preview</button><br /><br />'
         + '<div id="mapPreview"></div></form>').appendTo('#mapForm');
 
+    //formularz do tabow
+    $('<p class="validateTips"></p><form><label>Add tab</label>'
+        + '<span class="ui-icon ui-icon-circle-plus"/><br/><label>Titles</label>'
+        + '<ul id="pageList"></lu></form>').appendTo('#pageForm');
 
 });

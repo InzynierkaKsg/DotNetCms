@@ -42,12 +42,16 @@ $(function () {
         show: 'puff',
         hide: 'scale',
         open: function () {
-            var taby = document.getElementsByClassName('tabs2'),
+            var taby = document.getElementsByClassName('tabs1'),
+                taby2 = document.getElementsByClassName('tabs2'),
                 linkID, currentLinkID,
                 tabForm = document.getElementById('tabForm'),
                 lista = tabForm.getElementsByTagName('li'),
                 inputs = tabForm.getElementsByTagName('input'),
-                free;
+                free, tips = $(".validateTips");
+
+
+            tips.text('');
 
             if (taby.length != 0) {
                 for (var i = 0; i < taby.length; i++) {
@@ -58,8 +62,18 @@ $(function () {
                         tabId[currentLinkID - 1] = 1;
                     }
                 }
-            }
 
+            }
+            if (taby2.length != 0) {
+                for (var i = 0; i < taby2.length; i++) {
+                    linkID = taby2[i].getElementsByTagName('a');
+                    for (var j = 0; j < linkID.length; j++) {
+                        currentLinkID = linkID[j].getAttribute('href');
+                        currentLinkID = currentLinkID.replace('#tabs-', '');
+                        tabId[currentLinkID - 1] = 1;
+                    }
+                }
+            }
             for (var i = 0; i <= tabId.length; i++) {
                 if (tabId[i] != 1) {
                     tabId[i] = 1;
@@ -78,61 +92,63 @@ $(function () {
                     inputs = tabForm.getElementsByTagName('input'),
                     inputsCount = inputs.length,
                     currentTab, idy = new Array(),
-                    title;
+                    title, bValid = true;
 
                 for (var i = 0; i < inputsCount; i++) {
                     currentTab = inputs[i].getAttribute('id');
                     idy[i] = currentTab.replace('tab_title', '');
                     title = $('#' + currentTab);
+                    bValid = bValid && checkLength(title, "Title", 1, 30);
                     titles[i] = title.val();
                 }
+                if (bValid) {
+                    $($(this).data('item')).html(getTabHtml(inputsCount, titles, $(this).data('option'), idy));
 
-                $($(this).data('item')).html(getTabHtml(inputsCount, titles, $(this).data('option'), idy));
+                    if ($(this).data('option') == 1)
+                        $($(this).data('item')).tabs();
+                    else {
+                        getcolor();
+                        if (jQuery.browser.chrome) {
+                            $($(this).data('item')).find('li.active a').css('background',
+                                '-webkit-gradient(linear, left top, left bottom, '
+                                + 'color-stop(0%, #' + hexFromRGB(parseInt(navColor2[1]),
+                                parseInt(navColor2[2]), parseInt(navColor2[3]))
+                                + '), color-stop(100%,#' + color2 + '))');
+                            $($(this).data('item')).find('li.active a').css('boxShadow',
+                                'inset 0 1px 1px #' + color3 + ', 0 1px 0 #' + color4
+                                + ', 0 -1px 0 #' + color4 + ', 1px 0 0 #' + color4 + ', -1px 0 0 #' + color4);
+                            $($(this).data('item')).find('li.active a').css('text-shadow',
+                                ' 0 2px 1px #' + color2 + ', 0 1px 1px #' + color2);
 
-                if ($(this).data('option') == 1)
-                    $($(this).data('item')).tabs();
-                else {
-                    getcolor();
-                    if (jQuery.browser.chrome) {
-                        $($(this).data('item')).find('li.active a').css('background',
-                            '-webkit-gradient(linear, left top, left bottom, '
-                            + 'color-stop(0%, #' + hexFromRGB(parseInt(navColor2[1]),
-                            parseInt(navColor2[2]), parseInt(navColor2[3]))
-                            + '), color-stop(100%,#' + color2 + '))');
-                        $($(this).data('item')).find('li.active a').css('boxShadow',
-                            'inset 0 1px 1px #' + color3 + ', 0 1px 0 #' + color4
-                            + ', 0 -1px 0 #' + color4 + ', 1px 0 0 #' + color4 + ', -1px 0 0 #' + color4);
-                        $($(this).data('item')).find('li.active a').css('text-shadow',
-                            ' 0 2px 1px #' + color2 + ', 0 1px 1px #' + color2);
+                        } else if (jQuery.browser.mozilla) {
+                            $($(this).data('item')).find('li.active a').css('background',
+                                '-moz-linear-gradient(top, #' + hexFromRGB(parseInt(navColor2[1]),
+                                parseInt(navColor2[2]), parseInt(navColor2[3])) + ' 0%,#' + color2 + ' 100%)');
+                            $($(this).data('item')).find('li.active a').css('boxShadow',
+                                'inset 0 1px 1px #' + color3 + ', 0 1px 0 #' + color4 + ', 0 -1px 0 #'
+                                + color4 + ', 1px 0 0 #' + color4 + ', -1px 0 0 #' + color4);
+                            $($(this).data('item')).find('li.active a').css('textShadow',
+                                ' 0 2px 1px #' + color2 + ', 0 1px 1px #' + color2);
 
-                    } else if (jQuery.browser.mozilla) {
-                        $($(this).data('item')).find('li.active a').css('background',
-                            '-moz-linear-gradient(top, #' + hexFromRGB(parseInt(navColor2[1]),
-                            parseInt(navColor2[2]), parseInt(navColor2[3])) + ' 0%,#' + color2 + ' 100%)');
-                        $($(this).data('item')).find('li.active a').css('boxShadow',
-                            'inset 0 1px 1px #' + color3 + ', 0 1px 0 #' + color4 + ', 0 -1px 0 #'
-                            + color4 + ', 1px 0 0 #' + color4 + ', -1px 0 0 #' + color4);
-                        $($(this).data('item')).find('li.active a').css('textShadow',
-                            ' 0 2px 1px #' + color2 + ', 0 1px 1px #' + color2);
+                        } else if (jQuery.browser.opera) {
+                            $($(this).data('item')).find('li.active a').css('background',
+                                '-o-linear-gradient(top, #' + hexFromRGB(parseInt(navColor2[1]),
+                                parseInt(navColor2[2]), parseInt(navColor2[3])) + ' 0%,#' + color2 + ' 100%)');
+                            $($(this).data('item')).find('li.active a').css('boxShadow',
+                                'inset 0 1px 1px #' + color3 + ', 0 1px 0 #' + color4
+                                + ', 0 -1px 0 #' + color4 + ', 1px 0 0 #' + color4 + ', -1px 0 0 #' + color4);
+                            $($(this).data('item')).find('li.active a').css('textShadow',
+                                ' 0 2px 1px #' + color2 + ', 0 1px 1px #' + color2);
 
-                    } else if (jQuery.browser.opera) {
-                        $($(this).data('item')).find('li.active a').css('background',
-                            '-o-linear-gradient(top, #' + hexFromRGB(parseInt(navColor2[1]),
-                            parseInt(navColor2[2]), parseInt(navColor2[3])) + ' 0%,#' + color2 + ' 100%)');
-                        $($(this).data('item')).find('li.active a').css('boxShadow',
-                            'inset 0 1px 1px #' + color3 + ', 0 1px 0 #' + color4
-                            + ', 0 -1px 0 #' + color4 + ', 1px 0 0 #' + color4 + ', -1px 0 0 #' + color4);
-                        $($(this).data('item')).find('li.active a').css('textShadow',
-                            ' 0 2px 1px #' + color2 + ', 0 1px 1px #' + color2);
-
-                    } else {
-                        $($(this).data('item')).find('li.active a').css('filter',
-                            "progid:DXImageTransform.Microsoft.gradient( startColorstr='#"
-                            + hexFromRGB(parseInt(navColor2[1]), parseInt(navColor2[2]),
-                            parseInt(navColor2[3])) + "', endColorstr='#" + color2 + "',GradientType=0 )");
+                        } else {
+                            $($(this).data('item')).find('li.active a').css('filter',
+                                "progid:DXImageTransform.Microsoft.gradient( startColorstr='#"
+                                + hexFromRGB(parseInt(navColor2[1]), parseInt(navColor2[2]),
+                                parseInt(navColor2[3])) + "', endColorstr='#" + color2 + "',GradientType=0 )");
+                        }
                     }
+                    $(this).dialog("close");
                 }
-                $(this).dialog("close");
             },
             Cancel: function () {
                 $(this).dialog("close");
@@ -153,11 +169,11 @@ $(function () {
 
             currentTab = inputs[0].getAttribute('id');
             $('#' + currentTab).val('');
+            $('#' + currentTab).removeClass("ui-state-error");
             currentTab = currentTab.replace('tab_title', '');
 
             tabId = [];
             inputs = [];
-            forma = [];
         }
     });
 
@@ -245,6 +261,27 @@ $(function () {
                 setZero(parseInt(navColor2[2]) - 20), setZero(parseInt(navColor2[3]) - 20));
             color4 = hexFromRGB(setZero(parseInt(navColor2[1]) + 75),
                setZero(parseInt(navColor2[2]) + 75), setZero(parseInt(navColor2[3]) + 75));
+        }
+    }
+
+    function updateTips(t) {
+        tips = $(".validateTips");
+        tips
+            .text(t)
+            .addClass("ui-state-highlight");
+        setTimeout(function () {
+            tips.removeClass("ui-state-highlight", 1500);
+        }, 500);
+    }
+
+    function checkLength(o, n, min, max) {
+        if (o.val().length > max || o.val().length < min) {
+            o.addClass("ui-state-error");
+            updateTips("Length of " + n + " must be between " +
+                min + " and " + max + ".");
+            return false;
+        } else {
+            return true;
         }
     }
 
