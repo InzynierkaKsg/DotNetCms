@@ -100,6 +100,12 @@ $(function () {
                         '1px solid #' + hex3
                 });
 
+                setStyleClass('pretty.tabs li.active a', {
+                    '-webkit-box-shadow':
+                        'inset 0 1px 1px #' + hex4 + ', 0 1px 0 #' + hex3 + ', 0 -1px 0 #'
+                        + hex3 + ', 1px 0 0 #' + hex3 + ', -1px 0 0 #' + hex3
+                });
+
                 if (jQuery.browser.opera) {
                     setStyleClass('pretty.navbar', {
                         'background':
@@ -119,7 +125,9 @@ $(function () {
                     });
                     setStyleClass('pretty.tabs li.active a', {
                         'background':
-                            '-o-linear-gradient(top, #' + hex + ' 0%,#' + hex2 + ' 100%)'
+                            '-o-linear-gradient(top, #' + hex + ' 0%,#' + hex2 + ' 100%)',
+                        'textShadow':
+                            '0 2px 1px #' + hex2 + ', 0 1px 1px #' + hex2
                     });
                     setStyleClass('pretty.navbar > ul > li:first-child,'
                         + '.pretty.navbar > ul > li:first-child a:hover', {
@@ -138,10 +146,16 @@ $(function () {
                         'borderRight':
                             'none'
                     });
+                    setStyleClass('pretty.tabs li.active a', {
+                        'boxShadow':
+                            'inset 0 1px 1px #' + hex4 + ', 0 1px 0 #' + hex3 + ', 0 -1px 0 #'
+                            + hex3 + ', 1px 0 0 #' + hex3 + ', -1px 0 0 #' + hex3
+                    });
 
                     $('#tog').css('boxShadow', 'inset 0 1px 1px #' + hex4 + ', 0 1px 1px #' + hex4);
                     $('#prettynav > ul > li > a').css('box-shadow', 'inset 1px 0 0 #' + hex4);
                     $('#prettynav > ul > li:first-child > a').css('boxShadow', 'none');
+
                 }
                 else if (jQuery.browser.msie) {
                     setStyleClass('pretty.navbar', {
@@ -184,6 +198,12 @@ $(function () {
                             'none'
                     });
 
+                    setStyleClass('pretty.tabs li.active a', {
+                        'box-shadow':
+                            'inset 0 1px 1px #' + hex4 + ', 0 1px 0 #' + hex3 + ', 0 -1px 0 #'
+                            + hex3 + ', 1px 0 0 #' + hex3 + ', -1px 0 0 #' + hex3
+                    });
+
                     $('#tog').css('box-shadow', 'inset 0 1px 1px #' + hex4 + ', 0 1px 1px #' + hex4);
                     $('#prettynav > ul > li > a').css('box-shadow', 'inset 1px 0 0 #' + hex4);
                     $('#prettynav > ul > li:first-child > a').css('box-shadow', 'none');
@@ -207,7 +227,9 @@ $(function () {
                     });
                     setStyleClass('pretty.tabs li.active a', {
                         'background':
-                            '-moz-linear-gradient(top, #' + hex + ' 0%, #' + hex2 + ' 100%)'
+                            '-moz-linear-gradient(top, #' + hex + ' 0%, #' + hex2 + ' 100%)',
+                        'textShadow':
+                            '0 2px 1px #' + hex2 + ', 0 1px 1px #' + hex2
                     });
                     setStyleClass('pretty.navbar > ul > li:first-child,'
                         + ' .pretty.navbar > ul > li:first-child a:hover', {
@@ -225,6 +247,12 @@ $(function () {
                     setStyleClass('navbar > ul > li:last-child, .navbar > ul > li:last-child a:hover', {
                         'borderRight':
                             'none'
+                    });
+
+                    setStyleClass('pretty.tabs li.active a', {
+                        'boxShadow':
+                            'inset 0 1px 1px #' + hex4 + ', 0 1px 0 #' + hex3 + ', 0 -1px 0 #'
+                            + hex3 + ', 1px 0 0 #' + hex3 + ', -1px 0 0 #' + hex3
                     });
 
                     $('#tog').css('boxShadow', 'inset 0 1px 1px #' + hex4 + ', 0 1px 1px #' + hex4);
@@ -273,6 +301,13 @@ $(function () {
                     setStyleClass('navbar > ul > li:last-child, .navbar > ul > li:last-child a:hover', {
                         'border-right':
                             'none'
+                    });
+                    setStyleClass('pretty.tabs li.active a', {
+                        '-webkit-box-shadow':
+                            'inset 0 1px 1px #' + hex4 + ', 0 1px 0 #' + hex3 + ', 0 -1px 0 #' + hex3
+                            + ', 1px 0 0 #' + hex3 + ', -1px 0 0 #' + hex3,
+                        'textShadow':
+                            '0 2px 1px #' + hex2 + ', 0 1px 1px #' + hex2
                     });
 
                     $('#tog').css('box-shadow', 'inset 0 1px 1px #' + hex4 + ', 0 1px 1px #' + hex4);
