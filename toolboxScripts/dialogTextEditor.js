@@ -5,8 +5,6 @@ $(function () {
         modal: true,
         buttons: {
             "Save": function () {
-
-
                 $($(this).data('item')).html($("#dialogTextEditor").htmlarea('html'));
                 $(this).dialog("close");
             },
@@ -15,11 +13,7 @@ $(function () {
             }
         },
         close: function () {
-           
-            
         }
-
-
     });
 });
 

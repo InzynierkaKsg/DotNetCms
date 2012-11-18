@@ -429,46 +429,6 @@ div.alert-box
  ========================================================================*/
 
 
-ul.pagination
-{
-    display: block;
-    height: 24px;
-    margin-left: -5px;
-}
-
-    ul.pagination li
-    {
-        float: left;
-        display: block;
-        height: 24px;
-        color: #999;
-        font-size: 15px;
-        margin-left: 5px;
-    }
-
-        ul.pagination li a
-        {
-            display: block;
-            padding: 6px 7px 4px;
-            color: #555;
-        }
-
-        ul.pagination li.current a, ul.pagination li:hover a
-        {
-            border-bottom: solid 2px #00a6fc;
-            color: #141414;
-        }
-
-        ul.pagination li.unavailable a
-        {
-            cursor: default;
-            color: #999;
-        }
-
-        ul.pagination li.unavailable:hover a
-        {
-            border-bottom: none;
-        }
 
 
 
@@ -483,7 +443,7 @@ ul.pagination
     display: block;
 }
 
-    .tabs ul
+    .tabs ul.ulTitles
     {
         margin: 0;
         padding: 0;
@@ -491,7 +451,7 @@ ul.pagination
         border-bottom: 1px solid #1d692d;
     }
 
-    .tabs li
+    .tabs li.liTitles
     {
         display: block;
         width: auto;
@@ -503,7 +463,7 @@ ul.pagination
         cursor: default;
     }
 
-        .tabs li a
+        .tabs li.liTitles a
         {
             display: block;
             width: auto;
@@ -517,7 +477,7 @@ ul.pagination
             background: #5dbb73;
         }
 
-            .tabs li a:hover
+            .tabs li.liTitles a:hover
             {
                 text-decoration: none;
             }
@@ -531,7 +491,7 @@ ul.pagination
             text-shadow: 0 1px 1px #fff;
         }
 
-    .tabs div
+    .tabs div.divTabs
     {
         display: none;
         padding: 20px 10px;
@@ -542,14 +502,14 @@ ul.pagination
             display: block;
         }
 
-    .tabs li:last-child
+    .tabs li.liTitles:last-child
     {
         margin-right: 0;
     }
 
 /**** Pretty Tab Styles ****/
 
-.pretty.tabs ul
+.pretty.tabs ul.ulTitles
 {
     display: table;
     width: 100%;
@@ -567,14 +527,14 @@ ul.pagination
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#eeeeee', endColorstr='#cccccc',GradientType=0 ); /* IE6-9 */
 }
 
-.pretty.tabs li
+.pretty.tabs li.liTitles
 {
     display: table-cell;
     float: none;
     text-align: center;
 }
 
-    .pretty.tabs li a
+    .pretty.tabs li.liTitles a
     {
         padding: 0;
         font-size: 16px;
@@ -588,7 +548,7 @@ ul.pagination
         background: transparent;
     }
 
-    .pretty.tabs li:last-child a
+    .pretty.tabs li.liTitles:last-child a
     {
         border-right: none;
     }
@@ -612,31 +572,31 @@ ul.pagination
         filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5dbb73', endColorstr='#33663F',GradientType=0 ); /* IE6-9 */
     }
 
-.pretty.tabs ul li.active:first-child a
+.pretty.tabs ul.ulTitles li.active:first-child a
 {
     border-radius: 4px 0 0 0;
     margin-left: 0;
 }
 
-.pretty.tabs ul li.active:last-child a
+.pretty.tabs ul.ulTitles li.active:last-child a
 {
     border-radius: 0 4px 0 0;
 }
 
-.ie7 .pretty.tabs > ul
+.ie7 .pretty.tabs > ul.ulTitles
 {
     width: 100%;
     height: 51px;
 }
 
-    .ie7 .pretty.tabs > ul li
+    .ie7 .pretty.tabs > ul.ulTitles li.liTitles
     {
         display: block;
         float: left;
         margin: 0;
     }
 
-        .ie7 .pretty.tabs > ul li a
+        .ie7 .pretty.tabs > ul.ul.Titles li.liTitles a
         {
             padding: 0 20px;
         }
@@ -715,7 +675,7 @@ ul.pagination
 
 @media only screen and (max-width: 767px)
 {
-    .pretty.tabs ul
+    .pretty.tabs ul.tabTitles
     {
         border-radius: 4px;
         overflow: hidden;

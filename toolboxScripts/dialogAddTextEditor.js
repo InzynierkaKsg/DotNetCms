@@ -16,7 +16,7 @@ $(function () {
             }
         },
         close: function () {
-            $($(this).data('item')).html($("#dialogAddTextEditor").htmlarea('html', "Wpisz tekst."));
+            $($(this).data('item')).html($("#dialogAddTextEditor").htmlarea('html', "Clickt to edit."));
 
         }
 

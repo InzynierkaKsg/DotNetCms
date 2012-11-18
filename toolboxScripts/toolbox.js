@@ -14,8 +14,11 @@
                     $("#dialogAddTextEditor").htmlarea();
                     break;
                 case 'accordion':
-                    newItem.html("<div class='accordion'><h3 >Section 1</h3><div><p></p></div><h3>Section 2</h3><div><p></p></div></div>");
-                    $(".accordion").accordion();
+                    $("#tabForm").data('item', newItem);
+                    $("#tabForm").data('option', 3);
+                    $("#tabForm").dialog('open');
+                  //  newItem.html("<div class='accordion'><h3 >Section 1</h3><div><p></p></div><h3>Section 2</h3><div><p></p></div></div>");
+                   // $(".accordion").accordion();
                     break;
                 case 'picture':
                     newItem.addClass("editablePicture");

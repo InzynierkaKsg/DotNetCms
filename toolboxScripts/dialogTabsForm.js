@@ -5,31 +5,45 @@ $(function () {
     function getTabHtml(x, title, option, idy) {
         var html, id;
 
-        html = '<div class="tabs' + option + '">';
-        if (option == 2)
-            html += '<section class="pretty tabs">';
-        html += '<ul>';
-        for (var i = 0; i < x; i++) {
-            if (option == 2 && i == 0)
-                html += '<li class="active"><a href="#tabs-' + idy[i] + '">' + title[i] + '</a></li>';
+        if (option == 3)
+            html = '<div class="accordion">';
+        else {
+            html = '<div class="tabs' + option + '">';
+            if (option == 2) {
+                html += '<section class="pretty tabs">';
+
+                html += '<ul class="ulTitles">';
+            }
             else
-                html += '<li><a href="#tabs-' + idy[i] + '">' + title[i] + '</a></li>';
+                html += '<ul>';
         }
 
-
-        html += '</ul>';
-        if (option == 1)
-            id = 'id';
-        else
-            id = 'data-tab';
         for (var i = 0; i < x; i++) {
-            if (option == 2 && i == 0)
-                html += ' <div ' + id + '="tabs-' + idy[i] + '" class="active"><p class="textEditor">Text' + (i + 1) + '</p></div>';
-            else
-                html += ' <div ' + id + '="tabs-' + idy[i] + '"><p class="textEditor">Text' + (i + 1) + '</p></div>';
+            if (option == 3)
+                html += '<h3>' + title[i] + '</h3><div class="editable"><p>Click to edit.</p></div>';
+            else {
+                if (option == 2 && i == 0)
+                    html += '<li class="active liTitles"><a href="#tabs-' + idy[i] + '">' + title[i] + '</a></li>';
+                else
+                    html += '<li class="liTitles"><a href="#tabs-' + idy[i] + '">' + title[i] + '</a></li>';
+            }
         }
-        if (option == 2)
-            html += '</section>'
+
+        if (option != 3) {
+            html += '</ul>';
+            if (option == 1)
+                id = 'id';
+            else
+                id = 'data-tab';
+            for (var i = 0; i < x; i++) {
+                if (option == 2 && i == 0)
+                    html += ' <div ' + id + '="tabs-' + idy[i] + '" class="active editable divTabs"><p>Click to edit.</p></div>';
+                else
+                    html += ' <div ' + id + '="tabs-' + idy[i] + '" class="editable divTabs"><p>Click to edit.</p></div>';
+            }
+            if (option == 2)
+                html += '</section>'
+        }
         html += '</div>';
 
         return html;
@@ -106,6 +120,10 @@ $(function () {
 
                     if ($(this).data('option') == 1)
                         $($(this).data('item')).tabs();
+                    else if($(this).data('option') == 3)
+                        $(".accordion").accordion({
+                            heightStyle: "content"
+                        });
                     else {
                         getcolor();
                         if (jQuery.browser.chrome) {

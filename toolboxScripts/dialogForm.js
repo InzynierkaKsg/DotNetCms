@@ -26,7 +26,7 @@ $(function () {
 
 
     //formularz do tabow
-    $('<p class="validateTips"></p><form><label>Add tab</label>'
+    $('<p class="validateTips"></p><form><label>Titles</label>'
         + '<span class="ui-icon ui-icon-circle-plus"/><br/><label>Titles</label>'
         + '<ul id="tabList"><li id="tabLi1">'
         + '<input type="text" id="tab_title1" value="" class="ui-widget-content ui-corner-all" />'
@@ -37,7 +37,7 @@ $(function () {
         + '</div><div id="swatch" class="ui-widget-content ui-corner-all"></div>').appendTo('#picker');
 
     //dodaj edytor tekstu
-    $('<textarea id="dialogAddTextEditor" rows="10" style="width: 400px">Wpisz tekst.</textarea>').appendTo('#textAddForm');
+    $('<textarea id="dialogAddTextEditor" rows="10" style="width: 400px">Click to edit.</textarea>').appendTo('#textAddForm');
 
     //edytuj tekst
     $('<textarea id="dialogTextEditor" rows="10" style="width: 400px"></textarea>').appendTo('#textEditorForm');
