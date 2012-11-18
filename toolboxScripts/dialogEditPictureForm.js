@@ -13,7 +13,8 @@ $(function () {
                 pichtureWidth = $("#pichtureWidthEdit"),
                 pictureHeight = $("#pictureHeightEdit")
 
-                $($(this).data('item')).attr({src: url.val(), width: pichtureWidth.val(), height: pictureHeight.val()});
+                $($(this).data('item')).html('<img class="picture" src="' + url.val() + '" width="' + pichtureWidth.val()
+                    + '" height="' + pictureHeight.val() + '" />');
                 $(this).dialog("close");
             },
             Cancel: function () {
@@ -30,4 +31,30 @@ $(function () {
             allFields.val("").removeClass("ui-state-error");
         }
     });
+});
+
+$(function () {
+    var url = $("#url"),
+                file = $("#choosePicture"),
+                pichtureWidth = $("#pichtureWidth"),
+                pictureHeight = $("#pictureHeight")
+
+    $("#picturePreviewButtonEdit").button({
+        text: 'Preview',
+        icons: {
+            primary: "ui-icon-flag"
+        }
+    })
+        .click(function (event) {
+            alert(url.val());
+            event.preventDefault();
+            $("#picturePreviewEdit").css({
+                width: '460px',
+                height: '260px',
+                margin: '0 auto'
+            }).html('<img class="picture" src="' + url.val() + '" width="' + pichtureWidth.val()
+                    + '" height="' + pictureHeight.val() + '" />');
+
+
+        });
 });

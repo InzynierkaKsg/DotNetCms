@@ -346,7 +346,7 @@
                                 setZero(parseInt(navColor2[2]) - 35), setZero(parseInt(navColor2[3]) - 35));
 			                color4 = hexFromRGB(setZero(parseInt(navColor2[1]) + 75),
              setZero(parseInt(navColor2[2]) + 75), setZero(parseInt(navColor2[3]) + 75));
-                        
+
 			            }
 			        }
 			        var activateTab = function ($tab) {
@@ -368,58 +368,44 @@
 			            for (x in activeTab) {
 			                activeTab[x].removeClass('active');
 			                if (jQuery.browser.msie)
-			                    activeTab[x].find('a').css('filter', 'transparent');
+			                    activeTab[x].find('a.aTitles').css('filter', 'transparent');
 
 			                activeTab[x].find('a').css('background', 'transparent');
 			                if (jQuery.browser.mozilla || jQuery.browser.opera) {
-			                    activeTab[x].find('a').css('boxShadow', 'inset 0 1px 1px #fff');
-			                    activeTab[x].find('a').css('textShadow', '0 1px 1px #fff');
+			                    activeTab[x].find('a.aTitles').css('boxShadow', 'inset 0 1px 1px #fff');
+			                    activeTab[x].find('a.aTitles').css('textShadow', '0 1px 1px #fff');
 
 			                } else if (jQuery.browser.chrome) {
-			                    activeTab[x].find('a').css('-webkit-box-shadow', 'inset 0 1px 1px #fff');
-			                    activeTab[x].find('a').css('text-Shadow', '0 1px 1px #fff');
+			                    activeTab[x].find('a.aTitles').css('-webkit-box-shadow', 'inset 0 1px 1px #fff');
+			                    activeTab[x].find('a.aTitles').css('text-Shadow', '0 1px 1px #fff');
 
 			                } else {
-			                    activeTab[x].find('a').css('box-shadow', 'inset 0 1px 1px #fff');
+			                    activeTab[x].find('a.aTitles').css('box-shadow', 'inset 0 1px 1px #fff');
 			                }
-			               
-			               
-			                //text-shadow: 0 1px 1px #fff
-
 			            }
 
 			            // add active class to tab and content
 			            getcolor();
 			            for (y in newTab) {
 			                newTab[y].addClass('active');
-			           
+
 			                if (jQuery.browser.mozilla) {
-			                    
-			                    newTab[y].find('a').css('background','-moz-linear-gradient(top, #' + hexFromRGB(parseInt(navColor2[1]), parseInt(navColor2[2]), parseInt(navColor2[3])) + ' 0%,#' + color2 + ' 100%)');
-			                    newTab[y].find('a').css('boxShadow', 'inset 0 1px 1px #' + color3 + ', 0 1px 0 #' + color4 + ', 0 -1px 0 #' + color4 + ', 1px 0 0 #' + color4 + ', -1px 0 0 #' + color4);
-			                    newTab[y].find('a').css('textShadow', ' 0 2px 1px #'+ color2 +', 0 1px 1px #' + color2);
-
-
-			           }else if (jQuery.browser.chrome) {
-			             
-			               newTab[y].find('a').css('background', '-webkit-gradient(linear, left top, left bottom, color-stop(0%, #' + hexFromRGB(parseInt(navColor2[1]), parseInt(navColor2[2]), parseInt(navColor2[3])) + '), color-stop(100%,#' + color2 + '))');
-			               newTab[y].find('a').css('-webkit-box-shadow', 'inset 0 1px 1px #' + color3 + ', 0 1px 0 #' + color4 + ', 0 -1px 0 #' + color4 + ', 1px 0 0 #' + color4 + ', -1px 0 0 #' + color4);
-			               newTab[y].find('a').css('text-shadow', ' 0 2px 1px #' + color2 + ', 0 1px 1px #' + color2);
-
-
-			           } 
+			                    newTab[y].find('a.aTitles').css('background', '-moz-linear-gradient(top, #' + hexFromRGB(parseInt(navColor2[1]), parseInt(navColor2[2]), parseInt(navColor2[3])) + ' 0%,#' + color2 + ' 100%)');
+			                    newTab[y].find('a.aTitles').css('boxShadow', 'inset 0 1px 1px #' + color3 + ', 0 1px 0 #' + color4 + ', 0 -1px 0 #' + color4 + ', 1px 0 0 #' + color4 + ', -1px 0 0 #' + color4);
+			                    newTab[y].find('a.aTitles').css('textShadow', ' 0 2px 1px #' + color2 + ', 0 1px 1px #' + color2);
+			                } else if (jQuery.browser.chrome) {
+			                    newTab[y].find('a.aTitles').css('background', '-webkit-gradient(linear, left top, left bottom, color-stop(0%, #' + hexFromRGB(parseInt(navColor2[1]), parseInt(navColor2[2]), parseInt(navColor2[3])) + '), color-stop(100%,#' + color2 + '))');
+			                    newTab[y].find('a.aTitles').css('-webkit-box-shadow', 'inset 0 1px 1px #' + color3 + ', 0 1px 0 #' + color4 + ', 0 -1px 0 #' + color4 + ', 1px 0 0 #' + color4 + ', -1px 0 0 #' + color4);
+			                    newTab[y].find('a.aTitles').css('text-shadow', ' 0 2px 1px #' + color2 + ', 0 1px 1px #' + color2);
+			                }
 			                else if (jQuery.browser.opera) {
-			                    newTab[y].find('a').css('background', '-o-linear-gradient(top, #' + hexFromRGB(parseInt(navColor2[1]), parseInt(navColor2[2]), parseInt(navColor2[3])) + ' 0%,#' + color2 + ' 100%)');
-			                    newTab[y].find('a').css('boxShadow', 'inset 0 1px 1px #' + color3 + ', 0 1px 0 #' + color4 + ', 0 -1px 0 #' + color4 + ', 1px 0 0 #' + color4 + ', -1px 0 0 #' + color4);
-			                    newTab[y].find('a').css('textShadow', ' 0 2px 1px #' + color2 + ', 0 1px 1px #' + color2);
-
-
+			                    newTab[y].find('a.aTitles').css('background', '-o-linear-gradient(top, #' + hexFromRGB(parseInt(navColor2[1]), parseInt(navColor2[2]), parseInt(navColor2[3])) + ' 0%,#' + color2 + ' 100%)');
+			                    newTab[y].find('a.aTitles').css('boxShadow', 'inset 0 1px 1px #' + color3 + ', 0 1px 0 #' + color4 + ', 0 -1px 0 #' + color4 + ', 1px 0 0 #' + color4 + ', -1px 0 0 #' + color4);
+			                    newTab[y].find('a.aTitles').css('textShadow', ' 0 2px 1px #' + color2 + ', 0 1px 1px #' + color2);
 			                } else {
-			                    newTab[y].find('a').css('filter', "progid:DXImageTransform.Microsoft.gradient( startColorstr='#" + hexFromRGB(parseInt(navColor2[1]), parseInt(navColor2[2]), parseInt(navColor2[3])) + "', endColorstr='#" + color2 + "',GradientType=0 )");
-			                    newTab[y].find('a').css( 'box-shadow', 'inset 0 1px 1px #' + color3 + ', 0 1px 0 #' + color4 + ', 0 -1px 0 #' + color4 + ', 1px 0 0 #' + color4 + ', -1px 0 0 #' + color4);
-
-			              }
-
+			                    newTab[y].find('a.aTitles').css('filter', "progid:DXImageTransform.Microsoft.gradient( startColorstr='#" + hexFromRGB(parseInt(navColor2[1]), parseInt(navColor2[2]), parseInt(navColor2[3])) + "', endColorstr='#" + color2 + "',GradientType=0 )");
+			                    newTab[y].find('a.aTitles').css('box-shadow', 'inset 0 1px 1px #' + color3 + ', 0 1px 0 #' + color4 + ', 0 -1px 0 #' + color4 + ', 1px 0 0 #' + color4 + ', -1px 0 0 #' + color4);
+			                }
 			            }
 			        }
 

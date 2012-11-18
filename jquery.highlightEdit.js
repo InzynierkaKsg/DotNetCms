@@ -18,13 +18,10 @@
 
                     $(this).wrap('<div id="editing"></div>');
                     $('#editing').css('background-color', '#fff47f');
-                    $('<div></div>').addClass('editPane').attr('id', 'editPane').appendTo('body').html('<img src="Assets/Images/attachment.png" />');
-                    position($(this));
                 },
                  function () {
-                     //                     $(this).css('background-color', $(this).data('original-color'));
                      $(this).unwrap();
-                     $('#editPane').remove();
+                   //  $(this).css('background-color', $(this).data('original-color'));
 
                  });
         });

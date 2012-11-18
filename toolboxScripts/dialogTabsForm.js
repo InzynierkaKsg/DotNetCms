@@ -23,9 +23,9 @@ $(function () {
                 html += '<h3>' + title[i] + '</h3><div class="editable"><p>Click to edit.</p></div>';
             else {
                 if (option == 2 && i == 0)
-                    html += '<li class="active liTitles"><a href="#tabs-' + idy[i] + '">' + title[i] + '</a></li>';
+                    html += '<li class="active liTitles"><a class="aTitles" href="#tabs-' + idy[i] + '">' + title[i] + '</a></li>';
                 else
-                    html += '<li class="liTitles"><a href="#tabs-' + idy[i] + '">' + title[i] + '</a></li>';
+                    html += '<li class="liTitles"><a class="aTitles" href="#tabs-' + idy[i] + '">' + title[i] + '</a></li>';
             }
         }
 
@@ -112,7 +112,7 @@ $(function () {
                     currentTab = inputs[i].getAttribute('id');
                     idy[i] = currentTab.replace('tab_title', '');
                     title = $('#' + currentTab);
-                    bValid = bValid && checkLength(title, "Title", 1, 30);
+                    bValid = bValid && checkLength(title, "Title", 1, 60);
                     titles[i] = title.val();
                 }
                 if (bValid) {

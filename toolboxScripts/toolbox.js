@@ -17,8 +17,6 @@
                     $("#tabForm").data('item', newItem);
                     $("#tabForm").data('option', 3);
                     $("#tabForm").dialog('open');
-                  //  newItem.html("<div class='accordion'><h3 >Section 1</h3><div><p></p></div><h3>Section 2</h3><div><p></p></div></div>");
-                   // $(".accordion").accordion();
                     break;
                 case 'picture':
                     newItem.addClass("editablePicture");
@@ -55,14 +53,12 @@
         console.log($('html')[0].outerHTML);
     });
 
-    $("#footer").highlightEdit();
-    $("#logo").highlightEdit();
-
     $("#logo").click(function () {
-
         $("#pictureFormEdit").data('item', $(this));
         $("#pictureFormEdit").dialog('open');
-
+        $("#urlEdit").attr('value', $(this).children().attr("src"));
+        $("#pichtureWidthEdit").attr('value', $(this).children().attr("width"));
+        $("#pichtureHeightEdit").attr('value', $(this).children().attr("height"));
     });
 
 
@@ -70,14 +66,14 @@
         $("#textEditorForm").data('item', $(this));
         $("#textEditorForm").dialog('open');
         $("#dialogTextEditor").htmlarea('html', $(this).html());
-
     });
 
     $(".editablePicture").live("click", function () {
-        $("#pictureForm").data('item', $(this));
-        $("#pictureForm").dialog('open');
-
-
+        $("#pictureFormEdit").data('item', $(this));
+        $("#pictureFormEdit").dialog('open');
+        $("#urlEdit").attr('value', $(this).children().attr("src"));
+        $("#pichtureWidthEdit").attr('value', $(this).children().attr("width"));
+        $("#pichtureHeightEdit").attr('value', $(this).children().attr("height"));
     });
 
     $("#menuNav").sortable({
