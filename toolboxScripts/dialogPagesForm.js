@@ -1,6 +1,5 @@
 $(function () {
-    var pageId = new Array();
-    
+    var deletedPages = new Array();
 
     $("#pages").click(function () {
         $("#pageForm").dialog('open');
@@ -15,70 +14,55 @@ $(function () {
         {
             var list = $('#menuNav').find('li');
             for (var i = 0; i < list.length; i++) {
-                pageId[i] = 1;
-                $('<li id="pageLi'+(i+1)+'"><input type="text" id="page_title' + (i + 1) + '" value="" class="ui-widget-content ui-corner-all" /><span class="ui-icon ui-icon-close"/></li>').appendTo('#pageList');
-                $('#page_title' + (i + 1)).val(list[i].childNodes[0].innerHTML);
+                
+                $('<li id="li'+list[i].childNodes[0].getAttribute('id')+'"><input type="text" id="page_title' + (i + 1) + '" value="" class="ui-widget-content ui-corner-all" /><span class="ui-icon ui-icon-close"/></li>').appendTo('#pageList');
+                $('#page_title' + (i + 1)).attr('value',list[i].childNodes[0].innerHTML);
             }
         },
         buttons: {
             Save: function () {
-                var linki = $('#menuNav').find('li'),
-                    list = $('#pageList').find('li');
-                if (list.length > linki.length) {
-                    for (var i = 0; i < list.length - linki.length; i++);
-                    $('<li ><a class="hovGradient" href="#">Page</a></li>').appendTo('#menuNav');
+                if (deletedPages.length != 0)
+                    for (var i = 0; i < deletedPages.length; i++)
+                        WebService.DeletePage(parseInt(deletedPages[i]));
+                var lista = $('#pageList').find('li');
+                for (var i = 0; i < lista.length; i++) {
+                    var id = lista[i].getAttribute('id');
+                    var id2 = lista[i].childNodes[0].getAttribute('id');
+                    id = id.replace('lipageId', '');
+                    WebService.UpdatePage(parseInt(id), $('#'+id2).val());
                 }
-                else if (list.length < linki.length) {
-                }
-                    $(this).dialog("close"); 
-                
+                $(this).dialog("close");
+                setTimeout("location.reload(true);", 1000);
             },
             Cancel: function () {
+
                 $(this).dialog("close");
             }
         },
         close: function () {
+            deletedPages = [];
             var list = $('#pageList').find('li');
             for (var i = 0; i < list.length; i++)
                 $('#pageLi' + (i+1)).remove();
      }
     });
 
-    $("#pageForm span.ui-icon-circle-plus").live("click", function () {
-        var newPage;
-   
-        if ($('#pageList').find('li').length != 4) {
-            for (var i = 0; i <= pageId.length; i++) {
-                if (pageId[i] != 1) {
-                    newPage = i + 1;
-                    pageId[i] = 1;
-                    break;
-                }
-            }
-
-            $('<li id="pageLi' + newPage + '"><input type="text" id="page_title' + newPage
-                + '" value="" class="ui-widget-content ui-corner-all" /><span class="ui-icon ui-icon-close"/>'
-                                + '</li>').appendTo('#pageList');
-        }
-    });
-
+  
     $("#pageForm span.ui-icon-close").live('click', function () {
         var id = $(this).closest('li').attr('id');
 
+        console.log($(this).closest('li'));
         if ($('#pageList').find('li').length != 1) {
-            id = id.replace('pageLi', '');
-            pageId[id - 1] = 0;
+
+            id = id.replace('lipageId', '');
+
+            
+            deletedPages.push(id);
+            
             $(this).closest('li').remove();
         }
     });
 
-    $("#pageList").sortable({
-        placeholder: "ui-state-highlight"
-    });
-
-    $("#pageList").disableSelection();
-
-   
 
     function updateTips(t) {
         tips = $(".validateTips");

@@ -1,6 +1,6 @@
 $(function () {
     var pageId = new Array();
-    
+
 
     $("#addPage").click(function () {
         $("#addPageForm").dialog('open');
@@ -11,22 +11,27 @@ $(function () {
         modal: true,
         show: 'puff',
         hide: 'scale',
-        open: function()
-        {
-           
+        open: function () {
+
         },
         buttons: {
-            Save: function () {
-               
+            Add: function () {
+                var pageName = $("#newPage");
+                WebService.CreatePage(pageName.val());
+                $(this).dialog("close");
+                setTimeout("location.reload(true);", 1000);
+              
+
+
             },
             Cancel: function () {
                 $(this).dialog("close");
             }
         },
         close: function () {
-            
-     }
-    });   
+
+        }
+    });
 
     function updateTips(t) {
         tips = $(".validateTips");

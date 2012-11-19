@@ -53,13 +53,12 @@ $(function () {
         + '<div id="mapPreview"></div></form>').appendTo('#mapForm');
 
     //formularz do page'ow
-    $('<p class="validateTips"></p><form><label>Add tab</label>'
-        + '<span class="ui-icon ui-icon-circle-plus"/><br/><label>Titles</label>'
+    $('<p class="validateTips"></p><form><label>Pages names:</label>'
         + '<ul id="pageList"></lu></form>').appendTo('#pageForm');
 
     //formularz do page'ow
     $('<p class="validateTips"></p><form>'
         + '<label>Name of page</label>'
-        + '<input type="text" value="" class="ui-widget-content ui-corner-all" /></form>').appendTo('#addPageForm');
+        + '<input type="text" id="newPage" value="" class="ui-widget-content ui-corner-all" /></form>').appendTo('#addPageForm');
 
 });

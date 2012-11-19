@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Services;
+using Model;
 
 /// <summary>
 /// Summary description for WebService
@@ -20,8 +21,53 @@ public class WebService : System.Web.Services.WebService {
     }
 
     [WebMethod]
-    public string HelloWorld() {
-        return "Hello World";
+    public void CreatePage(string name)
+    {
+        ModelContainer1 mc = new ModelContainer1();
+        var newPage = new Page();
+        newPage.Name = name;
+        newPage.Content = "";
+        newPage.Footer = "";
+        mc.AddToPageSet(newPage);
+        mc.SaveChanges();
     }
+
+
+    [WebMethod]
+    public void DeletePage(int id)
+    {
+        ModelContainer1 mc = new ModelContainer1();
+        var page = (from x in mc.PageSet where x.Id == id select x).First();
+        mc.PageSet.DeleteObject(page);
+        mc.SaveChanges();
+    }
+
+    [WebMethod]
+    public void UpdatePage(int id, string name)
+    {
+        ModelContainer1 mc = new ModelContainer1();
+        var page = (from x in mc.PageSet where x.Id == id select x).First();
+        page.Name = name;
+        mc.SaveChanges();
+    }
+
+    [WebMethod]
+    public void SaveContent(string html, int id)
+    {
+        ModelContainer1 mc = new ModelContainer1();
+        var page = (from x in mc.PageSet where x.Id == id select x).First();
+        page.Content = html;
+        mc.SaveChanges();
+    }
+    [WebMethod]
+    public string GetContent(int id)
+    {
+        ModelContainer1 mc = new ModelContainer1();
+        var page = (from x in mc.PageSet where x.Id == id select x).First();
+        return page.Content;
+    }
+
+
+
     
 }

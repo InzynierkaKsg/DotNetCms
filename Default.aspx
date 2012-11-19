@@ -62,6 +62,7 @@
                         <li id="addPage"><a class="hov" href="#">Add Page</a></li>
                         <li id="pages"><a class="hov" href="#">Pages</a></li>
                         <li id="adm"><a class="hov" href="#">Admin</a></li>
+                        <li id="savePage"><a class="hov" href="#">Save Page</a></li>
                     </ul>
                 </nav>
 
@@ -77,6 +78,7 @@
                 </nav>
             </div>
         </div>
+        
 
         <div class="row">
             <div class="twelve columns">
@@ -92,9 +94,10 @@
                     </a>
 
                     <ul id="menuNav">
-                        <li><a class="hovGradient" href="#">Page1</a></li>
+                        <%= PagesCollection%>
+                       <%-- <li><a class="hovGradient" href="#">Page1</a></li>
                         <li><a class="hovGradient" href="#">Page2</a></li>
-                        <li ><a class="hovGradient" href="#">Page3</a></li>
+                        <li ><a class="hovGradient" href="#">Page3</a></li>--%>
                         <!--<div class="field">
                                 <p class="text search oval">
                                     <input type="search" placeholder="Search" />
@@ -108,7 +111,7 @@
         <div class="row">
             <div class="twelve columns" id="content">
                 <ul id="contentUL">
-                    <li class="ui-state-default">Item 1</li>
+                    <%= PageContent %>
                 </ul>
             </div>
         </div>
@@ -122,19 +125,16 @@
         </div>
 
     </div>
+        <div id="currentPage" style="display: none"><%= PageId%></div>
     <asp:ScriptManager ID="ScriptManager1" runat="server">
             <Services>
                 <asp:ServiceReference Path="~/WebService.asmx" />
             </Services>
         </asp:ScriptManager>
 
-        <input id="Button1" type="button" value="button" />
+      
         <script type="text/javascript">
-            function s() {
-
-                WebService.GetHtml($('#contentUL').html(), $('#pageID').text());
-            }
-            $addHandler($get('Button1'), 'click', s);
+            $('#savePage').click(function () { WebService.SaveContent($('#contentUL').html(),$('#currentPage').text());});
         </script>
     </form>
 </body>
