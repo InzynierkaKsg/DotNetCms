@@ -57,4 +57,9 @@ $(function () {
         + '<span class="ui-icon ui-icon-circle-plus"/><br/><label>Titles</label>'
         + '<ul id="pageList"></lu></form>').appendTo('#pageForm');
 
+    //formularz do page'ow
+    $('<p class="validateTips"></p><form>'
+        + '<label>Name of page</label>'
+        + '<input type="text" value="" class="ui-widget-content ui-corner-all" /></form>').appendTo('#addPageForm');
+
 });
