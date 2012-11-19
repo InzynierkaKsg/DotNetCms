@@ -186,8 +186,7 @@ $(function () {
             }
 
             currentTab = inputs[0].getAttribute('id');
-            $('#' + currentTab).val('');
-            $('#' + currentTab).removeClass("ui-state-error");
+            $('#' + currentTab).val('').removeClass("ui-state-error");
             currentTab = currentTab.replace('tab_title', '');
 
             tabId = [];
@@ -290,7 +289,7 @@ $(function () {
         setTimeout(function () {
             tips.removeClass("ui-state-highlight", 1500);
         }, 500);
-    }
+    };
 
     function checkLength(o, n, min, max) {
         if (o.val().length > max || o.val().length < min) {
@@ -301,7 +300,7 @@ $(function () {
         } else {
             return true;
         }
-    }
+    };
 
     function hexFromRGB(r, g, b) {
         var hex = [

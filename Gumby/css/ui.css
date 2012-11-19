@@ -429,6 +429,47 @@ div.alert-box
  ========================================================================*/
 
 
+ul.pagination
+{
+    display: block;
+    height: 24px;
+    margin-left: -5px;
+}
+
+    ul.pagination li
+    {
+        float: left;
+        display: block;
+        height: 24px;
+        color: #999;
+        font-size: 15px;
+        margin-left: 5px;
+    }
+
+        ul.pagination li a
+        {
+            display: block;
+            padding: 6px 7px 4px;
+            color: #555;
+        }
+
+        ul.pagination li.current a, ul.pagination li:hover a
+        {
+            border-bottom: solid 2px #00a6fc;
+            color: #141414;
+        }
+
+        ul.pagination li.unavailable a
+        {
+            cursor: default;
+            color: #999;
+        }
+
+        ul.pagination li.unavailable:hover a
+        {
+            border-bottom: none;
+        }
+
 
 
 
@@ -482,14 +523,14 @@ div.alert-box
                 text-decoration: none;
             }
 
-        .tabs li.active a
-        {
-            height: 30px;
-            font-weight: bold;
-            background: #ebffef;
-            border-width: 1px 1px 0 1px;
-            text-shadow: 0 1px 1px #fff;
-        }
+    .tabs li.active a
+    {
+        height: 30px;
+        font-weight: bold;
+        background: #ebffef;
+        border-width: 1px 1px 0 1px;
+        text-shadow: 0 1px 1px #fff;
+    }
 
     .tabs div.divTabs
     {
@@ -497,10 +538,10 @@ div.alert-box
         padding: 20px 10px;
     }
 
-        .tabs div.active
-        {
-            display: block;
-        }
+    .tabs div.active
+    {
+        display: block;
+    }
 
     .tabs li.liTitles:last-child
     {
@@ -553,24 +594,24 @@ div.alert-box
         border-right: none;
     }
 
-    .pretty.tabs li.active a
-    {
-        font-weight: bold;
-        color: #fff;
-        position: relative;
-        border: none;
-        text-shadow: 0 2px 1px #1d692d, 0 1px 1px #1d692d;
-        -webkit-box-shadow: inset 0 1px 1px #94dda6, 0 1px 0 #1d692d, 0 -1px 0 #1d692d, 1px 0 0 #1d692d, -1px 0 0 #1d692d;
-        box-shadow: inset 0 1px 1px #94dda6, 0 1px 0 #1d692d, 0 -1px 0 #1d692d, 1px 0 0 #1d692d, -1px 0 0 #1d692d;
-        background: #5dbb73; /* Old browsers */
-        background: -moz-linear-gradient(top, #5dbb73 0%, #33663F 100%); /* FF3.6+ */
-        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#5dbb73), color-stop(100%,#33663F)); /* Chrome,Safari4+ */
-        background: -webkit-linear-gradient(top, #5dbb73 0%,#33663F 100%); /* Chrome10+,Safari5.1+ */
-        background: -o-linear-gradient(top, #5dbb73 0%,#33663F 100%); /* Opera 11.10+ */
-        background: -ms-linear-gradient(top, #5dbb73 0%,#33663F 100%); /* IE10+ */
-        background: linear-gradient(top, #5dbb73 0%,#33663F 100%); /* W3C */
-        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5dbb73', endColorstr='#33663F',GradientType=0 ); /* IE6-9 */
-    }
+.pretty.tabs li.active a
+{
+    font-weight: bold;
+    color: #fff;
+    position: relative;
+    border: none;
+    text-shadow: 0 2px 1px #1d692d, 0 1px 1px #1d692d;
+    -webkit-box-shadow: inset 0 1px 1px #94dda6, 0 1px 0 #1d692d, 0 -1px 0 #1d692d, 1px 0 0 #1d692d, -1px 0 0 #1d692d;
+    box-shadow: inset 0 1px 1px #94dda6, 0 1px 0 #1d692d, 0 -1px 0 #1d692d, 1px 0 0 #1d692d, -1px 0 0 #1d692d;
+    background: #5dbb73; /* Old browsers */
+    background: -moz-linear-gradient(top, #5dbb73 0%, #33663F 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#5dbb73), color-stop(100%,#33663F)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(top, #5dbb73 0%,#33663F 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(top, #5dbb73 0%,#33663F 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(top, #5dbb73 0%,#33663F 100%); /* IE10+ */
+    background: linear-gradient(top, #5dbb73 0%,#33663F 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5dbb73', endColorstr='#33663F',GradientType=0 ); /* IE6-9 */
+}
 
 .pretty.tabs ul.ulTitles li.active:first-child a
 {
@@ -596,10 +637,10 @@ div.alert-box
         margin: 0;
     }
 
-        .ie7 .pretty.tabs > ul.ul.Titles li.liTitles a
-        {
-            padding: 0 20px;
-        }
+.ie7 .pretty.tabs > ul.ul.Titles li.liTitles a
+{
+    padding: 0 20px;
+}
 
 
 
@@ -1483,7 +1524,6 @@ table
             background: -webkit-linear-gradient(top, #5dbb73 0%,#33663F 100%); /* Chrome10+,Safari5.1+ */
             background: -o-linear-gradient(top, #5dbb73 0%,#33663F 100%); /* Opera 11.10+ */
             background: linear-gradient(top, #5dbb73 0%,#33663F 100%); /* W3C */
-           
             -webkit-box-shadow: inset 0 1px 1px #94dda6, 0 1px 1px #94dda6;
             box-shadow: inset 0 1px 1px #94dda6, 0 1px 1px #94dda6;
         }

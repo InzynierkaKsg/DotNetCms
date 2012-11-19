@@ -1,23 +1,45 @@
 $(function () {
     $("#pictureFormEdit").dialog({
         autoOpen: false,
-        height: 450,
         width: 420,
         modal: true,
         show: 'puff',
         hide: 'scale',
+        open: function () {
+            var tips = $(".validateTips");
+
+            tips.text('');
+            $("#urlEdit").attr('value', $($(this).data('item')).find('img').attr("src"));
+            $("#pichtureWidthEdit").attr('value', $($(this).data('item')).find('img').attr("width"));
+        },
         buttons: {
             "Save": function () {
                 var url = $("#urlEdit"),
                 file = $("#choosePictureEdit"),
                 pichtureWidth = $("#pichtureWidthEdit"),
-                pictureHeight = $("#pictureHeightEdit")
+                addres,
+                bValid = true;
 
-                $($(this).data('item')).html('<img class="picture" src="' + url.val() + '" width="' + pichtureWidth.val()
-                    + '" height="' + pictureHeight.val() + '" />');
-                $(this).dialog("close");
+                if ($('#selectedPictureEdit')[0].childNodes[0].data == "Url") {
+                    addres = url.val();
+                    bValid = checkLength(url, "Url", 1);
+                }
+                else {
+                    addres = file.val();
+                    bValid = checkLength(file, "File path", 1);
+                }
+
+                if (bValid) {
+                    $($(this).data('item')).html('<div style="text-align: center;"<img class="picture" src="' + addres
+                        + '" width="' + pichtureWidth.val() + '" /></div>');
+                    $(this).dialog("close");
+                }
             },
             Cancel: function () {
+                $(this).dialog("close");
+            },
+            "Delete": function () {
+                $($(this).data('item')).remove();
                 $(this).dialog("close");
             }
         },
@@ -27,34 +49,43 @@ $(function () {
             pichtureWidth = $("#pichtureWidthEdit"),
             pictureHeight = $("#pictureHeightEdit"),
             allFields = $([]).add(url).add(file).add(pichtureWidth).add(pictureHeight);
-
+            $('#selectFilePictureEdit').css('display', 'none');
+            $('#urlPictureEdit').css('display', 'block');
+            $('#selectedPictureEdit')[0].childNodes[0].data="Url"
             allFields.val("").removeClass("ui-state-error");
         }
     });
-});
 
-$(function () {
-    var url = $("#url"),
-                file = $("#choosePicture"),
-                pichtureWidth = $("#pichtureWidth"),
-                pictureHeight = $("#pictureHeight")
+    $('.selctablePictureEdit').live('click', function () {
+        var selected = this.innerHTML
+        wasSelected = $('#selectedPictureEdit')[0].childNodes[0].data;
 
-    $("#picturePreviewButtonEdit").button({
-        text: 'Preview',
-        icons: {
-            primary: "ui-icon-flag"
+        if (selected != wasSelected) {
+            $('#selectFilePictureEdit').toggle();
+            $('#urlPictureEdit').toggle();
         }
-    })
-        .click(function (event) {
-            alert(url.val());
-            event.preventDefault();
-            $("#picturePreviewEdit").css({
-                width: '460px',
-                height: '260px',
-                margin: '0 auto'
-            }).html('<img class="picture" src="' + url.val() + '" width="' + pichtureWidth.val()
-                    + '" height="' + pictureHeight.val() + '" />');
 
+    });
 
-        });
+    function checkLength(o, n, min) {
+        if (o.val().length < min) {
+            o.addClass("ui-state-error");
+            updateTips("Length of " + n + " must be more " +
+                (min - 1) + ".");
+            return false;
+        } else {
+            return true;
+        }
+    };
+
+    function updateTips(t) {
+        tips = $(".validateTips");
+        tips
+            .text(t)
+            .addClass("ui-state-highlight");
+        setTimeout(function () {
+            tips.removeClass("ui-state-highlight", 1500);
+        }, 500);
+    };
 });
+

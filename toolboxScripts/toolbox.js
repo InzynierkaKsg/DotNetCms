@@ -53,7 +53,7 @@
         console.log($('html')[0].outerHTML);
     });
 
-    $("#logo").click(function () {
+    $("#logo").dblclick(function () {
         $("#pictureFormEdit").data('item', $(this));
         $("#pictureFormEdit").dialog('open');
         $("#urlEdit").attr('value', $(this).children().attr("src"));
@@ -68,12 +68,9 @@
         $("#dialogTextEditor").htmlarea('html', $(this).html());
     });
 
-    $(".editablePicture").live("click", function () {
+    $(".editablePicture").live("dblclick", function () {
         $("#pictureFormEdit").data('item', $(this));
         $("#pictureFormEdit").dialog('open');
-        $("#urlEdit").attr('value', $(this).children().attr("src"));
-        $("#pichtureWidthEdit").attr('value', $(this).children().attr("width"));
-        $("#pichtureHeightEdit").attr('value', $(this).children().attr("height"));
     });
 
     $("#menuNav").sortable({
