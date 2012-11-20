@@ -1,6 +1,4 @@
 $(function () {
-    var pageId = new Array();
-
 
     $("#addPage").click(function () {
         $("#addPageForm").dialog('open');
@@ -12,24 +10,34 @@ $(function () {
         show: 'puff',
         hide: 'scale',
         open: function () {
+            var tips = $(".validateTips");
 
+            tips.text('');
         },
         buttons: {
             Add: function () {
-                var pageName = $("#newPage");
-                WebService.CreatePage(pageName.val());
-                $(this).dialog("close");
-                setTimeout("location.reload(true);", 1000);
-              
+                var pageName = $("#newPage"),
+                    bValid = true;
 
+                bValid = checkLength(pageName, "Name", 1, 60);
 
+                if (bValid) {
+                    WebService.CreatePage(pageName.val());
+                    $(this).dialog("close");
+                    setTimeout("location.reload(true);", 1000);
+                }
             },
             Cancel: function () {
+                var pageName = $("#newPage");
+
+                pageName.val('').removeClass("ui-state-error");
                 $(this).dialog("close");
             }
         },
         close: function () {
+            var pageName = $("#newPage");
 
+            pageName.val().removeClass("ui-state-error");
         }
     });
 
@@ -50,6 +58,7 @@ $(function () {
                 min + " and " + max + ".");
             return false;
         } else {
+            o.removeClass("ui-state-error");
             return true;
         }
     }

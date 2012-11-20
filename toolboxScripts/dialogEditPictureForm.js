@@ -2,6 +2,8 @@ $(function () {
     $("#pictureFormEdit").dialog({
         autoOpen: false,
         width: 420,
+        height: 200,
+        height: 310,
         modal: true,
         show: 'puff',
         hide: 'scale',
@@ -10,13 +12,11 @@ $(function () {
 
             tips.text('');
             $("#urlEdit").attr('value', $($(this).data('item')).find('img').attr("src"));
-            $("#pichtureWidthEdit").attr('value', $($(this).data('item')).find('img').attr("width"));
         },
         buttons: {
             "Save": function () {
                 var url = $("#urlEdit"),
                 file = $("#choosePictureEdit"),
-                pichtureWidth = $("#pichtureWidthEdit"),
                 addres,
                 bValid = true;
 
@@ -30,28 +30,28 @@ $(function () {
                 }
 
                 if (bValid) {
-                    $($(this).data('item')).html('<div style="text-align: center;"<img class="picture" src="' + addres
-                        + '" width="' + pichtureWidth.val() + '" /></div>');
+                    $($(this).data('item')).html('<div style="text-align: center;"><img class="picture" src="' + addres
+                        + '" title="Double click to edit Picture." /></div>');
                     $(this).dialog("close");
                 }
             },
-            Cancel: function () {
-                $(this).dialog("close");
-            },
             "Delete": function () {
                 $($(this).data('item')).remove();
+                $(this).dialog("close");
+            },
+            Cancel: function () {
                 $(this).dialog("close");
             }
         },
         close: function () {
             var url = $("#urlEdit"),
             file = $("#choosePictureEdit"),
-            pichtureWidth = $("#pichtureWidthEdit"),
-            pictureHeight = $("#pictureHeightEdit"),
-            allFields = $([]).add(url).add(file).add(pichtureWidth).add(pictureHeight);
+            allFields = $([]).add(url).add(file);
+
             $('#selectFilePictureEdit').css('display', 'none');
             $('#urlPictureEdit').css('display', 'block');
-            $('#selectedPictureEdit')[0].childNodes[0].data="Url"
+            $('#selectedPictureEdit')[0].childNodes[0].data = "Url"
+
             allFields.val("").removeClass("ui-state-error");
         }
     });
@@ -74,6 +74,7 @@ $(function () {
                 (min - 1) + ".");
             return false;
         } else {
+            o.removeClass("ui-state-error");
             return true;
         }
     };

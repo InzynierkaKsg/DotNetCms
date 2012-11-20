@@ -26,7 +26,7 @@ public class WebService : System.Web.Services.WebService {
         ModelContainer1 mc = new ModelContainer1();
         var newPage = new Page();
         newPage.Name = name;
-        newPage.Content = "";
+        newPage.Content = "<li class='ui-state-default'>Item 1</li>";
         newPage.Footer = "";
         mc.AddToPageSet(newPage);
         mc.SaveChanges();

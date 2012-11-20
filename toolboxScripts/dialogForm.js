@@ -6,10 +6,7 @@ $(function () {
         + '<a href="#" class="selctablePicture">Select File</a></li></ul></div><div id="urlPicture"><label for="url">Url</label><input '
         + 'type="text" name="url" id="url" class="text ui-widget-content ui-corner-all" /></div>'
         + '<div id="selectFilePicture"><p class="btn submit"><input type="File" value="Select picture"'
-        + ' name="choosePicture" id="choosePicture" accept="image/*"/></p></div><label for="pichtureWidth">'
-        + 'Width</label><input type="text" name="pichtureWidth" id="pichtureWidth"'
-        + ' class="text ui-widget-content ui-corner-all" /><label for="pictureHeight">'
-        + 'Height: Auto</label></form>').appendTo('#pictureForm');
+        + ' name="choosePicture" id="choosePicture" accept="image/*"/></p></div></form>').appendTo('#pictureForm');
 
 
     $('<p class="validateTips"></p><form><div class="picker"><select><option SELECTED>Url</option>'
@@ -20,12 +17,7 @@ $(function () {
         + '<div id="urlPictureEdit"><label for="urlEdit">Url</label><input type="text" name="urlEdit" id="urlEdit"'
         + ' class="text ui-widget-content ui-corner-all" /></div>'
         + '<div id="selectFilePictureEdit" style="display: none"><p class="btn submit"><input type="File" value="Choose picture"'
-        + ' name="choosePictureEdit" id="choosePictureEdit" accept="image/*"/></p></div><label for="pichtureWidthEdit">'
-        + 'Width</label><input type="text" name="pichtureWidthEdit" id="pichtureWidthEdit"'
-        + ' class="text ui-widget-content ui-corner-all" /><label for="pictureHeightEdit">'
-        + 'Height: Auto</label></form>').appendTo('#pictureFormEdit');
-
-
+        + ' name="choosePictureEdit" id="choosePictureEdit" accept="image/*"/></p></div></form>').appendTo('#pictureFormEdit');
 
     //formularz do tabow
     $('<p class="validateTips"></p><form><label>Titles</label>'
@@ -33,6 +25,11 @@ $(function () {
         + '<ul id="tabList"><li id="tabLi1">'
         + '<input type="text" id="tab_title1" value="" class="ui-widget-content ui-corner-all" />'
         + '<span class="ui-icon ui-icon-close"/></li></lu></form>').appendTo('#tabForm');
+
+    //formularz do edycji tabow
+    $('<p class="validateTips"></p><form><label>Titles</label>'
+        + '<span class="ui-icon ui-icon-circle-plus"/><br/><label>Titles</label>'
+        + '<ul id="tabListEdit"></lu></form>').appendTo('#tabEditForm');
 
     //slidery
     $('<div id="redSlider"></div><div id="greenSlider"></div><div id="blueSlider">'
@@ -42,10 +39,10 @@ $(function () {
     $('<textarea id="dialogAddTextEditor" rows="10" style="width: 400px">Click to edit.</textarea>').appendTo('#textAddForm');
 
     //edytuj tekst
-    $('<textarea id="dialogTextEditor" rows="10" style="width: 400px"></textarea>').appendTo('#textEditorForm');
+    $('<p class="validateTips"></p><textarea id="dialogTextEditor" rows="10" style="width: 400px"></textarea>').appendTo('#textEditorForm');
 
     //formularz do map
-    $('<form><label for="address">Address</label><input type="text" name="address" id="address"'
+    $('<p class="validateTips"></p><form><label for="address">Address</label><input type="text" name="address" id="address"'
         + ' class="text ui-widget-content ui-corner-all" />'
         + '<form><label for="description">Description</label><input type="text" name="description" id="description"'
         + ' class="text ui-widget-content ui-corner-all" /><br /><br />'
@@ -56,7 +53,7 @@ $(function () {
     $('<p class="validateTips"></p><form><label>Pages names:</label>'
         + '<ul id="pageList"></lu></form>').appendTo('#pageForm');
 
-    //formularz do page'ow
+    //formularz do  nowej strony
     $('<p class="validateTips"></p><form>'
         + '<label>Name of page</label>'
         + '<input type="text" id="newPage" value="" class="ui-widget-content ui-corner-all" /></form>').appendTo('#addPageForm');

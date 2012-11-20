@@ -1,9 +1,5 @@
 $(function () {
     /* do zrobienia
-    zmienic edycje na double clik
-    porawic edycje zdjec "to co ma wybrac" 
-    zabezpieczenia dla zdjec i mapy
-    edycja tabow na double click
     edycjamapy na clik - jesli sie da
     usuwanie wszystkih elementow
     podpowiedzi do elementow na hove
@@ -15,6 +11,7 @@ $(function () {
     $("#pictureForm").dialog({
         autoOpen: false,
         width: 420,
+        height: 310,
         modal: true,
         show: 'puff',
         hide: 'scale',
@@ -27,7 +24,6 @@ $(function () {
             "Add": function () {
                 var url = $("#url"),
                 file = $("#choosePicture"),
-                pichtureWidth = $("#pichtureWidth"),
                 addres,
                 bValid = true;
 
@@ -41,8 +37,9 @@ $(function () {
                 }
 
                 if (bValid) {
-                    $($(this).data('item')).html('<div style="text-align: center;"><img class="picture" src="' + addres + '" width="'
-                        + pichtureWidth.val() + '" /></div>');
+                    
+                    $($(this).data('item')).html('<div style="text-align: center;"><img  class="picture" src="' + addres
+                        + '" title="Double click to edit Picture."/></div>');
                     $(this).dialog("close");
                 }
             },
@@ -53,8 +50,7 @@ $(function () {
         close: function () {
             var url = $("#url"),
             file = $("#choosePicture"),
-            pichtureWidth = $("#pichtureWidth"),
-            allFields = $([]).add(url).add(file).add(pichtureWidth);
+            allFields = $([]).add(url).add(file);
 
             allFields.val("").removeClass("ui-state-error");
         }
@@ -78,6 +74,7 @@ $(function () {
                 (min - 1) + ".");
             return false;
         } else {
+            o.removeClass("ui-state-error");
             return true;
         }
     };
@@ -91,7 +88,6 @@ $(function () {
             tips.removeClass("ui-state-highlight", 1500);
         }, 500);
     };
-
 });
 
 

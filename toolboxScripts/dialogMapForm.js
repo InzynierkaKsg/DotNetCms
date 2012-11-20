@@ -14,26 +14,63 @@ $(function () {
         modal: true,
         show: 'puff',
         hide: 'scale',
+        open: function () {
+            var tips = $(".validateTips");
+
+            tips.text('');
+        },
         buttons: {
             "Add": function () {
-                $($(this).data('item')).html('<div id="mapViewer"></div>');
-                $("#mapViewer").css({
-                    width: '340px',
-                    height: '300px'
-                });
-                LoadMap('mapViewer');
-                $(this).dialog("close");
+                var bValid = true,
+                    adr = $('#address'),
+                    dsc = $('#description');
+
+                bValid = checkLength(adr, "Address", 1);
+                bValid = checkLength(dsc, "Description", 1) && bValid;
+                if (bValid) {
+                    $($(this).data('item')).html('<div id="mapViewer"></div>');
+                    $("#mapViewer").css({
+                        width: '340px',
+                        height: '300px'
+                    });
+                    LoadMap('mapViewer');
+                    $(this).dialog("close");
+                }
             },
             Cancel: function () {
                 $(this).dialog("close");
             }
         },
         close: function () {
-            allFields = $([]).add(address).add(description);
+            var adr = $('#address'),
+                dsc = $('#description');
 
+            allFields = $([]).add(adr).add(dsc);
             allFields.val("").removeClass("ui-state-error");
         }
-    })
+    });
+
+    function checkLength(o, n, min) {
+        if (o.val().length < min) {
+            o.addClass("ui-state-error");
+            updateTips("Length of " + n + " must be more " +
+                (min - 1) + ".");
+            return false;
+        } else {
+            o.removeClass("ui-state-error");
+            return true;
+        }
+    };
+
+    function updateTips(t) {
+        tips = $(".validateTips");
+        tips
+            .text(t)
+            .addClass("ui-state-highlight");
+        setTimeout(function () {
+            tips.removeClass("ui-state-highlight", 1500);
+        }, 500);
+    };
 });
 
 $(function () {

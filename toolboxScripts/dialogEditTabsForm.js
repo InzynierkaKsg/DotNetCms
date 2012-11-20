@@ -50,7 +50,7 @@ $(function () {
     };
 
 
-    dialog = $("#tabForm").dialog({
+    dialog = $("#tabEditForm").dialog({
         autoOpen: false,
         modal: true,
         show: 'puff',
@@ -59,11 +59,13 @@ $(function () {
             var taby = $('.tabs1'),
                 taby2 = $('.tabs2'),
                 linkID, currentLinkID,
-                tabForm = document.getElementById('tabForm'),
-                lista = tabForm.getElementsByTagName('li'),
-                inputs = tabForm.getElementsByTagName('input'),
-                free, tips = $(".validateTips");
+                tips = $(".validateTips"),
+                    linki;
 
+            if ($(this).data('option') == 1 || $(this).data('option') == 2)
+                linki = $($(this).data('item')).find('a');
+            else
+                linki = $($(this).data('item')).find('h3');
 
             tips.text('');
 
@@ -88,38 +90,51 @@ $(function () {
                     }
                 }
             }
-            for (var i = 0; i <= tabId.length; i++) {
-                if (tabId[i] != 1) {
-                    tabId[i] = 1;
-                    free = i + 1;
-                    break;
-                }
 
+            for (var i = 0; i < linki.length; i++) {
+                var id;
+                if ($(this).data('option') == 1 || $(this).data('option') == 2) {
+                    id = linki[i].getAttribute('href');
+                    id = id.replace('#tabs-', '');
+                }
+                else
+                    id = i;
+
+                $('<li id="tabLiEdit' + id + '"><input type="text" id="tab_titleEdit' + id
+           + '" value="" class="ui-widget-content ui-corner-all" /><span class="ui-icon ui-icon-close"/>'
+                           + '</li>').appendTo('#tabListEdit');
+                if ($(this).data('option') == 1 || $(this).data('option') == 2)
+                    $('#tab_titleEdit' + id).attr('value', linki[i].innerHTML);
+                else {
+                    var title = linki[i].innerHTML;
+                    title = title.slice(title.indexOf('>') + 8, title.length);
+                    // title = title.replace('"', '');
+                    $('#tab_titleEdit' + id).attr('value', title);
+                    console.log(linki);
+                }
             }
-            inputs[0].setAttribute('id', 'tab_title' + free);
-            lista[0].setAttribute('id', 'tabLi' + free);
         },
         buttons: {
-            Add: function () {
+            "Save": function () {
                 var titles = new Array(),
-                    tabForm = document.getElementById('tabForm'),
-                    inputs = tabForm.getElementsByTagName('input'),
+                    inputs = $('#tabEditForm').find('input'),
                     inputsCount = inputs.length,
                     currentTab, idy = new Array(),
                     title, bValid = true;
 
                 for (var i = 0; i < inputsCount; i++) {
                     currentTab = inputs[i].getAttribute('id');
-                    idy[i] = currentTab.replace('tab_title', '');
+                    idy[i] = currentTab.replace('tab_titleEdit', '');
                     title = $('#' + currentTab);
                     bValid = bValid && checkLength(title, "Title", 1, 60);
                     titles[i] = title.val();
                 }
                 if (bValid) {
+                    $($(this).data('item')).removeClass('ui-tabs ui-widget ui-widget-content ui-corner-all');
                     $($(this).data('item')).html(getTabHtml(inputsCount, titles, $(this).data('option'), idy));
 
                     if ($(this).data('option') == 1)
-                        $($(this).data('item')).tabs();
+                        $('.tabs1').tabs();
                     else if ($(this).data('option') == 3)
                         $(".accordion").accordion({
                             heightStyle: "content"
@@ -168,32 +183,32 @@ $(function () {
                     $(this).dialog("close");
                 }
             },
+            "Delete": function () {
+                $($(this).data('item')).remove();
+                $(this).dialog("close");
+            },
             Cancel: function () {
                 $(this).dialog("close");
             }
         },
         close: function () {
-            var inputs = $('#tabForm').find('input'),
+            var inputs = $('#tabEditForm').find('input'),
                 inputsCount = inputs.length,
                 currentTab;
 
-            for (var i = 1; i < inputsCount ; i++) {
+            for (var i = 0; i < inputsCount ; i++) {
                 currentTab = inputs[i].getAttribute('id');
-                currentTab = currentTab.replace('tab_title', '');
+                currentTab = currentTab.replace('tab_titleEdit', '');
 
-                $('#tabLi' + currentTab).remove();
+                $('#tabLiEdit' + currentTab).remove();
             }
-
-            currentTab = inputs[0].getAttribute('id');
-            $('#' + currentTab).val('').removeClass("ui-state-error");
-            currentTab = currentTab.replace('tab_title', '');
 
             tabId = [];
             inputs = [];
         }
     });
 
-    $("#tabForm span.ui-icon-circle-plus").live("click", function () {
+    $("#tabEditForm span.ui-icon-circle-plus").live("click", function () {
         var newTab;
 
         for (var i = 0; i <= tabId.length; i++) {
@@ -204,26 +219,26 @@ $(function () {
             }
         }
 
-        $('<li id="tabLi' + newTab + '"><input type="text" id="tab_title' + newTab
+        $('<li id="tabLiEdit' + newTab + '"><input type="text" id="tab_titleEdit' + newTab
             + '" value="" class="ui-widget-content ui-corner-all" /><span class="ui-icon ui-icon-close"/>'
-                            + '</li>').appendTo('#tabList');
+                            + '</li>').appendTo('#tabListEdit');
     });
 
-    $("#tabForm span.ui-icon-close").live('click', function () {
+    $("#tabEditForm span.ui-icon-close").live('click', function () {
         var id = $(this).closest('li').attr('id');
 
-        if ($('#tabList').find('li').length != 1) {
-            id = id.replace('tabLi', '');
+        if ($('#tabListEdit').find('li').length != 1) {
+            id = id.replace('tabLiEdit', '');
             tabId[id - 1] = 0;
             $(this).closest('li').remove();
         }
     });
 
-    $("#tabList").sortable({
+    $("#tabListEdit").sortable({
         placeholder: "ui-state-highlight"
     });
 
-    $("#tabList").disableSelection();
+    $("#tabListEdit").disableSelection();
 
     var navColor2, color2, color3, color4;
 

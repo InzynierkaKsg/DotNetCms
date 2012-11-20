@@ -4,7 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
@@ -18,11 +18,11 @@
     <script type="text/javascript" src="toolboxScripts/dialogTextEditor.js"></script>
     <script type="text/javascript" src="toolboxScripts/dialogForm.js"></script>
     <script type="text/javascript" src="toolboxScripts/dialogTabsForm.js"></script>
+    <script type="text/javascript" src="toolboxScripts/dialogEditTabsForm.js"></script>
     <script type="text/javascript" src="toolboxScripts/toolbox.js"></script>
     <script type="text/javascript" src="toolboxScripts/dialogPictureForm.js"></script>
     <script type="text/javascript" src="toolboxScripts/dialogPagesForm.js"></script>
     <script type="text/javascript" src="toolboxScripts/dialogAddPageForm.js"></script>
-
     <script src="toolboxScripts/dialogEditPictureForm.js" type="text/javascript"></script>
     <script type="text/javascript" src="toolboxScripts/color.js"></script>
     <script type="text/javascript" src="toolboxScripts/dialogMapForm.js"></script>
@@ -35,28 +35,30 @@
     <script src="jquery.highlightEdit.js" type="text/javascript"></script>
     <link rel="stylesheet" href="Gumby/css/imports.css">
     <link rel="stylesheet" href="colorPicker.css">
+    
     <link href="editPane.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
     <form id="form1" runat="server">
-    <div id="pictureForm" title="Add picture"></div>
-    <div id="pictureFormEdit" title="Save picture"></div>
-    <div id="tabForm" title="Titles"></div>
-    <div id="picker" title="Color"></div>
-    <div id="textEditorForm" title="Edit text"></div>
-    <div id="textAddForm" title="Add text editor"></div>
-    <div id="mapForm" title="Add map"></div>
-    <div id="pageForm" title="Pages"></div>
-    <div id="addPageForm" title="Add Page"></div>
+        <div id="pictureForm" title="Add picture"></div>
+        <div id="pictureFormEdit" title="Save picture"></div>
+        <div id="tabForm" title="Titles"></div>
+        <div id="tabEditForm" title="Titles"></div>
+        <div id="picker" title="Color"></div>
+        <div id="textEditorForm" title="Edit text"></div>
+        <div id="textAddForm" title="Add text editor"></div>
+        <div id="mapForm" title="Add map"></div>
+        <div id="pageForm" title="Pages"></div>
+        <div id="addPageForm" title="Add Page"></div>
 
-    <!-- z ta forma bedzie zmiana, będziemy dodawać przez asp -->
+        <!-- z ta forma bedzie zmiana, będziemy dodawać przez asp -->
 
-    <div class="container">
-        <div class="row">
-            <div class="twelve columns">
+        <div class="container">
+            <div class="row">
+                <div class="twelve columns">
 
-                <nav class="navbar clearfix" id="basicnav2">
+                    <nav class="navbar clearfix" id="basicnav2">
                     <ul>
                         <li id="contentColor"><a class="hov" href="#">Color</a></li>
                         <li id="addPage"><a class="hov" href="#">Add Page</a></li>
@@ -66,7 +68,7 @@
                     </ul>
                 </nav>
 
-                <nav class="navbar clearfix" id="basicnav">
+                    <nav class="navbar clearfix" id="basicnav">
                     <ul id="toolbox">
                         <li id="textEditor"><a class="hov" href="#">Text</a></li>
                         <li id="accordion"><a class="hov" href="#">Accordion</a></li>
@@ -76,15 +78,15 @@
                         <li id="map"><a class="hov" href="#">Map</a></li>
                     </ul>
                 </nav>
+                </div>
             </div>
-        </div>
-        
 
-        <div class="row">
-            <div class="twelve columns">
-                <nav class="pretty navbar clearfix" id="prettynav">
+
+            <div class="row">
+                <div class="twelve columns">
+                    <nav class="pretty navbar clearfix" id="prettynav">
                     <h1 class="logo">
-                        <a href="#" id="logo">
+                        <a href="#" id="logo" title="Double click to edit Logo.">
                             <img src="Gumby/img/img_logo.png" alt="Gumby Framework" />
                         </a>
 
@@ -105,36 +107,37 @@
                             </div>-->
                     </ul>
                 </nav>
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="twelve columns" id="content">
-                <ul id="contentUL">
-                    <%= PageContent %>
-                </ul>
+            <div class="row">
+                <div class="twelve columns" id="content">
+                    <ul id="contentUL">
+                        <%= PageContent %>
+
+                    </ul>
+                </div>
             </div>
-        </div>
 
-        <div class="row">
-            <div class="twelve columns">
-                <p id="footer">
-                    Stopka
-                </p>
+            <div class="row">
+                <div class="twelve columns">
+                    <p id="footer">
+                        Stopka
+                    </p>
+                </div>
             </div>
-        </div>
 
-    </div>
+        </div>
         <div id="currentPage" style="display: none"><%= PageId%></div>
-    <asp:ScriptManager ID="ScriptManager1" runat="server">
+        <asp:ScriptManager ID="ScriptManager1" runat="server">
             <Services>
                 <asp:ServiceReference Path="~/WebService.asmx" />
             </Services>
         </asp:ScriptManager>
 
-      
+
         <script type="text/javascript">
-            $('#savePage').click(function () { WebService.SaveContent($('#contentUL').html(),$('#currentPage').text());});
+            $('#savePage').click(function () { WebService.SaveContent($('#contentUL').html(), $('#currentPage').text()); });
         </script>
     </form>
 </body>
