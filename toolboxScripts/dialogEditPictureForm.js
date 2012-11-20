@@ -36,8 +36,12 @@ $(function () {
                 }
             },
             "Delete": function () {
-                $($(this).data('item')).remove();
-                $(this).dialog("close");
+                if ($(this).data('class').match(/\bnotDeleteable\b/))
+                    updateTips("Delete is impossible.");
+                else {
+                    $($(this).data('item')).remove();
+                    $(this).dialog("close");
+                }
             },
             Cancel: function () {
                 $(this).dialog("close");

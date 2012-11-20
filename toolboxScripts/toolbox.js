@@ -58,10 +58,8 @@
 
     $("#logo").dblclick(function () {
         $("#pictureFormEdit").data('item', $(this));
+        $("#pictureFormEdit").data('class', $(this)[0].className);
         $("#pictureFormEdit").dialog('open');
-        $("#urlEdit").attr('value', $(this).children().attr("src"));
-        $("#pichtureWidthEdit").attr('value', $(this).children().attr("width"));
-        $("#pichtureHeightEdit").attr('value', $(this).children().attr("height"));
     });
 
 
