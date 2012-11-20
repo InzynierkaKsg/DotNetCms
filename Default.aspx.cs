@@ -32,20 +32,31 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         ModelContainer1 mc = new ModelContainer1();
-        
+        var defaultPage = (from x in mc.PageSet select x).First();
+
         PagesCollection = "";
-        int i =0;
+
         foreach (Model.Page p in mc.PageSet)
         {
-            i++;
-            PagesCollection += "<li><a class='hovGradient' id='pageId"+p.Id+"' href='#'>" + p.Name + "</a></li>";
-            if (i == 1)
-            {
-                PageId = p.Id;
-                PageContent = p.Content;
-
-            }
-
+            PagesCollection += "<li><a class='hovGradient' id='pageId" + p.Id + "' href='?pageId=" + p.Id + "'>" + p.Name + "</a></li>";
         }
+
+        string pageId = Request.QueryString["pageId"];
+        if (pageId != null)
+        {
+            int id = int.Parse(pageId);
+            var page = (from x in mc.PageSet where x.Id == id select x).First();
+            PageId = id;
+            PageContent = page.Content;
+        }
+        else
+        {
+            PageId = defaultPage.Id;
+            PageContent = defaultPage.Content;
+        }
+
+
+
+
     }
 }

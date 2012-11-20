@@ -96,6 +96,7 @@
                     </a>
 
                     <ul id="menuNav">
+                    
                         <%= PagesCollection%>
                        <%-- <li><a class="hovGradient" href="#">Page1</a></li>
                         <li><a class="hovGradient" href="#">Page2</a></li>
@@ -113,6 +114,7 @@
             <div class="row">
                 <div class="twelve columns" id="content">
                     <ul id="contentUL">
+                    <li>!!!tymczasowo jakis napis!!!</li>
                         <%= PageContent %>
 
                     </ul>
