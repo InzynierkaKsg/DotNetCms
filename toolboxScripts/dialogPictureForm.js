@@ -11,7 +11,7 @@ $(function () {
     $("#pictureForm").dialog({
         autoOpen: false,
         width: 420,
-        height: 310,
+        height: 330,
         modal: true,
         show: 'puff',
         hide: 'scale',

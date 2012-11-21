@@ -2,8 +2,7 @@ $(function () {
     $("#pictureFormEdit").dialog({
         autoOpen: false,
         width: 420,
-        height: 200,
-        height: 310,
+        height: 330,
         modal: true,
         show: 'puff',
         hide: 'scale',
@@ -17,7 +16,7 @@ $(function () {
             "Save": function () {
                 var url = $("#urlEdit"),
                 file = $("#choosePictureEdit"),
-                addres,
+                addres, html = "";
                 bValid = true;
 
                 if ($('#selectedPictureEdit')[0].childNodes[0].data == "Url") {
@@ -30,8 +29,13 @@ $(function () {
                 }
 
                 if (bValid) {
-                    $($(this).data('item')).html('<div style="text-align: center;"><img class="picture tooltp" src="' + addres
-                        + '" title="Double click to edit Picture." /></div>');
+                    if (!$(this).data('logo'))
+                        html = '<div style="text-align: center;">';
+                    html += '<img class="picture tooltp" src="' + addres + '" title="Double click to edit Picture." />'
+                    if (!$(this).data('logo'))
+                        html += '</div>';
+
+                    $($(this).data('item')).html(html);
                     $(this).dialog("close");
                 }
             },
