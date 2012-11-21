@@ -80,6 +80,22 @@ namespace Model
             }
         }
         private ObjectSet<Page> _PageSet;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<AllPages> AllPagesSet
+        {
+            get
+            {
+                if ((_AllPagesSet == null))
+                {
+                    _AllPagesSet = base.CreateObjectSet<AllPages>("AllPagesSet");
+                }
+                return _AllPagesSet;
+            }
+        }
+        private ObjectSet<AllPages> _AllPagesSet;
 
         #endregion
 
@@ -92,6 +108,14 @@ namespace Model
         {
             base.AddObject("PageSet", page);
         }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the AllPagesSet EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToAllPagesSet(AllPages allPages)
+        {
+            base.AddObject("AllPagesSet", allPages);
+        }
 
         #endregion
 
@@ -100,6 +124,167 @@ namespace Model
     #endregion
 
     #region Entities
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="Model", Name="AllPages")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class AllPages : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new AllPages object.
+        /// </summary>
+        /// <param name="id">Initial value of the Id property.</param>
+        /// <param name="logo">Initial value of the Logo property.</param>
+        /// <param name="colorR">Initial value of the ColorR property.</param>
+        /// <param name="colorG">Initial value of the ColorG property.</param>
+        /// <param name="colorB">Initial value of the ColorB property.</param>
+        public static AllPages CreateAllPages(global::System.Int32 id, global::System.String logo, global::System.Int32 colorR, global::System.Int32 colorG, global::System.Int32 colorB)
+        {
+            AllPages allPages = new AllPages();
+            allPages.Id = id;
+            allPages.Logo = logo;
+            allPages.ColorR = colorR;
+            allPages.ColorG = colorG;
+            allPages.ColorB = colorB;
+            return allPages;
+        }
+
+        #endregion
+
+        #region Primitive Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 Id
+        {
+            get
+            {
+                return _Id;
+            }
+            set
+            {
+                if (_Id != value)
+                {
+                    OnIdChanging(value);
+                    ReportPropertyChanging("Id");
+                    _Id = StructuralObject.SetValidValue(value);
+                    ReportPropertyChanged("Id");
+                    OnIdChanged();
+                }
+            }
+        }
+        private global::System.Int32 _Id;
+        partial void OnIdChanging(global::System.Int32 value);
+        partial void OnIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Logo
+        {
+            get
+            {
+                return _Logo;
+            }
+            set
+            {
+                OnLogoChanging(value);
+                ReportPropertyChanging("Logo");
+                _Logo = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Logo");
+                OnLogoChanged();
+            }
+        }
+        private global::System.String _Logo;
+        partial void OnLogoChanging(global::System.String value);
+        partial void OnLogoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ColorR
+        {
+            get
+            {
+                return _ColorR;
+            }
+            set
+            {
+                OnColorRChanging(value);
+                ReportPropertyChanging("ColorR");
+                _ColorR = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ColorR");
+                OnColorRChanged();
+            }
+        }
+        private global::System.Int32 _ColorR;
+        partial void OnColorRChanging(global::System.Int32 value);
+        partial void OnColorRChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ColorG
+        {
+            get
+            {
+                return _ColorG;
+            }
+            set
+            {
+                OnColorGChanging(value);
+                ReportPropertyChanging("ColorG");
+                _ColorG = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ColorG");
+                OnColorGChanged();
+            }
+        }
+        private global::System.Int32 _ColorG;
+        partial void OnColorGChanging(global::System.Int32 value);
+        partial void OnColorGChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 ColorB
+        {
+            get
+            {
+                return _ColorB;
+            }
+            set
+            {
+                OnColorBChanging(value);
+                ReportPropertyChanging("ColorB");
+                _ColorB = StructuralObject.SetValidValue(value);
+                ReportPropertyChanged("ColorB");
+                OnColorBChanged();
+            }
+        }
+        private global::System.Int32 _ColorB;
+        partial void OnColorBChanging(global::System.Int32 value);
+        partial void OnColorBChanged();
+
+        #endregion
+
+    
+    }
     
     /// <summary>
     /// No Metadata Documentation available.
@@ -117,16 +302,12 @@ namespace Model
         /// <param name="id">Initial value of the Id property.</param>
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="content">Initial value of the Content property.</param>
-        /// <param name="footer">Initial value of the Footer property.</param>
-        /// <param name="logo">Initial value of the Logo property.</param>
-        public static Page CreatePage(global::System.Int32 id, global::System.String name, global::System.String content, global::System.String footer, global::System.String logo)
+        public static Page CreatePage(global::System.Int32 id, global::System.String name, global::System.String content)
         {
             Page page = new Page();
             page.Id = id;
             page.Name = name;
             page.Content = content;
-            page.Footer = footer;
-            page.Logo = logo;
             return page;
         }
 
@@ -208,54 +389,6 @@ namespace Model
         private global::System.String _Content;
         partial void OnContentChanging(global::System.String value);
         partial void OnContentChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Footer
-        {
-            get
-            {
-                return _Footer;
-            }
-            set
-            {
-                OnFooterChanging(value);
-                ReportPropertyChanging("Footer");
-                _Footer = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Footer");
-                OnFooterChanged();
-            }
-        }
-        private global::System.String _Footer;
-        partial void OnFooterChanging(global::System.String value);
-        partial void OnFooterChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.String Logo
-        {
-            get
-            {
-                return _Logo;
-            }
-            set
-            {
-                OnLogoChanging(value);
-                ReportPropertyChanging("Logo");
-                _Logo = StructuralObject.SetValidValue(value, false);
-                ReportPropertyChanged("Logo");
-                OnLogoChanged();
-            }
-        }
-        private global::System.String _Logo;
-        partial void OnLogoChanging(global::System.String value);
-        partial void OnLogoChanged();
 
         #endregion
 

@@ -36,6 +36,9 @@ public partial class _Default : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         ModelContainer1 mc = new ModelContainer1();
+        var contentForAllPages = (from x in mc.AllPagesSet select x).First();
+        PageLogo = contentForAllPages.Logo;
+
         var defaultPage = (from x in mc.PageSet select x).First();
 
         PagesCollection = "";
@@ -66,12 +69,13 @@ public partial class _Default : System.Web.UI.Page
             
             PageId = id;
             PageContent = page.Content;
-            PageLogo = page.Logo;
+            
         }
         else
         {
             PageId = defaultPage.Id;
             PageContent = defaultPage.Content;
+         
         }
 
     }

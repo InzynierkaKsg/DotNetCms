@@ -27,7 +27,6 @@ public class WebService : System.Web.Services.WebService {
         var newPage = new Page();
         newPage.Name = name;
         newPage.Content = "<li class='editable'>Witaj na nowej stronie!</li>";
-        newPage.Footer = "";
         mc.AddToPageSet(newPage);
         mc.SaveChanges();
         
@@ -80,14 +79,14 @@ public class WebService : System.Web.Services.WebService {
     public string GetLogo()
     {
         ModelContainer1 mc = new ModelContainer1();
-        var page = (from x in mc.PageSet select x).First();
+        var page = (from x in mc.AllPagesSet select x).First();
         return page.Logo;
     }
     [WebMethod]
     public void SaveLogo(string html)
     {
         ModelContainer1 mc = new ModelContainer1();
-        var page = (from x in mc.PageSet select x).First();
+        var page = (from x in mc.AllPagesSet select x).First();
         page.Logo = html;
         mc.SaveChanges();
     }
@@ -95,11 +94,32 @@ public class WebService : System.Web.Services.WebService {
     public void UpdateLogo(string html)
     {
         ModelContainer1 mc = new ModelContainer1();
-        var page = (from x in mc.PageSet select x).First();
+        var page = (from x in mc.AllPagesSet select x).First();
         page.Logo = html;
         mc.SaveChanges();
     }
 
+    [WebMethod]
+    public void UpdateColor(int red, int green ,int blue)
+    {
+        ModelContainer1 mc = new ModelContainer1();
+        var page = (from x in mc.AllPagesSet select x).First();
+        page.ColorR = red;
+        page.ColorG = green;
+        page.ColorB = blue;
+
+        mc.SaveChanges();
+    }
+
+    //[WebMethod]
+    //public int GetColorR()
+    //{
+    //    ModelContainer1 mc = new ModelContainer1();
+    //    var page = (from x in mc.AllPagesSet select x).First();
+
+    //    return page.ColorR;
+        
+    //}
 
     
 }

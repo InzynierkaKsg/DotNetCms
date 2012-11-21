@@ -29,15 +29,23 @@ $(function () {
                 }
 
                 if (bValid) {
-                    if (!$(this).data('logo'))
-                        html = '<div style="text-align: center;">';
-                    html += '<img class="picture tooltp" src="' + addres + '" title="Double click to edit Picture." />'
-                    if (!$(this).data('logo'))
-                        html += '</div>';
+                    if ($(this).data('logo')){
+                        WebService.UpdateLogo("<img class='picture tooltp' src=" + addres + " title='Double click to edit Picture.' />");
+                        WebService.SaveContent($('#contentUL').html(), $('#currentPage').text());
+                        setTimeout("location.reload(true);", 1000);
+                    
+                    }
+                    else 
+                        html = '<div style="text-align: center;"><img class="picture tooltp" src="' + addres + '" title="Double click to edit Picture." /></div>';
+                    
 
                     $($(this).data('item')).html(html);
+                    
+                    
                     $(this).dialog("close");
+
                 }
+                
             },
             "Delete": function () {
                 if ($(this).data('class').match(/\bnotDeleteable\b/))

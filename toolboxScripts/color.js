@@ -47,10 +47,19 @@ $(function () {
         width: 500,
         buttons: {
             Ok: function () {
+                
                 var red = $("#redSlider").slider("value"),
             green = $("#greenSlider").slider("value"),
             blue = $("#blueSlider").slider("value"),
+
             hex = hexFromRGB(red, green, blue), hex2, hex3, hex4;
+
+               //// WebService.UpdateColor(red, green, blue);
+
+               // var c = WebService.GetColorR();
+               // setTimeout("alert(c);", 2000);
+                
+             
 
                 if (getMaxRGB(red, green, blue) > 190) {
                     hex2 = hexFromRGB(setZero(parseInt(red * 0.75)),
