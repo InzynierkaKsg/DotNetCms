@@ -30,7 +30,7 @@ $(function () {
                 }
 
                 if (bValid) {
-                    $($(this).data('item')).html('<div style="text-align: center;"><img class="picture" src="' + addres
+                    $($(this).data('item')).html('<div style="text-align: center;"><img class="picture tooltp" src="' + addres
                         + '" title="Double click to edit Picture." /></div>');
                     $(this).dialog("close");
                 }

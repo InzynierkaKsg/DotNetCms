@@ -23,6 +23,7 @@
                     newItem.addClass("editablePicture");
                     $("#pictureForm").data('item', newItem);
                     $("#pictureForm").dialog('open');
+                    newItem.tooltip();
                     break;
                 case 'tab1':
                     newItem.addClass("editableTab1");
@@ -39,7 +40,7 @@
                 case 'map':
                     $("#mapForm").data('item', newItem);
                     $("#mapForm").dialog('open');
-                    break;
+                    break;   
             }
         }
     });
@@ -72,6 +73,7 @@
 
     $(".editablePicture").live("dblclick", function () {
         $("#pictureFormEdit").data('item', $(this));
+        $("#pictureFormEdit").data('class', $(this)[0].className);
         $("#pictureFormEdit").dialog('open');
     });
 
@@ -99,7 +101,8 @@
 
     $("#menuNav").disableSelection();
 
-    $(document).tooltip();
+   
+    $('.tooltp').tooltip();
 
     if (map) {
         google.maps.event.trigger(map, 'resize');

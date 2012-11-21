@@ -86,7 +86,7 @@
                 <div class="twelve columns">
                     <nav class="pretty navbar clearfix" id="prettynav">
                     <h1 class="logo">
-                        <a class="notDeleteable" href="#" id="logo" title="Double click to edit Logo.">
+                        <a class="notDeleteable tooltp" href="#" id="logo" title="Double click to edit Logo.">
                             <img src="Gumby/img/img_logo.png" alt="Gumby Framework" />
                         </a>
 

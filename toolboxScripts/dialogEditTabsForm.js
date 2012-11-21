@@ -1,5 +1,6 @@
 $(function () {
-    var tabId = new Array();
+    var tabId = new Array(),
+        teksty = new Array();
     tabId[0] = 0;
 
     function getTabHtml(x, title, option, idy) {
@@ -20,12 +21,12 @@ $(function () {
 
         for (var i = 0; i < x; i++) {
             if (option == 3)
-                html += '<h3 title="Double click to edit Accordion.">' + title[i] + '</h3><div class="editable notdelitable"><p title="Click to edit text.">Click to edit.</p></div>';
+                html += '<h3 class="tooltp" title="Click to change content / Double click to edit Accordion.">' + title[i] + '</h3><div class="editable notdelitable">' + teksty[idy[i]] + '</div>';
             else {
                 if (option == 2 && i == 0)
-                    html += '<li class="active liTitles"><a title="Double click to edit Tab." class="aTitles" href="#tabs-' + idy[i] + '">' + title[i] + '</a></li>';
+                    html += '<li class="active liTitles"><a title="Click to change content / Double click to edit Tab." class="aTitles tooltp" href="#tabs-' + idy[i] + '">' + title[i] + '</a></li>';
                 else
-                    html += '<li class="liTitles"><a title="Double click to edit Tab." class="aTitles" href="#tabs-' + idy[i] + '">' + title[i] + '</a></li>';
+                    html += '<li class="liTitles"><a title="Click to change content / Double click to edit Tab." class="aTitles tooltp" href="#tabs-' + idy[i] + '">' + title[i] + '</a></li>';
             }
         }
 
@@ -37,9 +38,9 @@ $(function () {
                 id = 'data-tab';
             for (var i = 0; i < x; i++) {
                 if (option == 2 && i == 0)
-                    html += '<div ' + id + '="tabs-' + idy[i] + '" class="active editable divTabs notdelitable"><p title="Click to edit text.">Click to edit.</p></div>';
+                    html += '<div ' + id + '="tabs-' + idy[i] + '" class="active editable divTabs notdelitable">' + teksty[idy[i]] + '</div>';
                 else
-                    html += '<div ' + id + '="tabs-' + idy[i] + '" class="editable divTabs notdelitable"><p title="Click to edit text.">Click to edit.</p></div>';
+                    html += '<div ' + id + '="tabs-' + idy[i] + '" class="editable divTabs notdelitable">' + teksty[idy[i]] + '</div>';
             }
             if (option == 2)
                 html += '</section>'
@@ -60,12 +61,18 @@ $(function () {
                 taby2 = $('.tabs2'),
                 linkID, currentLinkID,
                 tips = $(".validateTips"),
-                    linki;
+                    tytuly, tytulySize
+            linki = $($(this).data('item')).find('a');
+            dv = tytuly = $($(this).data('item')).find('div');
 
-            if ($(this).data('option') == 1 || $(this).data('option') == 2)
-                linki = $($(this).data('item')).find('a');
-            else
-                linki = $($(this).data('item')).find('h3');
+            if ($(this).data('option') == 1 || $(this).data('option') == 2) {
+                tytuly = $($(this).data('item')).find('div');
+                tytulySize = tytuly.length;
+            }
+            else {
+                tytuly = $($(this).data('item')).find('h3');
+                tytulySize = tytuly.length + 1;
+            }
 
             tips.text('');
 
@@ -91,26 +98,33 @@ $(function () {
                 }
             }
 
-            for (var i = 0; i < linki.length; i++) {
+            for (var i = 1; i < tytulySize; i++) {
                 var id;
-                if ($(this).data('option') == 1 || $(this).data('option') == 2) {
-                    id = linki[i].getAttribute('href');
-                    id = id.replace('#tabs-', '');
-                }
-                else
+                if ($(this).data('option') == 3)
                     id = i;
+                else {
+                    if ($(this).data('option') == 1)
+                        id = tytuly[i].getAttribute('id');
+                    else
+                        id = tytuly[i].getAttribute('data-tab');
+                    id = id.replace('tabs-', '');
+                }
+
+                if ($(this).data('option') == 3)
+                    teksty[id] = dv[i].innerHTML;
+                else
+                    teksty[id] = tytuly[i].innerHTML;
 
                 $('<li id="tabLiEdit' + id + '"><input type="text" id="tab_titleEdit' + id
            + '" value="" class="ui-widget-content ui-corner-all" /><span class="ui-icon ui-icon-close"/>'
                            + '</li>').appendTo('#tabListEdit');
+
                 if ($(this).data('option') == 1 || $(this).data('option') == 2)
-                    $('#tab_titleEdit' + id).attr('value', linki[i].innerHTML);
+                    $('#tab_titleEdit' + id).attr('value', linki[(i - 1)].innerHTML);
                 else {
-                    var title = linki[i].innerHTML;
+                    var title = tytuly[i - 1].innerHTML;
                     title = title.slice(title.indexOf('>') + 8, title.length);
-                    // title = title.replace('"', '');
                     $('#tab_titleEdit' + id).attr('value', title);
-                    console.log(linki);
                 }
             }
         },
@@ -180,6 +194,7 @@ $(function () {
                                 parseInt(navColor2[3])) + "', endColorstr='#" + color2 + "',GradientType=0 )");
                         }
                     }
+                    $('.tooltp').tooltip();
                     $(this).dialog("close");
                 }
             },
@@ -204,6 +219,7 @@ $(function () {
             }
 
             tabId = [];
+            teksty = [];
             inputs = [];
         }
     });
@@ -215,6 +231,7 @@ $(function () {
             if (tabId[i] != 1) {
                 newTab = i + 1;
                 tabId[i] = 1;
+                teksty[i + 1] = 'Click to edit.';
                 break;
             }
         }
@@ -230,6 +247,7 @@ $(function () {
         if ($('#tabListEdit').find('li').length != 1) {
             id = id.replace('tabLiEdit', '');
             tabId[id - 1] = 0;
+            teksty[id - 1] = 'Click to edit';
             $(this).closest('li').remove();
         }
     });

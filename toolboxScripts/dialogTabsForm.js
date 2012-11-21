@@ -20,12 +20,12 @@ $(function () {
 
         for (var i = 0; i < x; i++) {
             if (option == 3)
-                html += '<h3 title="Double click to edit Accordion.">' + title[i] + '</h3><div class="editable notdelitable"><p title="Click to edit text.">Click to edit.</p></div>';
+                html += '<h3 class="tooltp" title="Click to change content / Double click to edit Accordion.">' + title[i] + '</h3><div class="editable notdelitable">Click to edit.</div>';
             else {
                 if (option == 2 && i == 0)
-                    html += '<li class="active liTitles"><a title="Double click to edit Tab." class="aTitles" href="#tabs-' + idy[i] + '">' + title[i] + '</a></li>';
+                    html += '<li class="active liTitles"><a title="Click to change content / Double click to edit Tab." class="aTitles tooltp" href="#tabs-' + idy[i] + '">' + title[i] + '</a></li>';
                 else
-                    html += '<li class="liTitles"><a title="Double click to edit Tab." class="aTitles" href="#tabs-' + idy[i] + '">' + title[i] + '</a></li>';
+                    html += '<li class="liTitles"><a title="Click to change content / Double click to edit Tab." class="aTitles tooltp" href="#tabs-' + idy[i] + '">' + title[i] + '</a></li>';
             }
         }
 
@@ -37,9 +37,9 @@ $(function () {
                 id = 'data-tab';
             for (var i = 0; i < x; i++) {
                 if (option == 2 && i == 0)
-                    html += '<div ' + id + '="tabs-' + idy[i] + '" class="active editable divTabs notdelitable"><p title="Click to edit text.">Click to edit.</p></div>';
+                    html += '<div ' + id + '="tabs-' + idy[i] + '" class="active editable divTabs notdelitable">Click to edit.</div>';
                 else
-                    html += '<div ' + id + '="tabs-' + idy[i] + '" class="editable divTabs notdelitable"><p title="Click to edit text.">Click to edit.</p></div>';
+                    html += '<div ' + id + '="tabs-' + idy[i] + '" class="editable divTabs notdelitable">Click to edit.</div>';
             }
             if (option == 2)
                 html += '</section>'
@@ -165,6 +165,7 @@ $(function () {
                                 parseInt(navColor2[3])) + "', endColorstr='#" + color2 + "',GradientType=0 )");
                         }
                     }
+                    $('.tooltp').tooltip();
                     $(this).dialog("close");
                 }
             },
