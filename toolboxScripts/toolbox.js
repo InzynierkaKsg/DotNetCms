@@ -60,6 +60,7 @@
     $("#logo").dblclick(function () {
         $("#pictureFormEdit").data('item', $(this));
         $("#pictureFormEdit").data('class', $(this)[0].className);
+        $("#pictureFormEdit").data('logo', true);
         $("#pictureFormEdit").dialog('open');
     });
 
@@ -74,6 +75,7 @@
     $(".editablePicture").live("dblclick", function () {
         $("#pictureFormEdit").data('item', $(this));
         $("#pictureFormEdit").data('class', $(this)[0].className);
+        $("#pictureFormEdit").data('logo', false);
         $("#pictureFormEdit").dialog('open');
     });
 

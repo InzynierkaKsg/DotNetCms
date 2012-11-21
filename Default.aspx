@@ -23,6 +23,7 @@
     <script type="text/javascript" src="toolboxScripts/dialogPictureForm.js"></script>
     <script type="text/javascript" src="toolboxScripts/dialogPagesForm.js"></script>
     <script type="text/javascript" src="toolboxScripts/dialogAddPageForm.js"></script>
+    <script type="text/javascript" src="toolboxScripts/savePage.js"></script>
     <script src="toolboxScripts/dialogEditPictureForm.js" type="text/javascript"></script>
     <script type="text/javascript" src="toolboxScripts/color.js"></script>
     <script type="text/javascript" src="toolboxScripts/dialogMapForm.js"></script>
@@ -41,6 +42,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
+      
+        <div id="confirm" title="Attention"><p>Page was saved.</p></div>
         <div id="pictureForm" title="Add picture"></div>
         <div id="pictureFormEdit" title="Save picture"></div>
         <div id="tabForm" title="Titles"></div>
@@ -138,11 +141,6 @@
                 <asp:ServiceReference Path="~/WebService.asmx" />
             </Services>
         </asp:ScriptManager>
-
-
-        <script type="text/javascript">
-            $('#savePage').click(function () { WebService.SaveContent($('#contentUL').html(), $('#currentPage').text()); });
-        </script>
     </form>
 </body>
 </html>
