@@ -16,6 +16,7 @@
     <Property Name="Name" Type="nvarchar" Nullable="false" />
     <Property Name="Content" Type="nvarchar" Nullable="false" />
     <Property Name="Footer" Type="nvarchar" Nullable="false" />
+    <Property Name="Logo" Type="nvarchar" Nullable="false" />
   </EntityType>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -32,6 +33,7 @@
           <Property Type="String" Name="Name" Nullable="false" />
           <Property Type="String" Name="Content" Nullable="false" />
           <Property Type="String" Name="Footer" Nullable="false" />
+          <Property Type="String" Name="Logo" Nullable="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -46,6 +48,7 @@
           <ScalarProperty Name="Name" ColumnName="Name" />
           <ScalarProperty Name="Content" ColumnName="Content" />
           <ScalarProperty Name="Footer" ColumnName="Footer" />
+          <ScalarProperty Name="Logo" ColumnName="Logo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -9,6 +9,7 @@ using Model;
 
 public partial class _Default : System.Web.UI.Page
 {
+    
     private string _PagesCollection;
     public string PagesCollection
     {
@@ -29,6 +30,9 @@ public partial class _Default : System.Web.UI.Page
         get { return _PageId; }
         set { _PageId = value; }
     }
+
+    public string PageLogo { get; set; }
+
     protected void Page_Load(object sender, EventArgs e)
     {
         ModelContainer1 mc = new ModelContainer1();
@@ -36,7 +40,8 @@ public partial class _Default : System.Web.UI.Page
 
         PagesCollection = "";
 
-        foreach (Model.Page p in mc.PageSet)
+        var pageCollection = (from x in mc.PageSet orderby x.Id ascending select x);
+        foreach (Model.Page p in pageCollection)
         {
             PagesCollection += "<li><a class='hovGradient' id='pageId" + p.Id + "' href='?pageId=" + p.Id + "'>" + p.Name + "</a></li>";
         }
@@ -45,9 +50,23 @@ public partial class _Default : System.Web.UI.Page
         if (pageId != null)
         {
             int id = int.Parse(pageId);
-            var page = (from x in mc.PageSet where x.Id == id select x).First();
+            Model.Page page = null;
+            try
+            {
+                page = (from x in mc.PageSet where x.Id == id select x).First();
+            }
+            catch(Exception)
+            { }
+            if (page == null)
+            {
+                page = (Model.Page)defaultPage;
+                Response.Redirect("Default.aspx?pageId="+page.Id);
+            }
+       
+            
             PageId = id;
             PageContent = page.Content;
+            PageLogo = page.Logo;
         }
         else
         {

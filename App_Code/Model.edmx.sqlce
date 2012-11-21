@@ -2,8 +2,8 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server Compact Edition
 -- --------------------------------------------------
--- Date Created: 11/19/2012 20:21:56
--- Generated from EDMX file: C:\Users\Rafalek\Desktop\git\DotNetCms\App_Code\Model.edmx
+-- Date Created: 11/21/2012 20:27:12
+-- Generated from EDMX file: C:\Users\Rafalek\Desktop\gicior\DotNetCms\App_Code\Model.edmx
 -- --------------------------------------------------
 
 
@@ -18,6 +18,8 @@
 -- NOTE: if the table does not exist, an ignorable error will be reported.
 -- --------------------------------------------------
 
+    DROP TABLE [PageSet];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -28,7 +30,8 @@ CREATE TABLE [PageSet] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [Name] nvarchar(4000)  NOT NULL,
     [Content] ntext  NOT NULL,
-    [Footer] nvarchar(4000)  NOT NULL
+    [Footer] nvarchar(4000)  NOT NULL,
+    [Logo] nvarchar(4000)  NOT NULL
 );
 GO
 

@@ -92,7 +92,9 @@
 
                     </h1>
                     <a id="tog" href="#" class="toggle" data-for="#prettynav > ul">
-                        <img src="Gumby/img/icon_nav_toggle.gif" />
+                        <%= PageLogo%>
+
+                       
                     </a>
 
                     <ul id="menuNav">
@@ -114,7 +116,7 @@
             <div class="row">
                 <div class="twelve columns" id="content">
                     <ul id="contentUL">
-                    <li>!!!tymczasowo jakis napis!!!</li>
+                    
                         <%= PageContent %>
 
                     </ul>

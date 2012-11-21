@@ -118,13 +118,15 @@ namespace Model
         /// <param name="name">Initial value of the Name property.</param>
         /// <param name="content">Initial value of the Content property.</param>
         /// <param name="footer">Initial value of the Footer property.</param>
-        public static Page CreatePage(global::System.Int32 id, global::System.String name, global::System.String content, global::System.String footer)
+        /// <param name="logo">Initial value of the Logo property.</param>
+        public static Page CreatePage(global::System.Int32 id, global::System.String name, global::System.String content, global::System.String footer, global::System.String logo)
         {
             Page page = new Page();
             page.Id = id;
             page.Name = name;
             page.Content = content;
             page.Footer = footer;
+            page.Logo = logo;
             return page;
         }
 
@@ -230,6 +232,30 @@ namespace Model
         private global::System.String _Footer;
         partial void OnFooterChanging(global::System.String value);
         partial void OnFooterChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.String Logo
+        {
+            get
+            {
+                return _Logo;
+            }
+            set
+            {
+                OnLogoChanging(value);
+                ReportPropertyChanging("Logo");
+                _Logo = StructuralObject.SetValidValue(value, false);
+                ReportPropertyChanged("Logo");
+                OnLogoChanged();
+            }
+        }
+        private global::System.String _Logo;
+        partial void OnLogoChanging(global::System.String value);
+        partial void OnLogoChanged();
 
         #endregion
 

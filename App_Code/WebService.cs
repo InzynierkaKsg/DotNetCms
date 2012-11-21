@@ -26,12 +26,22 @@ public class WebService : System.Web.Services.WebService {
         ModelContainer1 mc = new ModelContainer1();
         var newPage = new Page();
         newPage.Name = name;
-        newPage.Content = "<li class='ui-state-default'>Item 1</li>";
+        newPage.Content = "<li class='editable'>Witaj na nowej stronie!</li>";
         newPage.Footer = "";
         mc.AddToPageSet(newPage);
         mc.SaveChanges();
+        
     }
 
+
+    [WebMethod]
+    public int GetLastPage()
+    {
+        ModelContainer1 mc = new ModelContainer1();
+        var page = (from x in mc.PageSet orderby x.Id ascending select x).First();
+        return page.Id;
+
+    }
 
     [WebMethod]
     public void DeletePage(int id)
@@ -66,7 +76,29 @@ public class WebService : System.Web.Services.WebService {
         var page = (from x in mc.PageSet where x.Id == id select x).First();
         return page.Content;
     }
-
+    [WebMethod]
+    public string GetLogo()
+    {
+        ModelContainer1 mc = new ModelContainer1();
+        var page = (from x in mc.PageSet select x).First();
+        return page.Logo;
+    }
+    [WebMethod]
+    public void SaveLogo(string html)
+    {
+        ModelContainer1 mc = new ModelContainer1();
+        var page = (from x in mc.PageSet select x).First();
+        page.Logo = html;
+        mc.SaveChanges();
+    }
+    [WebMethod]
+    public void UpdateLogo(string html)
+    {
+        ModelContainer1 mc = new ModelContainer1();
+        var page = (from x in mc.PageSet select x).First();
+        page.Logo = html;
+        mc.SaveChanges();
+    }
 
 
     

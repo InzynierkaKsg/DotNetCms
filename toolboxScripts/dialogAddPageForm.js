@@ -24,7 +24,8 @@ $(function () {
                 if (bValid) {
                     WebService.CreatePage(pageName.val());
                     $(this).dialog("close");
-                    setTimeout("location.reload(true);", 1000);
+                   var lastPageId =  WebService.GetLastPage();                 
+                  location.reload(true);
                 }
             },
             Cancel: function () {
