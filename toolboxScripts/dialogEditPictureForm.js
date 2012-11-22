@@ -29,23 +29,26 @@ $(function () {
                 }
 
                 if (bValid) {
-                    if ($(this).data('logo')){
-                        WebService.UpdateLogo("<img class='picture tooltp' src=" + addres + " title='Double click to edit Picture.' />");
-                        WebService.SaveContent($('#contentUL').html(), $('#currentPage').text());
-                        setTimeout("location.reload(true);", 1000);
-                    
-                    }
-                    else 
-                        html = '<div style="text-align: center;"><img class="picture tooltp" src="' + addres + '" title="Double click to edit Picture." /></div>';
-                    
+                    if ($(this).data('logo')) {
 
-                    $($(this).data('item')).html(html);
-                    
-                    
+
+                        WebService.UpdateLogo("<img src=" + addres + " />");
+                        // WebService.SaveContent($('#contentUL').html(), $('#currentPage').text());
+                        //  setTimeout("location.reload(true);", 1000);
+
+                    }
+                    else {
+                        html = '<div style="text-align: center;"><img class="picture tooltp" src="' + addres + '" title="Double click to edit Picture." /></div>';
+                        $($(this).data('item')).html(html);
+                    }
+
+
+
+
                     $(this).dialog("close");
 
                 }
-                
+
             },
             "Delete": function () {
                 if ($(this).data('class').match(/\bnotDeleteable\b/))
@@ -69,6 +72,9 @@ $(function () {
             $('#selectedPictureEdit')[0].childNodes[0].data = "Url"
 
             allFields.val("").removeClass("ui-state-error");
+
+            if ($(this).data('logo'))
+                $("#logo").load(location.href + " #logo>*", '');
         }
     });
 
