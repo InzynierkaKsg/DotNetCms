@@ -1,4 +1,6 @@
 $(function () {
+    var isChanged;
+
     $("#pictureFormEdit").dialog({
         autoOpen: false,
         width: 420,
@@ -11,6 +13,7 @@ $(function () {
 
             tips.text('');
             $("#urlEdit").attr('value', $($(this).data('item')).find('img').attr("src"));
+            isChanged = false;
         },
         buttons: {
             "Save": function () {
@@ -30,31 +33,24 @@ $(function () {
 
                 if (bValid) {
                     if ($(this).data('logo')) {
-
-
                         WebService.UpdateLogo("<img src=" + addres + " />");
-                        // WebService.SaveContent($('#contentUL').html(), $('#currentPage').text());
-                        //  setTimeout("location.reload(true);", 1000);
-
                     }
                     else {
                         html = '<div style="text-align: center;"><img class="picture tooltp" src="' + addres + '" title="Double click to edit Picture." /></div>';
                         $($(this).data('item')).html(html);
+                        WebService.SaveContent($('#contentUL').html(), $('#currentPage').text());
                     }
-
-
-
-
+                    isChanged = true;
                     $(this).dialog("close");
-
                 }
-
             },
             "Delete": function () {
                 if ($(this).data('class').match(/\bnotDeleteable\b/))
                     updateTips("Delete is impossible.");
                 else {
                     $($(this).data('item')).remove();
+                    WebService.SaveContent($('#contentUL').html(), $('#currentPage').text());
+                    isChanged = true;
                     $(this).dialog("close");
                 }
             },
@@ -72,9 +68,15 @@ $(function () {
             $('#selectedPictureEdit')[0].childNodes[0].data = "Url"
 
             allFields.val("").removeClass("ui-state-error");
-
-            if ($(this).data('logo'))
-                $("#logo").load(location.href + " #logo>*", '');
+            if (isChanged) {
+                if ($(this).data('logo'))
+                    $("#logo").load(location.href + " #logo>*", '');
+                else
+                    $("#contentUL").load(location.href + " #contentUL>*", function () {
+                        $('.tooltp').tooltip();
+                        $.getScript("hover.js");
+                    });
+            }
         }
     });
 

@@ -1,6 +1,7 @@
 $(function () {
     var tabId = new Array(),
-        teksty = new Array();
+        teksty = new Array(),
+        isChanged;
     tabId[0] = 0;
 
     function getTabHtml(x, title, option, idy) {
@@ -56,6 +57,7 @@ $(function () {
         modal: true,
         show: 'puff',
         hide: 'scale',
+        width: 340,
         open: function () {
             var taby = $('.tabs1'),
                 taby2 = $('.tabs2'),
@@ -116,7 +118,7 @@ $(function () {
                     teksty[id] = tytuly[i].innerHTML;
 
                 $('<li id="tabLiEdit' + id + '"><input type="text" id="tab_titleEdit' + id
-           + '" value="" class="ui-widget-content ui-corner-all" /><span class="ui-icon ui-icon-close"/>'
+           + '" value="" class="ui-widget-content ui-corner-all"  size="30"/><span class="ui-icon ui-icon-close"/>'
                            + '</li>').appendTo('#tabListEdit');
 
                 if ($(this).data('option') == 1 || $(this).data('option') == 2)
@@ -127,6 +129,7 @@ $(function () {
                     $('#tab_titleEdit' + id).attr('value', title);
                 }
             }
+            isChanged = false;
         },
         buttons: {
             "Save": function () {
@@ -194,12 +197,15 @@ $(function () {
                                 parseInt(navColor2[3])) + "', endColorstr='#" + color2 + "',GradientType=0 )");
                         }
                     }
-                    $('.tooltp').tooltip();
+                    WebService.SaveContent($('#contentUL').html(), $('#currentPage').text());
+                    isChanged = true;
                     $(this).dialog("close");
                 }
             },
             "Delete": function () {
                 $($(this).data('item')).remove();
+                WebService.SaveContent($('#contentUL').html(), $('#currentPage').text());
+                isChanged = true;
                 $(this).dialog("close");
             },
             Cancel: function () {
@@ -221,6 +227,12 @@ $(function () {
             tabId = [];
             teksty = [];
             inputs = [];
+
+            if (isChanged)
+                $("#contentUL").load(location.href + " #contentUL>*", function () {
+                    $('.tooltp').tooltip();
+                    $.getScript("hover.js");
+                });
         }
     });
 

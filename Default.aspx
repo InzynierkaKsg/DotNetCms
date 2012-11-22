@@ -35,7 +35,6 @@
     <script type="text/javascript" src="toolboxScripts/dialogTabsForm.js"></script>
     <script type="text/javascript" src="toolboxScripts/dialogTextEditor.js"></script>
     <script type="text/javascript" src="toolboxScripts/dialogValidation.js"></script>
-    <script type="text/javascript" src="toolboxScripts/savePage.js"></script>
     <script type="text/javascript" src="toolboxScripts/toolbox.js"></script>
 
     <script type="text/javascript" src="jquery-ui-map/jquery.ui.map.js"></script>
@@ -60,7 +59,6 @@
                             <li id="addPage"><a class="hov" href="#">Add Page</a></li>
                             <li id="pages"><a class="hov" href="#">Pages</a></li>
                             <li id="adm"><a class="hov" href="#">Admin</a></li>
-                            <li id="savePage"><a class="hov" href="#">Save Page</a></li>
                         </ul>
                     </nav>
                     <nav class="navbar clearfix" id="basicnav">
@@ -119,7 +117,6 @@
             </Services>
         </asp:ScriptManager>
 
-        <div id="confirm" title="Attention"></div>
         <div id="pictureForm" title="Add picture"></div>
         <div id="pictureFormEdit" title="Save picture"></div>
         <div id="tabForm" title="Titles"></div>

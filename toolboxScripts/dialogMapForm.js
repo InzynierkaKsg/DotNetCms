@@ -1,5 +1,7 @@
 ﻿var allMarkers = [];
 $(function () {
+    var isChanged;
+
     $("#mapForm").dialog({
         open: LoadMap(),
         open: function (event, ui) { if ($('#mapPreview').gmap('get', 'map')) { google.maps.event.trigger($('#mapPreview').gmap('get', 'map'), 'resize') } },
@@ -10,6 +12,9 @@ $(function () {
         modal: true,
         show: 'puff',
         hide: 'scale',
+        open: function () {
+            isChanged = false;
+        },
         buttons: {
             "Add": function () {
                 $($(this).data('item')).html('<div id="mapViewer"></div>');
@@ -18,6 +23,8 @@ $(function () {
                     height: '300px'
                 });
                 AddMarkersToMap();
+                WebService.SaveContent($('#contentUL').html(), $('#currentPage').text());
+                isChanged = true;
                 $(this).dialog("close");
             },
             Cancel: function () {
@@ -30,6 +37,12 @@ $(function () {
 
             allFields = $([]).add(adr).add(dsc);
             allFields.val("").removeClass("ui-state-error");
+
+            if (isChanged)
+                $("#contentUL").load(location.href + " #contentUL>*", function () {
+                    $('.tooltp').tooltip();
+                    $.getScript("hover.js");
+                });
         }
     });
 });

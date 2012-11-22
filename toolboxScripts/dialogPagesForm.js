@@ -1,5 +1,6 @@
 $(function () {
-    var deletedPages = new Array();
+    var deletedPages = new Array(),
+        isChanged;
 
     $("#pages").click(function () {
         $("#pageForm").dialog('open');
@@ -20,6 +21,7 @@ $(function () {
             }
 
             tips.text('');
+            isChanged = false;
         },
         buttons: {
             Save: function () {
@@ -43,8 +45,8 @@ $(function () {
                         id = id.replace('lipageId', '');
                         WebService.UpdatePage(parseInt(id), $('#' + id2).val());
                     }
+                    isChanged = true;
                     $(this).dialog("close");
-                    setTimeout("location.reload(true);", 1000);
                 }
             },
             Cancel: function () {
@@ -60,6 +62,11 @@ $(function () {
                 var id = list[i].getAttribute('id');
                 $('#' + id).remove();
             }
+
+            if (isChanged)
+                $("#menuNav").load(location.href + " #menuNav>*", function () {
+                    $.getScript("hover.js");
+                });
         }
     });
 

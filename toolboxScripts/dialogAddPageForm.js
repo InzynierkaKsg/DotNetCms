@@ -1,5 +1,5 @@
 $(function () {
-
+    var isChanged;
     $("#addPage").click(function () {
         $("#addPageForm").dialog('open');
     });
@@ -13,6 +13,7 @@ $(function () {
             var tips = $(".validateTips");
 
             tips.text('');
+            isChanged = false;
         },
         buttons: {
             Add: function () {
@@ -22,10 +23,10 @@ $(function () {
                 bValid = checkLength(pageName, "Name", 1);
 
                 if (bValid) {
-                    WebService.CreatePage(pageName.val());
+                    WebService.CreatePage(pageName.val());                   
+                    var lastPageId = WebService.GetLastPage();
+                    isChanged = true;
                     $(this).dialog("close");
-                   var lastPageId =  WebService.GetLastPage();                 
-                   setTimeout("location.reload(true);", 1000);
                 }
             },
             Cancel: function () {
@@ -36,6 +37,10 @@ $(function () {
             var pageName = $("#newPage");
 
             pageName.val('').removeClass("ui-state-error");
+            if (isChanged)
+                $("#menuNav").load(location.href + " #menuNav>*", function () {
+                    $.getScript("hover.js");
+                });
         }
     });
 });

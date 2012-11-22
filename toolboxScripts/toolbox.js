@@ -2,6 +2,11 @@
 
     $("#contentUL").sortable({
         placeholder: "ui-state-highlight",
+        update: function (event, ui) {
+            if (event.handleObj.namespace == 'sortable') {
+                WebService.SaveContent($('#contentUL').html(), $('#currentPage').text());
+            }
+        },
         receive: function (event, ui) {
             var newItem = $(this).data().sortable.currentItem;
             newItem.html("");
@@ -51,7 +56,6 @@
         revert: "invalid",
         helper: "clone"
     });
-    $(".not-draggable").draggable({ disabled: true });
 
     $("#footer").click(function () {
         console.log($('html')[0].outerHTML);
@@ -105,6 +109,12 @@
 
    
     $('.tooltp').tooltip();
+
+    $("#tabListEdit").sortable({
+        placeholder: "ui-state-highlight"
+    });
+
+    $("#tabListEdit").disableSelection();
 
     if (map) {
         google.maps.event.trigger(map, 'resize');

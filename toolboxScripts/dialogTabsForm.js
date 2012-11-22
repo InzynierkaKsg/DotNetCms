@@ -1,5 +1,6 @@
 $(function () {
-    var tabId = new Array();
+    var tabId = new Array(),
+        isChanged;
     tabId[0] = 0;
 
     function getTabHtml(x, title, option, idy) {
@@ -64,7 +65,6 @@ $(function () {
                 inputs = tabForm.getElementsByTagName('input'),
                 free, tips = $(".validateTips");
 
-
             tips.text('');
 
             if (taby.length != 0) {
@@ -98,6 +98,8 @@ $(function () {
             }
             inputs[0].setAttribute('id', 'tab_title' + free);
             lista[0].setAttribute('id', 'tabLi' + free);
+
+            isChanged = false;
         },
         buttons: {
             Add: function () {
@@ -165,7 +167,9 @@ $(function () {
                                 parseInt(navColor2[3])) + "', endColorstr='#" + color2 + "',GradientType=0 )");
                         }
                     }
-                    $('.tooltp').tooltip();
+                    WebService.SaveContent($('#contentUL').html(), $('#currentPage').text());
+
+                    isChanged = true;
                     $(this).dialog("close");
                 }
             },
@@ -191,6 +195,12 @@ $(function () {
 
             tabId = [];
             inputs = [];
+
+            if (isChanged)
+                $("#contentUL").load(location.href + " #contentUL>*", function () {
+                    $('.tooltp').tooltip();
+                    $.getScript("hover.js");
+                });
         }
     });
 

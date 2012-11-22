@@ -1,4 +1,5 @@
 $(function () {
+    var isChanged;
 
     $('#selectFilePicture').toggle();
 
@@ -13,6 +14,7 @@ $(function () {
             var tips = $(".validateTips");
 
             tips.text('');
+            isChanged = false;
         },
         buttons: {
             "Add": function () {
@@ -31,9 +33,13 @@ $(function () {
                 }
 
                 if (bValid) {
-                    
+
                     $($(this).data('item')).html('<div style="text-align: center;"><img  class="picture tooltp" src="' + addres
                         + '" title="Double click to edit Picture."/></div>');
+
+                    WebService.SaveContent($('#contentUL').html(), $('#currentPage').text());
+
+                    isChanged = true;
                     $(this).dialog("close");
                 }
             },
@@ -47,6 +53,12 @@ $(function () {
             allFields = $([]).add(url).add(file);
 
             allFields.val("").removeClass("ui-state-error");
+
+            if (isChanged)
+                $("#contentUL").load(location.href + " #contentUL>*", function () {
+                    $('.tooltp').tooltip();
+                    $.getScript("hover.js");
+                });
         }
     });
 
