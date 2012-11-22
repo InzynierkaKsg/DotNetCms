@@ -140,7 +140,7 @@ $(function () {
                     currentTab = inputs[i].getAttribute('id');
                     idy[i] = currentTab.replace('tab_titleEdit', '');
                     title = $('#' + currentTab);
-                    bValid = bValid && checkLength(title, "Title", 1, 60);
+                    bValid = bValid && checkLength(title, "Title", 1);
                     titles[i] = title.val();
                 }
                 if (bValid) {
@@ -311,59 +311,5 @@ $(function () {
             color4 = hexFromRGB(setZero(parseInt(navColor2[1]) + 75),
                setZero(parseInt(navColor2[2]) + 75), setZero(parseInt(navColor2[3]) + 75));
         }
-    }
-
-    function updateTips(t) {
-        tips = $(".validateTips");
-        tips
-            .text(t)
-            .addClass("ui-state-highlight");
-        setTimeout(function () {
-            tips.removeClass("ui-state-highlight", 1500);
-        }, 500);
-    };
-
-    function checkLength(o, n, min, max) {
-        if (o.val().length > max || o.val().length < min) {
-            o.addClass("ui-state-error");
-            updateTips("Length of " + n + " must be between " +
-                min + " and " + max + ".");
-            return false;
-        } else {
-            o.removeClass("ui-state-error");
-            return true;
-        }
-    };
-
-    function hexFromRGB(r, g, b) {
-        var hex = [
-            r.toString(16),
-            g.toString(16),
-            b.toString(16)
-        ];
-        $.each(hex, function (nr, val) {
-            if (val.length === 1) {
-                hex[nr] = "0" + val;
-            }
-        });
-        return hex.join("").toUpperCase();
-    }
-
-    function getMaxRGB(r, g, b) {
-        var max = r;
-        if (g > max)
-            max = g;
-        if (b > max)
-            max = b;
-        return max;
-    }
-
-    function setZero(x) {
-        if (x < 0)
-            return 0;
-        else if (x > 255)
-            return 255;
-        else
-            return x;
     }
 });

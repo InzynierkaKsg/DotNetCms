@@ -179,36 +179,4 @@ $(function () {
             $('#basicnav2').css('border', 'none');
         }
     });
-
-    function hexFromRGB(r, g, b) {
-        var hex = [
-            r.toString(16),
-            g.toString(16),
-            b.toString(16)
-        ];
-        $.each(hex, function (nr, val) {
-            if (val.length === 1) {
-                hex[nr] = "0" + val;
-            }
-        });
-        return hex.join("").toUpperCase();
-    }
-
-    function getMaxRGB(r, g, b) {
-        var max = r;
-        if (g > max)
-            max = g;
-        if (b > max)
-            max = b;
-        return max;
-    }
-
-    function setZero(x) {
-        if (x < 0)
-            return 0;
-        else if (x > 255)
-            return 255;
-        else
-            return x;
-    }
 });

@@ -58,4 +58,6 @@ $(function () {
         + '<label>Name of page</label>'
         + '<input type="text" id="newPage" value="" class="ui-widget-content ui-corner-all" /></form>').appendTo('#addPageForm');
 
+    //potwierdzenie dodania strony
+    $('<div style="text-align: center;"><b>Page saved.</b></div>').appendTo('#confirm');
 });
