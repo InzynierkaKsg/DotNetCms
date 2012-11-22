@@ -42,12 +42,7 @@ $(function () {
     $('<p class="validateTips"></p><textarea id="dialogTextEditor" rows="10" style="width: 400px"></textarea>').appendTo('#textEditorForm');
 
     //formularz do map
-    $('<p class="validateTips"></p><form><label for="address">Address</label><input type="text" name="address" id="address"'
-        + ' class="text ui-widget-content ui-corner-all" />'
-        + '<form><label for="description">Description</label><input type="text" name="description" id="description"'
-        + ' class="text ui-widget-content ui-corner-all" /><br /><br />'
-        + '<button id="mapPreviewButton">Preview</button><br /><br />'
-        + '<div id="mapPreview"></div></form>').appendTo('#mapForm');
+    $('<form><div id="mapMarkerDialog"></div><div id="mapPreview"></div></form>').appendTo('#mapForm');
 
     //formularz do page'ow
     $('<p class="validateTips"></p><form><label>Pages names:</label>'
