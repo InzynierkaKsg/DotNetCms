@@ -90,7 +90,7 @@
                             </a>
                         </h1>
                         <a id="tog" href="#" class="toggle" data-for="#prettynav > ul">
-                            <img src="Gumby/img/icon_nav_toggle.gif" style="margin-top: 10px"/>
+                            <img src="../Gumby/img/icon_nav_toggle.gif" style="margin-top: 10px"/>
                         </a>
 
                         <ul id="menuNav">
