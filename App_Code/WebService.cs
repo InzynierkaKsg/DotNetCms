@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Services;
 using Model;
 using System.Web.Security;
+using System.IO;
 
 /// <summary>
 /// Summary description for WebService
@@ -20,6 +21,10 @@ public class WebService : System.Web.Services.WebService {
         //Uncomment the following line if using designed components 
         //InitializeComponent(); 
     }
+
+
+
+
 
     [WebMethod]
     public void LogOut()

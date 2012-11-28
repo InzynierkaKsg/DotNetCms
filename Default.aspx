@@ -127,6 +127,9 @@
         <div id="mapForm" title="Add map"></div>
         <div id="pageForm" title="Pages"></div>
         <div id="addPageForm" title="Add Page"></div>
+
+       
+
     </form>
 </body>
 </html>

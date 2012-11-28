@@ -1,4 +1,9 @@
 $(function () {
+
+    var selectedFile;
+    $('#choosePictureEdit').live('change', function () {
+        selectedFile = this.files;
+    });
     var isChanged;
 
     $("#pictureFormEdit").dialog({
@@ -27,8 +32,23 @@ $(function () {
                     bValid = checkLength(url, "Url", 1);
                 }
                 else {
-                    addres = file.val();
+                    addres = "/DotNetCms/images/" + file.val();
                     bValid = checkLength(file, "File path", 1);
+
+                    var data = new FormData();
+                    data.append(selectedFile[0].name, selectedFile[0]);
+
+                    $.ajax({
+                        type: "POST",
+                        url: "FileUploaderHandler.ashx",
+                        contentType: false,
+                        processData: false,
+                        data: data,
+                        error: function () {
+                            alert("There was error uploading files!");
+                            bValid = false;
+                        }
+                    });
                 }
 
                 if (bValid) {
