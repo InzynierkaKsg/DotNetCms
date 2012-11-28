@@ -65,6 +65,7 @@
                             <li id="contentColor"><a class="hov" href="#">Color</a></li>
                             <li id="addPage"><a class="hov" href="#">Add Page</a></li>
                             <li id="pages"><a class="hov" href="#">Pages</a></li>
+                            <li id="admin"><a class="hov" href="#">Admin</a></li>
                             <li id="logout"><a class="hov" href="#">LogOut</a></li>
                         </ul>
                     </nav>

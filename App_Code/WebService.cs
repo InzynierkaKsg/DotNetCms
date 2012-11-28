@@ -6,6 +6,7 @@ using System.Web.Services;
 using Model;
 using System.Web.Security;
 using System.IO;
+using AdminModel;
 
 /// <summary>
 /// Summary description for WebService
@@ -24,6 +25,24 @@ public class WebService : System.Web.Services.WebService {
 
 
 
+    [WebMethod]
+    public void ChangeLogin(string login)
+    {
+        AdminModelContainer mc = new AdminModelContainer();
+        var admin = (from x in mc.AdminSet select x).First();
+        admin.Login = login;
+        mc.SaveChanges();
+    }
+
+
+    [WebMethod]
+    public void ChangePassword(string password)
+    {
+        AdminModelContainer mc = new AdminModelContainer();
+        var admin = (from x in mc.AdminSet select x).First();
+        admin.Password = password;
+        mc.SaveChanges();
+    }
 
 
     [WebMethod]

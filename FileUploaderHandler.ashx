@@ -2,7 +2,8 @@
 
 using System;
 using System.Web;
-
+using System.Drawing;
+using System.Drawing.Drawing2D;
 public class FileUploaderHandler : IHttpHandler {
     
     public void ProcessRequest (HttpContext context) {
@@ -12,9 +13,14 @@ public class FileUploaderHandler : IHttpHandler {
             foreach (string key in files)
             {
                 HttpPostedFile file = files[key];
+                
                 string fileName = file.FileName;
-                fileName = context.Server.MapPath("~/images/" + fileName);
+                fileName = context.Server.MapPath("~/images/" + fileName);               
+               
                 file.SaveAs(fileName);
+            
+
+        
             }
         }
         context.Response.ContentType = "text/plain";
@@ -28,3 +34,5 @@ public class FileUploaderHandler : IHttpHandler {
     }
 
 }
+
+
