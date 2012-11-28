@@ -8,45 +8,52 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
 
     <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.1/themes/base/jquery-ui.css" />
-    <link rel="stylesheet" href="Gumby/css/imports.css" />
-    <link rel="stylesheet" href="colorPicker.css" />
-    <link href="jHtmlArea/style/jHtmlArea.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="../Gumby/css/imports.css" />
+    <link rel="stylesheet" href="../colorPicker.css" />
+    <link href="../jHtmlArea/style/jHtmlArea.css" rel="stylesheet" type="text/css" />
 
-    <link href="editPane.css" rel="stylesheet" type="text/css" />
 
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/ui/1.9.1/jquery-ui.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
     <script type="text/javascript" src="https://www.google.com/jsapi"></script>
 
-    <script type="text/javascript" src="Gumby/js/libs/gumby.js"></script>
-    <script type="text/javascript" src="Gumby/js/plugins.js"></script>
-    <script type="text/javascript" src="Gumby/js/main.js"></script>
+    <script type="text/javascript" src="../Gumby/js/libs/gumby.js"></script>
+    <script type="text/javascript" src="../Gumby/js/plugins.js"></script>
+    <script type="text/javascript" src="../Gumby/js/main.js"></script>
 
-    <script type="text/javascript" src="toolboxScripts/color.js"></script>
-    <script type="text/javascript" src="toolboxScripts/dialogAddPageForm.js"></script>
-    <script type="text/javascript" src="toolboxScripts/dialogAddTextEditor.js"></script>
-    <script type="text/javascript" src="toolboxScripts/dialogEditTabsForm.js"></script>
-    <script type="text/javascript" src="toolboxScripts/dialogEditPictureForm.js"></script>
-    <script type="text/javascript" src="toolboxScripts/dialogForm.js"></script>
-    <script type="text/javascript" src="toolboxScripts/dialogMapForm.js"></script>
-    <script type="text/javascript" src="toolboxScripts/dialogPagesForm.js"></script>
-    <script type="text/javascript" src="toolboxScripts/dialogPictureForm.js"></script>
-    <script type="text/javascript" src="toolboxScripts/dialogTabsForm.js"></script>
-    <script type="text/javascript" src="toolboxScripts/dialogTextEditor.js"></script>
-    <script type="text/javascript" src="toolboxScripts/dialogValidation.js"></script>
-    <script type="text/javascript" src="toolboxScripts/toolbox.js"></script>
+    <script type="text/javascript" src="../toolboxScripts/color.js"></script>
+    <script type="text/javascript" src="../toolboxScripts/dialogAddPageForm.js"></script>
+    <script type="text/javascript" src="../toolboxScripts/dialogAddTextEditor.js"></script>
+    <script type="text/javascript" src="../toolboxScripts/dialogEditTabsForm.js"></script>
+    <script type="text/javascript" src="../toolboxScripts/dialogEditPictureForm.js"></script>
+    <script type="text/javascript" src="../toolboxScripts/dialogForm.js"></script>
+    <script type="text/javascript" src="../toolboxScripts/dialogMapForm.js"></script>
+    <script type="text/javascript" src="../toolboxScripts/dialogPagesForm.js"></script>
+    <script type="text/javascript" src="../toolboxScripts/dialogPictureForm.js"></script>
+    <script type="text/javascript" src="../toolboxScripts/dialogTabsForm.js"></script>
+    <script type="text/javascript" src="../toolboxScripts/dialogTextEditor.js"></script>
+    <script type="text/javascript" src="../toolboxScripts/dialogValidation.js"></script>
+    <script type="text/javascript" src="../toolboxScripts/toolbox.js"></script>
 
-    <script type="text/javascript" src="jquery-ui-map/jquery.ui.map.js"></script>
-    <script type="text/javascript" src="jquery-ui-map/jquery.ui.map.services.js"></script>
-    <script type="text/javascript" src="jquery-ui-map/jquery.ui.map.extensions.js"></script>
+    <script type="text/javascript" src="../jquery-ui-map/jquery.ui.map.js"></script>
+    <script type="text/javascript" src="../jquery-ui-map/jquery.ui.map.services.js"></script>
+    <script type="text/javascript" src="../jquery-ui-map/jquery.ui.map.extensions.js"></script>
 
-    <script type="text/javascript" src="jHtmlArea/scripts/jHtmlArea-0.7.5.js"></script>
+    <script type="text/javascript" src="../jHtmlArea/scripts/jHtmlArea-0.7.5.js"></script>
 
-    <script type="text/javascript" src="jquery.highlightEdit.js"></script>
-    <script type="text/javascript" src="hover.js"></script>
+    <script type="text/javascript" src="../jquery.highlightEdit.js"></script>
+    <script type="text/javascript" src="../hover.js"></script>
 
     <title>DotNetCMS</title>
+    <script type="text/javascript">
+        $(function () {
+            $('#logout').click(function () {
+                WebService.LogOut();
+                window.location.replace("../Login.aspx");
+            });
+        });
+    </script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -58,7 +65,7 @@
                             <li id="contentColor"><a class="hov" href="#">Color</a></li>
                             <li id="addPage"><a class="hov" href="#">Add Page</a></li>
                             <li id="pages"><a class="hov" href="#">Pages</a></li>
-                            <li id="adm"><a class="hov" href="#">Admin</a></li>
+                            <li id="logout"><a class="hov" href="#">LogOut</a></li>
                         </ul>
                     </nav>
                     <nav class="navbar clearfix" id="basicnav">
