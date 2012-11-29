@@ -277,7 +277,20 @@
         ["justifyleft", "justifycenter", "justifyright"],
         ["link", "unlink", "image", "horizontalrule"],
         ["p", "h1", "h2", "h3", "h4", "h5", "h6"],
-        ["cut", "copy", "paste"]
+        ["cut", "copy", "paste"],
+        [{
+            css: "datebutton",
+            text: "Dodaj dzisiejszą datę",
+            action: function (btn) {
+                var months = new Array("styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień");
+                var date = new Date();
+                var currentDay = date.getDate();
+                var currentMonth = date.getMonth();
+                var currentYear = date.getFullYear();
+
+                this.pasteHTML(currentDay + " " + months[currentMonth] + ", " + currentYear + "r.");
+            }
+        }]
     ],
         css: null,
         toolbarText: {

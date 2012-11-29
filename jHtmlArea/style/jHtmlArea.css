@@ -39,6 +39,8 @@ div.jHtmlArea .ToolBar ul li a.outdent { background-position: -144px -16px;}
 div.jHtmlArea .ToolBar ul li a.horizontalrule { background-position: -160px -16px;}
 div.jHtmlArea .ToolBar ul li a.p { background-position: -176px -16px;}
 
+div.jHtmlArea .ToolBar ul li a.datebutton {background: url(calendar.png);}
+
 
 div.jHtmlArea .ToolBar ul li a.justifyleft { background-position: 0 -32px;}
 div.jHtmlArea .ToolBar ul li a.justifycenter { background-position: -16px -32px;}

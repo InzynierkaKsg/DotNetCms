@@ -46,6 +46,8 @@
     <script type="text/javascript" src="jquery.highlightEdit.js"></script>
     <script type="text/javascript" src="hover.js"></script>
 
+    <!-- <script type="text/javascript" src="chooseProperImgSrc.js"></script> !-->
+
     <title>DotNetCMS</title>
 </head>
 <body>
