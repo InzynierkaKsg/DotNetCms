@@ -37,10 +37,8 @@ $(function () {
                     green = $("#greenSlider").slider("value"),
                     blue = $("#blueSlider").slider("value");
 
-                //// WebService.UpdateColor(red, green, blue);
-                // var c = WebService.GetColorR();
-                // setTimeout("alert(c);", 2000);
-
+                 WebService.UpdateColor(red, green, blue);
+                
                 changeColor(red, green, blue);
                 $(this).dialog("close");
             }

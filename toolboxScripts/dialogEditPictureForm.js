@@ -32,7 +32,7 @@ $(function () {
                     bValid = checkLength(url, "Url", 1);
                 }
                 else {
-                    addres = "/DotNetCms/images/original_" + file.val();
+                    addres = "/DotNetCms/images/original_" + selectedFile[0].name;
                     bValid = checkLength(file, "File path", 1);
 
                     var data = new FormData();
